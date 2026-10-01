@@ -1,0 +1,312 @@
+/* Cruise News You Can Use — shared site styles */
+
+:root {
+  --navy: #0b2a3f;
+  --navy-deep: #071c2c;
+  --teal: #1b7a8c;
+  --teal-bright: #2aa6bd;
+  --sand: #f6f3ec;
+  --paper: #fffdf9;
+  --ink: #1c2b33;
+  --ink-soft: #52636b;
+  --line: #e4ddcd;
+  --coral: #e0633d;
+  --good: #1f8a5f;
+  --max-width: 780px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--sand);
+  color: var(--ink);
+  font-family: "Iowan Old Style", "Georgia", "Charter", serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  color: var(--navy-deep);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+a { color: var(--teal); text-decoration: none; }
+a:hover { color: var(--coral); text-decoration: underline; }
+
+/* ---------- Site header ---------- */
+
+.site-header {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-deep) 100%);
+  color: #fff;
+  padding: 2.75rem 1.5rem 2.25rem;
+  border-bottom: 4px solid var(--teal-bright);
+}
+
+.site-header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.site-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 0 0 0.35rem;
+}
+
+.site-brand .wave {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.site-title {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-weight: 800;
+  font-size: 1.9rem;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.site-title a { color: #fff; text-decoration: none; }
+
+.site-tagline {
+  font-family: Georgia, serif;
+  font-style: italic;
+  color: #cfe3e9;
+  font-size: 1.02rem;
+  margin: 0;
+}
+
+.site-nav {
+  margin-top: 1.1rem;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.site-nav a {
+  color: #bcd9df;
+  margin-right: 1.25rem;
+}
+
+.site-nav a:hover { color: #fff; }
+
+/* ---------- Layout ---------- */
+
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+/* ---------- Post list (homepage) ---------- */
+
+.intro-blurb {
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  margin-bottom: 2.25rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.post-list { list-style: none; margin: 0; padding: 0; }
+
+.post-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--teal-bright);
+  border-radius: 6px;
+  padding: 1.5rem 1.65rem;
+  margin-bottom: 1.25rem;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.post-card:hover {
+  box-shadow: 0 6px 18px rgba(11, 42, 63, 0.08);
+  transform: translateY(-1px);
+}
+
+.post-card .post-date {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  font-size: 0.74rem;
+  color: var(--teal);
+  font-weight: 700;
+}
+
+.post-card h2 {
+  margin: 0.3rem 0 0.55rem;
+  font-size: 1.35rem;
+}
+
+.post-card h2 a { color: var(--navy-deep); }
+.post-card h2 a:hover { color: var(--coral); }
+
+.post-card .post-excerpt {
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+  margin: 0 0 0.75rem;
+}
+
+.post-card .read-more {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.empty-state {
+  color: var(--ink-soft);
+  font-style: italic;
+  padding: 2rem 0;
+}
+
+/* ---------- Single post ---------- */
+
+.post-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.post-header .post-date {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+  color: var(--teal);
+  font-weight: 700;
+}
+
+.post-header h1 {
+  font-size: 2rem;
+  margin: 0.4rem 0 0.5rem;
+}
+
+.post-header .post-window {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  font-style: italic;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 1.75rem;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.top-stories {
+  background: #eef6f3;
+  border: 1px solid #cfe3da;
+  border-radius: 8px;
+  padding: 1.35rem 1.6rem 1.1rem;
+  margin: 0 0 2.25rem;
+}
+
+.top-stories h2 {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--good);
+  margin: 0 0 0.75rem;
+}
+
+.top-stories ol {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.top-stories li {
+  margin-bottom: 0.55rem;
+  font-size: 1rem;
+}
+
+.top-stories li:last-child { margin-bottom: 0; }
+
+.post-body h2 {
+  font-size: 1.15rem;
+  margin: 2.1rem 0 0.4rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+.post-body h3 {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--teal);
+  margin: 1.3rem 0 0.35rem;
+}
+
+.post-body p { margin: 0 0 1rem; }
+
+.post-body ul, .post-body ol { margin: 0 0 1rem; padding-left: 1.3rem; }
+.post-body li { margin-bottom: 0.5rem; }
+
+.ticker {
+  display: inline-block;
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--navy-deep);
+  background: #e4ecee;
+  border-radius: 4px;
+  padding: 0.1rem 0.4rem;
+  margin-right: 0.35rem;
+}
+
+.nothing-new {
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.watch-next {
+  margin-top: 2.25rem;
+  padding: 1.1rem 1.4rem;
+  background: #fbf2e7;
+  border: 1px solid #ecdcc3;
+  border-radius: 8px;
+}
+
+.watch-next h2 {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--coral);
+  margin: 0 0 0.4rem;
+  border: none;
+  padding: 0;
+}
+
+.watch-next p { margin: 0; font-size: 0.97rem; }
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 2rem 1.5rem 3rem;
+  text-align: center;
+  color: var(--ink-soft);
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.82rem;
+}
+
+.site-footer a { color: var(--teal); }
+
+@media (max-width: 600px) {
+  .site-title { font-size: 1.5rem; }
+  .post-header h1 { font-size: 1.55rem; }
+}
