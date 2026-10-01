@@ -35,7 +35,8 @@ Rules for the source file:
   - Every other `##`/`###` section is rendered as the article body, in order.
   - Ticker symbols written as `[CCL]` (not followed by a `(`, i.e. not a
     markdown link) are automatically styled as little badges.
-  - Regenerates posts/<date>.html, data/posts.json, and index.html.
+  - Regenerates posts/<date>.html, data/posts.json, data/search.json (the
+    full-text search index, rebuilt from every data/*.md file), and index.html.
     This script only writes files — it does not run git. Commit and push
     the result yourself (or let the caller script do it).
 """
@@ -46,6 +47,7 @@ import json
 import re
 import sys
 from pathlib import Path
+from html import unescape as html_unescape
 from xml.sax.saxutils import escape
 
 try:
@@ -59,7 +61,7 @@ DATA_DIR = ROOT / "data"
 MANIFEST = DATA_DIR / "posts.json"
 
 SITE_NAME = "Cruise News You Can Use"
-SITE_TAGLINE = "A weekday brief on Carnival, Royal Caribbean, Norwegian, and the rest of the cruise world."
+SITE_TAGLINE = "Daily updates on the major cruise lines and the rest of the cruise world."
 SITE_URL = "https://spencertownley-sys.github.io/CruiseNewsYouCanUse/"
 
 TICKER_RE = re.compile(r"\[([A-Z]{2,6})\](?!\()")
@@ -159,7 +161,7 @@ def parse_source(md_text):
         "title": title,
         "window": window,
         "top3_html": top3_html,
-        "body_html": "\n".join(body_html_parts),
+        "body_html": add_heading_anchors("\n".join(body_html_parts)),
         "watch_next_html": watch_next_html,
     }
 
@@ -175,6 +177,96 @@ def extract_date_from_title(title, fallback):
                 except ValueError:
                     continue
     return fallback
+
+
+SEARCH_INDEX = DATA_DIR / "search.json"
+
+
+def slugify(text):
+    text = html_unescape(re.sub(r"<[^>]+>", "", text)).lower()
+    text = re.sub(r"[^a-z0-9]+", "-", text).strip("-")
+    return text or "section"
+
+
+def add_heading_anchors(html):
+    """Give every <h2>/<h3> in the rendered body an id so search results
+    can deep-link straight to a section."""
+    seen = {}
+
+    def repl(m):
+        level, inner = m.group(1), m.group(2)
+        base = slugify(inner)
+        n = seen.get(base, 0)
+        seen[base] = n + 1
+        slug = base if n == 0 else f"{base}-{n + 1}"
+        return f'<h{level} id="{slug}">{inner}</h{level}>'
+
+    return re.sub(r"<h([23])>(.*?)</h\1>", repl, html, flags=re.S)
+
+
+MD_LINK_RE = re.compile(r"\[([^\]]+)\]\((?:[^)]+)\)")
+
+
+def markdown_to_plain(text):
+    text = MD_LINK_RE.sub(r"\1", text)          # keep link text, drop URL
+    text = re.sub(r"[*_`#>]+", "", text)        # strip emphasis / heading marks
+    text = re.sub(r"^\s*\d+\.\s+", "", text, flags=re.M)
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
+def index_source(md_text, entry):
+    """Break one post's markdown into searchable section records."""
+    lines = md_text.splitlines()
+    records = []
+    h2 = None
+    h3 = None
+    buf = []
+
+    def flush():
+        if h2 is None and h3 is None:
+            return  # preamble (the italic "covering" line) is not a section
+        text = markdown_to_plain("\n".join(buf))
+        if not text:
+            return
+        heading = " / ".join(h for h in (h2, h3) if h)
+        anchor = slugify(h3 or h2 or "")
+        records.append({
+            "date": entry["date"],
+            "display_date": entry["display_date"],
+            "title": entry["title"],
+            "url": entry["url"] + (f"#{anchor}" if anchor else ""),
+            "section": heading,
+            "text": text,
+        })
+
+    for line in lines[1:]:  # skip H1
+        m = re.match(r"^(#{2,3})\s+(.*)$", line)
+        if m:
+            flush()
+            buf = []
+            if len(m.group(1)) == 2:
+                h2, h3 = m.group(2).strip(), None
+            else:
+                h3 = m.group(2).strip()
+        else:
+            buf.append(line)
+    flush()
+    return records
+
+
+def rebuild_search_index(entries):
+    """Rebuild data/search.json from every data/<date>.md so the index is
+    always complete, even if an earlier run was interrupted."""
+    by_date = {e["date"]: e for e in entries}
+    records = []
+    for md_file in sorted(DATA_DIR.glob("????-??-??.md"), reverse=True):
+        entry = by_date.get(md_file.stem)
+        if not entry:
+            continue
+        records.extend(index_source(md_file.read_text(), entry))
+    SEARCH_INDEX.write_text(json.dumps(records, ensure_ascii=False) + "\n")
+    return len(records)
 
 
 PAGE_TEMPLATE = """<!doctype html>
@@ -197,6 +289,7 @@ PAGE_TEMPLATE = """<!doctype html>
     <p class="site-tagline">{site_tagline}</p>
     <nav class="site-nav">
       <a href="{asset_prefix}index.html">Home</a>
+      <a href="{asset_prefix}index.html#search">Search</a>
       <a href="https://github.com/spencertownley-sys/CruiseNewsYouCanUse">About this brief</a>
     </nav>
   </div>
@@ -205,8 +298,7 @@ PAGE_TEMPLATE = """<!doctype html>
 {content}
 </main>
 <footer class="site-footer">
-  <p>{site_name} &mdash; an automated weekday digest for cruise-industry watchers.<br>
-  Built with <a href="https://claude.com">Claude</a>. Sources linked throughout.</p>
+  <p>{site_name} &mdash; a daily digest for cruise-industry watchers. Sources linked throughout.</p>
 </footer>
 </body>
 </html>
@@ -216,14 +308,14 @@ PAGE_TEMPLATE = """<!doctype html>
 def render_post_page(entry, parsed):
     top3_block = ""
     if parsed["top3_html"]:
-        top3_block = f"""<div class="top-stories">
+        top3_block = f"""<div class="top-stories" id="top-3">
   <h2>Top 3</h2>
   {parsed['top3_html']}
 </div>"""
 
     watch_block = ""
     if parsed["watch_next_html"]:
-        watch_block = f"""<div class="watch-next">
+        watch_block = f"""<div class="watch-next" id="watch-next">
   <h2>Watch next</h2>
   {parsed['watch_next_html']}
 </div>"""
@@ -268,11 +360,31 @@ def render_index_page(entries):
 </li>""")
         list_html = f'<ul class="post-list">\n{"".join(cards)}\n</ul>'
 
-    content = f"""<p class="intro-blurb">A weekday digest of what's new across Carnival Corporation
+    count = len(entries)
+    oldest = min(entries, key=lambda x: x["date"])["display_date"] if entries else ""
+    archive_note = (
+        f'{count} daily brief{"s" if count != 1 else ""} on file since {oldest}. Every day\'s update is kept here and searchable.'
+        if entries else "Every day's update will be kept here and searchable."
+    )
+
+    content = f"""<p class="intro-blurb">A daily digest of what's new across Carnival Corporation
 (Carnival, Princess, Holland America, Seabourn), Norwegian Cruise Line Holdings, Royal Caribbean
 Group, and the wider cruise industry &mdash; earnings, bookings, itinerary changes, incidents, and
-what's trending with cruisers online. Published automatically after each weekday run.</p>
-{list_html}"""
+what's trending with cruisers online.</p>
+<section class="search" id="search">
+  <form class="search-form" role="search" onsubmit="return false">
+    <label class="search-label" for="search-input">Search every brief</label>
+    <div class="search-row">
+      <input id="search-input" type="search" placeholder="e.g. Princess, norovirus, RCL guidance, Alaska" autocomplete="off">
+      <button type="button" id="search-clear" class="search-clear" hidden>Clear</button>
+    </div>
+    <p class="search-hint">{archive_note}</p>
+  </form>
+  <div id="search-results" class="search-results" hidden></div>
+</section>
+<h2 class="archive-heading" id="archive">All briefs</h2>
+{list_html}
+<script src="assets/search.js" defer></script>"""
 
     return PAGE_TEMPLATE.format(
         page_title=SITE_NAME,
@@ -330,9 +442,12 @@ def main():
     index_html = render_index_page(entries)
     (ROOT / "index.html").write_text(index_html)
 
+    n_records = rebuild_search_index(entries)
+
     print(f"Wrote posts/{slug}.html")
     print(f"Updated index.html ({len(entries)} post(s) total)")
     print(f"Updated data/posts.json")
+    print(f"Rebuilt data/search.json ({n_records} searchable sections)")
 
 
 if __name__ == "__main__":
