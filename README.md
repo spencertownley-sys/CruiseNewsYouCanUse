@@ -47,3 +47,8 @@ scripts/publish_post.py   Turns a day's markdown into a styled post + updated ho
 Editorial look: navy/teal masthead, serif body text, card-based homepage, a highlighted
 "Top 3" callout per post, and a closing "Watch next" box. Ticker symbols written as `[CCL]`
 are automatically styled as small badges.
+
+## Also in this repo: Jimothy
+
+`jimothy/` holds **JIMOTHY: A Seattle Story**, a Phaser 3 platformer starring Ballard's
+short-spined raccoon. It is a separate Vite project with its own README; see `jimothy/README.md`.
