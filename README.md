@@ -59,3 +59,8 @@ The homepage has a search box that runs entirely in the browser: it loads `data/
 and matches every word you type against every section of every brief, newest first, with
 snippets that link straight to the matching section. `index.html?q=princess` opens the
 homepage with a search already run.
+
+## Also in this repo: Jimothy
+
+`jimothy/` holds **JIMOTHY: A Seattle Story**, a Phaser 3 platformer starring Ballard's
+short-spined raccoon. It is a separate Vite project with its own README; see `jimothy/README.md`.
