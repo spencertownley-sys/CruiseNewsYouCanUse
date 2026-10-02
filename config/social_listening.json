@@ -1,0 +1,784 @@
+{
+  "_readme": "Backend controls for the Social Pulse feature. Edit this file to change what the daily social listening run looks for, how posts are attributed, and what gets highlighted. scripts/social_listening.py reads it on every run; the daily routine reads the 'focus' and 'queries' sections to decide what to search for.",
+  "version": 1,
+  "window_hours": 24,
+  "monday_window_hours": 72,
+  "platforms": {
+    "x": {
+      "label": "X",
+      "enabled": true,
+      "weight": 1.0,
+      "site": "x.com",
+      "notes": "No public API. Gathered via web search (site:x.com / twitter.com) and fetched pages."
+    },
+    "threads": {
+      "label": "Threads",
+      "enabled": true,
+      "weight": 1.0,
+      "site": "threads.net",
+      "notes": "No public API. Gathered via web search (site:threads.net / threads.com)."
+    },
+    "bluesky": {
+      "label": "Bluesky",
+      "enabled": true,
+      "weight": 1.0,
+      "site": "bsky.app",
+      "notes": "Public search API (public.api.bsky.app) when the network allows; otherwise web search (site:bsky.app)."
+    },
+    "instagram": {
+      "label": "Instagram",
+      "enabled": true,
+      "weight": 0.8,
+      "site": "instagram.com",
+      "notes": "No public API. Gathered via web search (site:instagram.com), captions and public comments only."
+    },
+    "facebook": {
+      "label": "Facebook",
+      "enabled": true,
+      "weight": 0.8,
+      "site": "facebook.com",
+      "notes": "No public API. Public pages and groups via web search (site:facebook.com)."
+    }
+  },
+  "queries": {
+    "_notes": "Each template is run once per platform the routine searches, with {site} replaced by the platform's site. Add or remove templates to broaden or narrow the daily pull.",
+    "templates": [
+      "{site} \"Princess Cruises\"",
+      "{site} \"Carnival\" cruise",
+      "{site} \"Holland America\"",
+      "{site} \"Seabourn\"",
+      "{site} \"Royal Caribbean\"",
+      "{site} \"Norwegian Cruise Line\" OR \"NCL\" cruise",
+      "{site} \"Celebrity Cruises\"",
+      "{site} \"MSC Cruises\"",
+      "{site} \"Virgin Voyages\"",
+      "{site} \"Disney Cruise\"",
+      "{site} cruise ship complaint OR cancelled OR norovirus",
+      "{site} cruise \"best cruise\" OR \"amazing cruise\" OR \"never again\""
+    ],
+    "max_posts_per_platform": 40
+  },
+  "brands": [
+    {
+      "key": "carnival_corp",
+      "name": "Carnival Corporation (corporate & stock)",
+      "group": "Carnival Corporation",
+      "priority": 0,
+      "aliases": [
+        "Carnival Corporation",
+        "Carnival Corp",
+        "$CCL",
+        "$CUK",
+        "CCL stock",
+        "Carnival earnings",
+        "Carnival shares",
+        "Carnival stock"
+      ],
+      "ships": []
+    },
+    {
+      "key": "princess",
+      "name": "Princess Cruises",
+      "group": "Carnival Corporation",
+      "priority": 1,
+      "aliases": [
+        "Princess Cruises",
+        "Princess cruise",
+        "@PrincessCruises",
+        "#PrincessCruises",
+        "Princess Cruise Line"
+      ],
+      "ships": [
+        "Sun Princess",
+        "Star Princess",
+        "Discovery Princess",
+        "Enchanted Princess",
+        "Sky Princess",
+        "Majestic Princess",
+        "Regal Princess",
+        "Royal Princess",
+        "Caribbean Princess",
+        "Crown Princess",
+        "Emerald Princess",
+        "Ruby Princess",
+        "Sapphire Princess",
+        "Diamond Princess",
+        "Grand Princess",
+        "Coral Princess",
+        "Island Princess"
+      ]
+    },
+    {
+      "key": "carnival",
+      "name": "Carnival Cruise Line",
+      "group": "Carnival Corporation",
+      "priority": 2,
+      "aliases": [
+        "Carnival Cruise Line",
+        "Carnival Cruise",
+        "Carnival cruise",
+        "@CarnivalCruise",
+        "#CarnivalCruise",
+        "Carnival ship"
+      ],
+      "ships": [
+        "Carnival Jubilee",
+        "Carnival Celebration",
+        "Mardi Gras",
+        "Carnival Venezia",
+        "Carnival Firenze",
+        "Carnival Luminosa",
+        "Carnival Panorama",
+        "Carnival Vista",
+        "Carnival Horizon",
+        "Carnival Breeze",
+        "Carnival Magic",
+        "Carnival Dream",
+        "Carnival Sunshine",
+        "Carnival Sunrise",
+        "Carnival Radiance",
+        "Carnival Legend",
+        "Carnival Miracle",
+        "Carnival Spirit",
+        "Carnival Pride",
+        "Carnival Glory",
+        "Carnival Valor",
+        "Carnival Liberty",
+        "Carnival Freedom",
+        "Carnival Conquest",
+        "Carnival Elation",
+        "Carnival Paradise",
+        "Carnival Festivale",
+        "Carnival Tropicale"
+      ]
+    },
+    {
+      "key": "hal",
+      "name": "Holland America Line",
+      "group": "Carnival Corporation",
+      "priority": 3,
+      "aliases": [
+        "Holland America",
+        "@HALcruises",
+        "#HollandAmerica",
+        "HAL cruise"
+      ],
+      "ships": [
+        "Rotterdam",
+        "Nieuw Statendam",
+        "Koningsdam",
+        "Nieuw Amsterdam",
+        "Eurodam",
+        "Oosterdam",
+        "Zuiderdam",
+        "Noordam",
+        "Westerdam",
+        "Zaandam",
+        "Volendam"
+      ]
+    },
+    {
+      "key": "seabourn",
+      "name": "Seabourn",
+      "group": "Carnival Corporation",
+      "priority": 4,
+      "aliases": [
+        "Seabourn",
+        "@SeabournCruise",
+        "#Seabourn"
+      ],
+      "ships": [
+        "Seabourn Ovation",
+        "Seabourn Encore",
+        "Seabourn Quest",
+        "Seabourn Sojourn",
+        "Seabourn Venture",
+        "Seabourn Pursuit"
+      ]
+    },
+    {
+      "key": "cunard",
+      "name": "Cunard",
+      "group": "Carnival Corporation",
+      "priority": 5,
+      "aliases": [
+        "Cunard",
+        "@cunardline",
+        "#Cunard"
+      ],
+      "ships": [
+        "Queen Mary 2",
+        "Queen Anne",
+        "Queen Victoria",
+        "Queen Elizabeth"
+      ]
+    },
+    {
+      "key": "rci",
+      "name": "Royal Caribbean",
+      "group": "Royal Caribbean Group",
+      "priority": 6,
+      "aliases": [
+        "Royal Caribbean",
+        "@RoyalCaribbean",
+        "#RoyalCaribbean",
+        "RCL",
+        "RCI",
+        "$RCL"
+      ],
+      "ships": [
+        "Icon of the Seas",
+        "Star of the Seas",
+        "Legend of the Seas",
+        "Utopia of the Seas",
+        "Wonder of the Seas",
+        "Symphony of the Seas",
+        "Harmony of the Seas",
+        "Oasis of the Seas",
+        "Allure of the Seas",
+        "Ovation of the Seas",
+        "Anthem of the Seas",
+        "Quantum of the Seas",
+        "Odyssey of the Seas",
+        "Spectrum of the Seas",
+        "Freedom of the Seas",
+        "Liberty of the Seas",
+        "Independence of the Seas",
+        "Navigator of the Seas",
+        "Voyager of the Seas",
+        "Mariner of the Seas",
+        "Explorer of the Seas",
+        "Adventure of the Seas",
+        "Radiance of the Seas",
+        "Brilliance of the Seas",
+        "Serenade of the Seas",
+        "Jewel of the Seas",
+        "Vision of the Seas",
+        "Grandeur of the Seas",
+        "Enchantment of the Seas",
+        "Rhapsody of the Seas"
+      ]
+    },
+    {
+      "key": "celebrity",
+      "name": "Celebrity Cruises",
+      "group": "Royal Caribbean Group",
+      "priority": 7,
+      "aliases": [
+        "Celebrity Cruises",
+        "@CelebrityCruise",
+        "#CelebrityCruises"
+      ],
+      "ships": [
+        "Celebrity Xcel",
+        "Celebrity Ascent",
+        "Celebrity Beyond",
+        "Celebrity Apex",
+        "Celebrity Edge",
+        "Celebrity Reflection",
+        "Celebrity Silhouette",
+        "Celebrity Eclipse",
+        "Celebrity Equinox",
+        "Celebrity Solstice",
+        "Celebrity Summit",
+        "Celebrity Millennium",
+        "Celebrity Constellation",
+        "Celebrity Infinity"
+      ]
+    },
+    {
+      "key": "ncl",
+      "name": "Norwegian Cruise Line",
+      "group": "Norwegian Cruise Line Holdings",
+      "priority": 8,
+      "aliases": [
+        "Norwegian Cruise Line",
+        "Norwegian Cruise",
+        "@CruiseNorwegian",
+        "#NCL",
+        "NCL cruise",
+        "NCL",
+        "$NCLH"
+      ],
+      "ships": [
+        "Norwegian Aqua",
+        "Norwegian Viva",
+        "Norwegian Prima",
+        "Norwegian Encore",
+        "Norwegian Bliss",
+        "Norwegian Joy",
+        "Norwegian Escape",
+        "Norwegian Getaway",
+        "Norwegian Breakaway",
+        "Norwegian Epic",
+        "Norwegian Jewel",
+        "Norwegian Jade",
+        "Norwegian Pearl",
+        "Norwegian Gem",
+        "Norwegian Dawn",
+        "Norwegian Star",
+        "Norwegian Sun",
+        "Norwegian Sky",
+        "Norwegian Spirit"
+      ]
+    },
+    {
+      "key": "msc",
+      "name": "MSC Cruises",
+      "group": "Other",
+      "priority": 9,
+      "aliases": [
+        "MSC Cruises",
+        "MSC cruise",
+        "@MSC_Cruises",
+        "#MSCCruises"
+      ],
+      "ships": [
+        "MSC World America",
+        "MSC World Europa",
+        "MSC World Asia",
+        "MSC Seascape",
+        "MSC Seashore",
+        "MSC Seaside",
+        "MSC Seaview",
+        "MSC Meraviglia",
+        "MSC Grandiosa",
+        "MSC Virtuosa",
+        "MSC Euribia",
+        "MSC Divina",
+        "MSC Magnifica",
+        "MSC World Atlantic"
+      ]
+    },
+    {
+      "key": "virgin",
+      "name": "Virgin Voyages",
+      "group": "Other",
+      "priority": 10,
+      "aliases": [
+        "Virgin Voyages",
+        "@VirginVoyages",
+        "#VirginVoyages"
+      ],
+      "ships": [
+        "Scarlet Lady",
+        "Valiant Lady",
+        "Resilient Lady",
+        "Brilliant Lady"
+      ]
+    },
+    {
+      "key": "disney",
+      "name": "Disney Cruise Line",
+      "group": "Other",
+      "priority": 11,
+      "aliases": [
+        "Disney Cruise Line",
+        "Disney Cruise",
+        "@DisneyCruise",
+        "#DisneyCruise",
+        "DCL"
+      ],
+      "ships": [
+        "Disney Treasure",
+        "Disney Wish",
+        "Disney Dream",
+        "Disney Fantasy",
+        "Disney Magic",
+        "Disney Wonder",
+        "Disney Adventure",
+        "Disney Destiny"
+      ]
+    },
+    {
+      "key": "viking",
+      "name": "Viking",
+      "group": "Other",
+      "priority": 12,
+      "aliases": [
+        "Viking Cruises",
+        "Viking Ocean",
+        "Viking River",
+        "@VikingCruises",
+        "$VIK",
+        "Viking Holdings"
+      ],
+      "ships": []
+    }
+  ],
+  "destinations": [
+    {
+      "name": "Alaska",
+      "aliases": [
+        "Alaska",
+        "Juneau",
+        "Skagway",
+        "Ketchikan",
+        "Glacier Bay",
+        "Sitka",
+        "Hubbard Glacier"
+      ]
+    },
+    {
+      "name": "Caribbean",
+      "aliases": [
+        "Caribbean",
+        "St. Thomas",
+        "St Thomas",
+        "St. Maarten",
+        "St Maarten",
+        "Grand Cayman",
+        "Jamaica",
+        "Ocho Rios",
+        "Falmouth",
+        "Roatan",
+        "Costa Maya",
+        "Aruba",
+        "Curacao",
+        "Bonaire",
+        "Barbados",
+        "St. Lucia",
+        "Antigua",
+        "San Juan"
+      ]
+    },
+    {
+      "name": "Mexican Riviera",
+      "aliases": [
+        "Mexican Riviera",
+        "Cabo",
+        "Cabo San Lucas",
+        "Puerto Vallarta",
+        "Mazatlan",
+        "Mazatlán",
+        "Ensenada",
+        "La Paz"
+      ]
+    },
+    {
+      "name": "Cozumel",
+      "aliases": [
+        "Cozumel",
+        "Playa del Carmen"
+      ]
+    },
+    {
+      "name": "Bahamas",
+      "aliases": [
+        "Bahamas",
+        "Nassau",
+        "Freeport",
+        "Bimini"
+      ]
+    },
+    {
+      "name": "Private islands",
+      "aliases": [
+        "Celebration Key",
+        "Half Moon Cay",
+        "RelaxAway",
+        "Princess Cays",
+        "Perfect Day",
+        "CocoCay",
+        "Labadee",
+        "Great Stirrup Cay",
+        "Ocean Cay",
+        "Castaway Cay",
+        "Lookout Cay",
+        "Harvest Caye"
+      ]
+    },
+    {
+      "name": "Bermuda",
+      "aliases": [
+        "Bermuda"
+      ]
+    },
+    {
+      "name": "Hawaii",
+      "aliases": [
+        "Hawaii",
+        "Honolulu",
+        "Maui",
+        "Kauai"
+      ]
+    },
+    {
+      "name": "Mediterranean",
+      "aliases": [
+        "Mediterranean",
+        "Barcelona",
+        "Rome",
+        "Civitavecchia",
+        "Naples",
+        "Santorini",
+        "Mykonos",
+        "Athens",
+        "Piraeus",
+        "Dubrovnik",
+        "Marseille",
+        "Valletta",
+        "Malta"
+      ]
+    },
+    {
+      "name": "Northern Europe",
+      "aliases": [
+        "Norwegian fjords",
+        "fjords",
+        "Iceland",
+        "Baltic",
+        "Copenhagen",
+        "Southampton",
+        "British Isles",
+        "Amsterdam",
+        "Rotterdam port"
+      ]
+    },
+    {
+      "name": "Panama Canal",
+      "aliases": [
+        "Panama Canal"
+      ]
+    },
+    {
+      "name": "Australia & New Zealand",
+      "aliases": [
+        "Australia",
+        "Sydney",
+        "Brisbane",
+        "Melbourne",
+        "New Zealand",
+        "Auckland"
+      ]
+    },
+    {
+      "name": "Asia",
+      "aliases": [
+        "Japan",
+        "Tokyo",
+        "Singapore",
+        "Hong Kong",
+        "Shanghai",
+        "Vietnam",
+        "Thailand"
+      ]
+    },
+    {
+      "name": "Galveston",
+      "aliases": [
+        "Galveston"
+      ]
+    },
+    {
+      "name": "Florida homeports",
+      "aliases": [
+        "Port Canaveral",
+        "Fort Lauderdale",
+        "Port Everglades",
+        "PortMiami",
+        "Port of Miami",
+        "Miami cruise",
+        "Tampa cruise",
+        "Jacksonville cruise"
+      ]
+    },
+    {
+      "name": "West Coast homeports",
+      "aliases": [
+        "San Pedro",
+        "Long Beach",
+        "San Francisco cruise",
+        "Seattle cruise",
+        "Vancouver cruise",
+        "San Diego cruise",
+        "Los Angeles cruise"
+      ]
+    },
+    {
+      "name": "Northeast homeports",
+      "aliases": [
+        "Manhattan cruise",
+        "Brooklyn cruise",
+        "Cape Liberty",
+        "Bayonne",
+        "Baltimore cruise",
+        "Boston cruise"
+      ]
+    }
+  ],
+  "focus": {
+    "_notes": "Topics to watch. 'highlight: true' pins the topic to the top of the Social Pulse page and the routine searches for it explicitly. 'boost' multiplies the topic's weight in the focus ranking (1.0 = normal). Keywords are matched case-insensitively as whole words/phrases.",
+    "topics": [
+      {
+        "label": "Norovirus & illness",
+        "keywords": [
+          "norovirus",
+          "outbreak",
+          "food poisoning",
+          "sick on board",
+          "quarantine"
+        ],
+        "boost": 1.5,
+        "highlight": true
+      },
+      {
+        "label": "Itinerary changes & weather",
+        "keywords": [
+          "itinerary change",
+          "missed port",
+          "skipped port",
+          "cancelled port",
+          "canceled port",
+          "hurricane",
+          "storm",
+          "rerouted",
+          "diverted"
+        ],
+        "boost": 1.3,
+        "highlight": true
+      },
+      {
+        "label": "Pricing, fees & value",
+        "keywords": [
+          "gratuities",
+          "gratuity",
+          "service charge",
+          "price increase",
+          "fees",
+          "drink package",
+          "upcharge",
+          "overpriced",
+          "worth it",
+          "value"
+        ],
+        "boost": 1.2,
+        "highlight": false
+      },
+      {
+        "label": "Food & dining",
+        "keywords": [
+          "buffet",
+          "dining",
+          "food was",
+          "restaurant",
+          "specialty dining",
+          "main dining room"
+        ],
+        "boost": 1.0,
+        "highlight": false
+      },
+      {
+        "label": "Service & crew",
+        "keywords": [
+          "crew",
+          "staff",
+          "service was",
+          "room steward",
+          "cabin steward",
+          "guest services"
+        ],
+        "boost": 1.0,
+        "highlight": false
+      },
+      {
+        "label": "Cabins & ship condition",
+        "keywords": [
+          "cabin",
+          "stateroom",
+          "balcony",
+          "dirty",
+          "mold",
+          "plumbing",
+          "no hot water",
+          "dry dock",
+          "drydock",
+          "refurb"
+        ],
+        "boost": 1.0,
+        "highlight": false
+      },
+      {
+        "label": "Booking & customer service",
+        "keywords": [
+          "refund",
+          "customer service",
+          "on hold",
+          "cancelled my",
+          "canceled my",
+          "rebooked",
+          "future cruise credit"
+        ],
+        "boost": 1.2,
+        "highlight": false
+      },
+      {
+        "label": "Loyalty & perks",
+        "keywords": [
+          "Captain's Circle",
+          "VIFP",
+          "Crown & Anchor",
+          "Crown and Anchor",
+          "Latitudes",
+          "Mariner Society",
+          "loyalty",
+          "elite status"
+        ],
+        "boost": 0.9,
+        "highlight": false
+      },
+      {
+        "label": "New ships & launches",
+        "keywords": [
+          "maiden voyage",
+          "inaugural",
+          "naming ceremony",
+          "new ship",
+          "sea trials",
+          "delivery"
+        ],
+        "boost": 1.0,
+        "highlight": false
+      },
+      {
+        "label": "Safety & incidents",
+        "keywords": [
+          "man overboard",
+          "medical evacuation",
+          "medevac",
+          "fire",
+          "coast guard",
+          "rescue",
+          "collision",
+          "ran aground",
+          "evacuated"
+        ],
+        "boost": 1.5,
+        "highlight": true
+      }
+    ]
+  },
+  "muted_keywords": [
+    "hiring",
+    "job opening",
+    "apply now",
+    "giveaway",
+    "sweepstakes",
+    "promo code",
+    "affiliate",
+    "casino app"
+  ],
+  "standouts": {
+    "_notes": "A ship or destination 'stands out' when it has at least min_mentions posts in the window AND either its net score is at least min_abs_score away from zero or it has at least spike_mentions posts.",
+    "min_mentions": 3,
+    "min_abs_score": 25,
+    "spike_mentions": 8,
+    "max_listed": 8
+  },
+  "scoring": {
+    "_notes": "Net sentiment = (positive - negative) / total * 100, from -100 to +100. 'weighted' applies the platform weights above. Neutral posts count toward volume only.",
+    "sample_posts_per_brand": 3,
+    "excerpt_chars": 160
+  },
+  "history_days": 30
+}

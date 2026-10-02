@@ -1,0 +1,960 @@
+{
+  "date": "2026-10-02",
+  "generated_at": "2026-10-02T20:40:53Z",
+  "window": {
+    "since": "2026-09-25T15:00:00Z",
+    "until": "2026-10-02T15:00:00Z"
+  },
+  "config_version": 1,
+  "totals": {
+    "posts": 7,
+    "positive": 2,
+    "neutral": 3,
+    "negative": 2,
+    "net_score": 0,
+    "weighted_score": 0
+  },
+  "dropped": {
+    "muted": 0,
+    "disabled_platform": 0,
+    "empty": 0,
+    "duplicate": 0
+  },
+  "rated_by": {
+    "model": 7,
+    "lexicon": 0
+  },
+  "platforms": {
+    "x": {
+      "posts": 3,
+      "positive": 0,
+      "neutral": 3,
+      "negative": 0,
+      "net_score": 0,
+      "weighted_score": 0,
+      "label": "X"
+    },
+    "threads": {
+      "posts": 4,
+      "positive": 2,
+      "neutral": 0,
+      "negative": 2,
+      "net_score": 0,
+      "weighted_score": 0,
+      "label": "Threads"
+    },
+    "bluesky": {
+      "posts": 0,
+      "positive": 0,
+      "neutral": 0,
+      "negative": 0,
+      "net_score": 0,
+      "weighted_score": 0,
+      "label": "Bluesky"
+    },
+    "instagram": {
+      "posts": 0,
+      "positive": 0,
+      "neutral": 0,
+      "negative": 0,
+      "net_score": 0,
+      "weighted_score": 0,
+      "label": "Instagram"
+    },
+    "facebook": {
+      "posts": 0,
+      "positive": 0,
+      "neutral": 0,
+      "negative": 0,
+      "net_score": 0,
+      "weighted_score": 0,
+      "label": "Facebook"
+    }
+  },
+  "brands": [
+    {
+      "posts": 1,
+      "positive": 0,
+      "neutral": 1,
+      "negative": 0,
+      "platforms": {
+        "x": {
+          "posts": 1,
+          "positive": 0,
+          "neutral": 1,
+          "negative": 0,
+          "net_score": 0,
+          "weighted_score": 0
+        }
+      },
+      "net_score": 0,
+      "weighted_score": 0,
+      "key": "carnival_corp",
+      "name": "Carnival Corporation (corporate & stock)",
+      "group": "Carnival Corporation",
+      "ships": [],
+      "destinations": [],
+      "samples": [
+        {
+          "id": "x:2103859902963683800",
+          "platform": "x",
+          "url": "https://x.com/eWhispers/status/2103859902963683800",
+          "author": "@eWhispers",
+          "posted_at": "2026-09-26T14:51:03Z",
+          "excerpt": "Carnival Corporation & plc $CCL is set to report earnings on Tuesday, September 29, 2026 at roughly 9:15 AM ET. Wall Street is looking for $1.36 per share on r…",
+          "sentiment": "neutral",
+          "sentiment_reason": "Earnings-preview post ahead of Carnival's Q3 report; factual, no opinion on the brand",
+          "rated_by": "model",
+          "brands": [
+            "carnival_corp"
+          ],
+          "ships": [],
+          "destinations": [],
+          "topics": []
+        }
+      ]
+    },
+    {
+      "posts": 1,
+      "positive": 0,
+      "neutral": 0,
+      "negative": 1,
+      "platforms": {
+        "threads": {
+          "posts": 1,
+          "positive": 0,
+          "neutral": 0,
+          "negative": 1,
+          "net_score": -100,
+          "weighted_score": -100
+        }
+      },
+      "net_score": -100,
+      "weighted_score": -100,
+      "key": "carnival",
+      "name": "Carnival Cruise Line",
+      "group": "Carnival Corporation",
+      "ships": [
+        {
+          "posts": 1,
+          "positive": 0,
+          "neutral": 0,
+          "negative": 1,
+          "net_score": -100,
+          "weighted_score": -100,
+          "name": "Carnival Panorama",
+          "brand": "carnival",
+          "standout": false,
+          "samples": [
+            {
+              "id": "threads:DdvL67fisYi",
+              "platform": "threads",
+              "url": "https://www.threads.com/@cruisehive/post/DdvL67fisYi/",
+              "author": "@cruisehive",
+              "posted_at": "2026-09-26T04:33:36Z",
+              "excerpt": "Carnival Panorama Cancels Ports as Hurricane Polo Threatens Mexico. #cruise #cruises #cruisenews #travelnews",
+              "sentiment": "negative",
+              "sentiment_reason": "Reports Carnival Panorama cancelling ports as Hurricane Polo threatened Mexico; missed ports for guests",
+              "rated_by": "model",
+              "brands": [
+                "carnival"
+              ],
+              "ships": [
+                "Carnival Panorama"
+              ],
+              "destinations": [
+                "Mexican Riviera"
+              ],
+              "topics": [
+                "Itinerary changes & weather"
+              ]
+            }
+          ]
+        }
+      ],
+      "destinations": [
+        {
+          "name": "Mexican Riviera",
+          "posts": 1,
+          "positive": 0,
+          "neutral": 0,
+          "negative": 1,
+          "net_score": -100,
+          "weighted_score": -100
+        }
+      ],
+      "samples": [
+        {
+          "id": "threads:DdvL67fisYi",
+          "platform": "threads",
+          "url": "https://www.threads.com/@cruisehive/post/DdvL67fisYi/",
+          "author": "@cruisehive",
+          "posted_at": "2026-09-26T04:33:36Z",
+          "excerpt": "Carnival Panorama Cancels Ports as Hurricane Polo Threatens Mexico. #cruise #cruises #cruisenews #travelnews",
+          "sentiment": "negative",
+          "sentiment_reason": "Reports Carnival Panorama cancelling ports as Hurricane Polo threatened Mexico; missed ports for guests",
+          "rated_by": "model",
+          "brands": [
+            "carnival"
+          ],
+          "ships": [
+            "Carnival Panorama"
+          ],
+          "destinations": [
+            "Mexican Riviera"
+          ],
+          "topics": [
+            "Itinerary changes & weather"
+          ]
+        }
+      ]
+    },
+    {
+      "posts": 3,
+      "positive": 1,
+      "neutral": 1,
+      "negative": 1,
+      "platforms": {
+        "x": {
+          "posts": 1,
+          "positive": 0,
+          "neutral": 1,
+          "negative": 0,
+          "net_score": 0,
+          "weighted_score": 0
+        },
+        "threads": {
+          "posts": 2,
+          "positive": 1,
+          "neutral": 0,
+          "negative": 1,
+          "net_score": 0,
+          "weighted_score": 0
+        }
+      },
+      "net_score": 0,
+      "weighted_score": 0,
+      "key": "rci",
+      "name": "Royal Caribbean",
+      "group": "Royal Caribbean Group",
+      "ships": [
+        {
+          "posts": 1,
+          "positive": 0,
+          "neutral": 0,
+          "negative": 1,
+          "net_score": -100,
+          "weighted_score": -100,
+          "name": "Harmony of the Seas",
+          "brand": "rci",
+          "standout": false,
+          "samples": [
+            {
+              "id": "threads:Dd4O-XjoMX2",
+              "platform": "threads",
+              "url": "https://www.threads.com/@royalcaribbeanblog/post/Dd4O-XjoMX2/",
+              "author": "@royalcaribbeanblog",
+              "posted_at": "2026-09-29T16:53:27Z",
+              "excerpt": "The incident occurred on the current sailing. Cruise ship water leak floods hallway and cabins before crew quickly stops it.",
+              "sentiment": "negative",
+              "sentiment_reason": "Shares a report of a water leak flooding a hallway and cabins on the current sailing (ship identified from the day's news coverage: Harmony of the Seas)",
+              "rated_by": "model",
+              "brands": [
+                "rci"
+              ],
+              "ships": [
+                "Harmony of the Seas"
+              ],
+              "destinations": [],
+              "topics": [
+                "Service & crew"
+              ]
+            }
+          ]
+        },
+        {
+          "posts": 1,
+          "positive": 0,
+          "neutral": 1,
+          "negative": 0,
+          "net_score": 0,
+          "weighted_score": 0,
+          "name": "Navigator of the Seas",
+          "brand": "rci",
+          "standout": false,
+          "samples": [
+            {
+              "id": "x:2104808389918302422",
+              "platform": "x",
+              "url": "https://x.com/noroestemx/status/2104808389918302422",
+              "author": "@noroestemx",
+              "posted_at": "2026-09-29T05:40:00Z",
+              "excerpt": "El crucero Navigator of the Seas adelantó para este lunes su llegada a #Mazatlán debido al huracán Polo, luego de que su arribo estaba programado originalmente…",
+              "sentiment": "neutral",
+              "sentiment_reason": "Local news: Navigator of the Seas moved its Mazatlán call up a day ahead of Hurricane Polo; operational, no complaint",
+              "rated_by": "model",
+              "brands": [
+                "rci"
+              ],
+              "ships": [
+                "Navigator of the Seas"
+              ],
+              "destinations": [
+                "Mexican Riviera"
+              ],
+              "topics": []
+            }
+          ]
+        }
+      ],
+      "destinations": [
+        {
+          "name": "Mexican Riviera",
+          "posts": 1,
+          "positive": 0,
+          "neutral": 1,
+          "negative": 0,
+          "net_score": 0,
+          "weighted_score": 0
+        }
+      ],
+      "samples": [
+        {
+          "id": "threads:Dd4O-XjoMX2",
+          "platform": "threads",
+          "url": "https://www.threads.com/@royalcaribbeanblog/post/Dd4O-XjoMX2/",
+          "author": "@royalcaribbeanblog",
+          "posted_at": "2026-09-29T16:53:27Z",
+          "excerpt": "The incident occurred on the current sailing. Cruise ship water leak floods hallway and cabins before crew quickly stops it.",
+          "sentiment": "negative",
+          "sentiment_reason": "Shares a report of a water leak flooding a hallway and cabins on the current sailing (ship identified from the day's news coverage: Harmony of the Seas)",
+          "rated_by": "model",
+          "brands": [
+            "rci"
+          ],
+          "ships": [
+            "Harmony of the Seas"
+          ],
+          "destinations": [],
+          "topics": [
+            "Service & crew"
+          ]
+        },
+        {
+          "id": "threads:Dd1JGCulKXE",
+          "platform": "threads",
+          "url": "https://www.threads.com/@cnbc/post/Dd1JGCulKXE/",
+          "author": "@cnbc",
+          "posted_at": "2026-09-28T12:04:20Z",
+          "excerpt": "Bank of America says to scoop up shares of this cruise line operator at a discount.",
+          "sentiment": "positive",
+          "sentiment_reason": "CNBC relays Bank of America's call to buy Royal Caribbean shares after the pullback",
+          "rated_by": "model",
+          "brands": [
+            "rci"
+          ],
+          "ships": [],
+          "destinations": [],
+          "topics": []
+        },
+        {
+          "id": "x:2104808389918302422",
+          "platform": "x",
+          "url": "https://x.com/noroestemx/status/2104808389918302422",
+          "author": "@noroestemx",
+          "posted_at": "2026-09-29T05:40:00Z",
+          "excerpt": "El crucero Navigator of the Seas adelantó para este lunes su llegada a #Mazatlán debido al huracán Polo, luego de que su arribo estaba programado originalmente…",
+          "sentiment": "neutral",
+          "sentiment_reason": "Local news: Navigator of the Seas moved its Mazatlán call up a day ahead of Hurricane Polo; operational, no complaint",
+          "rated_by": "model",
+          "brands": [
+            "rci"
+          ],
+          "ships": [
+            "Navigator of the Seas"
+          ],
+          "destinations": [
+            "Mexican Riviera"
+          ],
+          "topics": []
+        }
+      ]
+    },
+    {
+      "posts": 1,
+      "positive": 1,
+      "neutral": 0,
+      "negative": 0,
+      "platforms": {
+        "threads": {
+          "posts": 1,
+          "positive": 1,
+          "neutral": 0,
+          "negative": 0,
+          "net_score": 100,
+          "weighted_score": 100
+        }
+      },
+      "net_score": 100,
+      "weighted_score": 100,
+      "key": "msc",
+      "name": "MSC Cruises",
+      "group": "Other",
+      "ships": [
+        {
+          "posts": 1,
+          "positive": 1,
+          "neutral": 0,
+          "negative": 0,
+          "net_score": 100,
+          "weighted_score": 100,
+          "name": "MSC World Atlantic",
+          "brand": "msc",
+          "standout": false,
+          "samples": [
+            {
+              "id": "threads:Dd6cJgHkSl_",
+              "platform": "threads",
+              "url": "https://www.threads.com/@msccruises.us/video/Dd6cJgHkSl_/",
+              "author": "@msccruises.us",
+              "posted_at": "2026-09-30T13:27:02Z",
+              "excerpt": "Float out complete! A major milestone for MSC World Atlantic as she takes to the water for the first time at the Chantiers de l'Atlantique shipyard.",
+              "sentiment": "positive",
+              "sentiment_reason": "MSC celebrating the float-out milestone of MSC World Atlantic",
+              "rated_by": "model",
+              "brands": [
+                "msc"
+              ],
+              "ships": [
+                "MSC World Atlantic"
+              ],
+              "destinations": [],
+              "topics": []
+            }
+          ]
+        }
+      ],
+      "destinations": [],
+      "samples": [
+        {
+          "id": "threads:Dd6cJgHkSl_",
+          "platform": "threads",
+          "url": "https://www.threads.com/@msccruises.us/video/Dd6cJgHkSl_/",
+          "author": "@msccruises.us",
+          "posted_at": "2026-09-30T13:27:02Z",
+          "excerpt": "Float out complete! A major milestone for MSC World Atlantic as she takes to the water for the first time at the Chantiers de l'Atlantique shipyard.",
+          "sentiment": "positive",
+          "sentiment_reason": "MSC celebrating the float-out milestone of MSC World Atlantic",
+          "rated_by": "model",
+          "brands": [
+            "msc"
+          ],
+          "ships": [
+            "MSC World Atlantic"
+          ],
+          "destinations": [],
+          "topics": []
+        }
+      ]
+    }
+  ],
+  "unattributed": {
+    "posts": 1,
+    "positive": 0,
+    "neutral": 1,
+    "negative": 0,
+    "net_score": 0,
+    "weighted_score": 0
+  },
+  "standouts": {
+    "ships": [],
+    "destinations": [
+      {
+        "posts": 3,
+        "positive": 0,
+        "neutral": 2,
+        "negative": 1,
+        "net_score": -33,
+        "weighted_score": -33,
+        "name": "Mexican Riviera",
+        "standout": true,
+        "samples": [
+          {
+            "id": "threads:DdvL67fisYi",
+            "platform": "threads",
+            "url": "https://www.threads.com/@cruisehive/post/DdvL67fisYi/",
+            "author": "@cruisehive",
+            "posted_at": "2026-09-26T04:33:36Z",
+            "excerpt": "Carnival Panorama Cancels Ports as Hurricane Polo Threatens Mexico. #cruise #cruises #cruisenews #travelnews",
+            "sentiment": "negative",
+            "sentiment_reason": "Reports Carnival Panorama cancelling ports as Hurricane Polo threatened Mexico; missed ports for guests",
+            "rated_by": "model",
+            "brands": [
+              "carnival"
+            ],
+            "ships": [
+              "Carnival Panorama"
+            ],
+            "destinations": [
+              "Mexican Riviera"
+            ],
+            "topics": [
+              "Itinerary changes & weather"
+            ]
+          },
+          {
+            "id": "x:2105410641796485456",
+            "platform": "x",
+            "url": "https://x.com/TravelGov/status/2105410641796485456",
+            "author": "@TravelGov",
+            "posted_at": "2026-09-30T21:33:08Z",
+            "excerpt": "Cabo San Lucas, Mexico: Hurricane Rachel, a Category 1 storm, is expected to move northwest toward Cabo San Lucas and pass south of the Baja California Peninsu…",
+            "sentiment": "neutral",
+            "sentiment_reason": "US State Dept travel notice: Cabo San Lucas port closed for Hurricane Rachel; informational, affects Mexican Riviera itineraries",
+            "rated_by": "model",
+            "brands": [],
+            "ships": [],
+            "destinations": [
+              "Mexican Riviera"
+            ],
+            "topics": [
+              "Itinerary changes & weather"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "ships": [
+    {
+      "posts": 1,
+      "positive": 0,
+      "neutral": 0,
+      "negative": 1,
+      "net_score": -100,
+      "weighted_score": -100,
+      "name": "Carnival Panorama",
+      "brand": "carnival",
+      "standout": false,
+      "samples": [
+        {
+          "id": "threads:DdvL67fisYi",
+          "platform": "threads",
+          "url": "https://www.threads.com/@cruisehive/post/DdvL67fisYi/",
+          "author": "@cruisehive",
+          "posted_at": "2026-09-26T04:33:36Z",
+          "excerpt": "Carnival Panorama Cancels Ports as Hurricane Polo Threatens Mexico. #cruise #cruises #cruisenews #travelnews",
+          "sentiment": "negative",
+          "sentiment_reason": "Reports Carnival Panorama cancelling ports as Hurricane Polo threatened Mexico; missed ports for guests",
+          "rated_by": "model",
+          "brands": [
+            "carnival"
+          ],
+          "ships": [
+            "Carnival Panorama"
+          ],
+          "destinations": [
+            "Mexican Riviera"
+          ],
+          "topics": [
+            "Itinerary changes & weather"
+          ]
+        }
+      ]
+    },
+    {
+      "posts": 1,
+      "positive": 0,
+      "neutral": 0,
+      "negative": 1,
+      "net_score": -100,
+      "weighted_score": -100,
+      "name": "Harmony of the Seas",
+      "brand": "rci",
+      "standout": false,
+      "samples": [
+        {
+          "id": "threads:Dd4O-XjoMX2",
+          "platform": "threads",
+          "url": "https://www.threads.com/@royalcaribbeanblog/post/Dd4O-XjoMX2/",
+          "author": "@royalcaribbeanblog",
+          "posted_at": "2026-09-29T16:53:27Z",
+          "excerpt": "The incident occurred on the current sailing. Cruise ship water leak floods hallway and cabins before crew quickly stops it.",
+          "sentiment": "negative",
+          "sentiment_reason": "Shares a report of a water leak flooding a hallway and cabins on the current sailing (ship identified from the day's news coverage: Harmony of the Seas)",
+          "rated_by": "model",
+          "brands": [
+            "rci"
+          ],
+          "ships": [
+            "Harmony of the Seas"
+          ],
+          "destinations": [],
+          "topics": [
+            "Service & crew"
+          ]
+        }
+      ]
+    },
+    {
+      "posts": 1,
+      "positive": 1,
+      "neutral": 0,
+      "negative": 0,
+      "net_score": 100,
+      "weighted_score": 100,
+      "name": "MSC World Atlantic",
+      "brand": "msc",
+      "standout": false,
+      "samples": [
+        {
+          "id": "threads:Dd6cJgHkSl_",
+          "platform": "threads",
+          "url": "https://www.threads.com/@msccruises.us/video/Dd6cJgHkSl_/",
+          "author": "@msccruises.us",
+          "posted_at": "2026-09-30T13:27:02Z",
+          "excerpt": "Float out complete! A major milestone for MSC World Atlantic as she takes to the water for the first time at the Chantiers de l'Atlantique shipyard.",
+          "sentiment": "positive",
+          "sentiment_reason": "MSC celebrating the float-out milestone of MSC World Atlantic",
+          "rated_by": "model",
+          "brands": [
+            "msc"
+          ],
+          "ships": [
+            "MSC World Atlantic"
+          ],
+          "destinations": [],
+          "topics": []
+        }
+      ]
+    },
+    {
+      "posts": 1,
+      "positive": 0,
+      "neutral": 1,
+      "negative": 0,
+      "net_score": 0,
+      "weighted_score": 0,
+      "name": "Navigator of the Seas",
+      "brand": "rci",
+      "standout": false,
+      "samples": [
+        {
+          "id": "x:2104808389918302422",
+          "platform": "x",
+          "url": "https://x.com/noroestemx/status/2104808389918302422",
+          "author": "@noroestemx",
+          "posted_at": "2026-09-29T05:40:00Z",
+          "excerpt": "El crucero Navigator of the Seas adelantó para este lunes su llegada a #Mazatlán debido al huracán Polo, luego de que su arribo estaba programado originalmente…",
+          "sentiment": "neutral",
+          "sentiment_reason": "Local news: Navigator of the Seas moved its Mazatlán call up a day ahead of Hurricane Polo; operational, no complaint",
+          "rated_by": "model",
+          "brands": [
+            "rci"
+          ],
+          "ships": [
+            "Navigator of the Seas"
+          ],
+          "destinations": [
+            "Mexican Riviera"
+          ],
+          "topics": []
+        }
+      ]
+    }
+  ],
+  "destinations": [
+    {
+      "posts": 3,
+      "positive": 0,
+      "neutral": 2,
+      "negative": 1,
+      "net_score": -33,
+      "weighted_score": -33,
+      "name": "Mexican Riviera",
+      "standout": true,
+      "samples": [
+        {
+          "id": "threads:DdvL67fisYi",
+          "platform": "threads",
+          "url": "https://www.threads.com/@cruisehive/post/DdvL67fisYi/",
+          "author": "@cruisehive",
+          "posted_at": "2026-09-26T04:33:36Z",
+          "excerpt": "Carnival Panorama Cancels Ports as Hurricane Polo Threatens Mexico. #cruise #cruises #cruisenews #travelnews",
+          "sentiment": "negative",
+          "sentiment_reason": "Reports Carnival Panorama cancelling ports as Hurricane Polo threatened Mexico; missed ports for guests",
+          "rated_by": "model",
+          "brands": [
+            "carnival"
+          ],
+          "ships": [
+            "Carnival Panorama"
+          ],
+          "destinations": [
+            "Mexican Riviera"
+          ],
+          "topics": [
+            "Itinerary changes & weather"
+          ]
+        },
+        {
+          "id": "x:2105410641796485456",
+          "platform": "x",
+          "url": "https://x.com/TravelGov/status/2105410641796485456",
+          "author": "@TravelGov",
+          "posted_at": "2026-09-30T21:33:08Z",
+          "excerpt": "Cabo San Lucas, Mexico: Hurricane Rachel, a Category 1 storm, is expected to move northwest toward Cabo San Lucas and pass south of the Baja California Peninsu…",
+          "sentiment": "neutral",
+          "sentiment_reason": "US State Dept travel notice: Cabo San Lucas port closed for Hurricane Rachel; informational, affects Mexican Riviera itineraries",
+          "rated_by": "model",
+          "brands": [],
+          "ships": [],
+          "destinations": [
+            "Mexican Riviera"
+          ],
+          "topics": [
+            "Itinerary changes & weather"
+          ]
+        }
+      ]
+    }
+  ],
+  "topics": [
+    {
+      "posts": 2,
+      "positive": 0,
+      "neutral": 1,
+      "negative": 1,
+      "net_score": -50,
+      "weighted_score": -50,
+      "label": "Itinerary changes & weather",
+      "highlight": true,
+      "boost": 1.3,
+      "rank": 2.6,
+      "brands": [
+        "carnival"
+      ],
+      "samples": [
+        {
+          "id": "threads:DdvL67fisYi",
+          "platform": "threads",
+          "url": "https://www.threads.com/@cruisehive/post/DdvL67fisYi/",
+          "author": "@cruisehive",
+          "posted_at": "2026-09-26T04:33:36Z",
+          "excerpt": "Carnival Panorama Cancels Ports as Hurricane Polo Threatens Mexico. #cruise #cruises #cruisenews #travelnews",
+          "sentiment": "negative",
+          "sentiment_reason": "Reports Carnival Panorama cancelling ports as Hurricane Polo threatened Mexico; missed ports for guests",
+          "rated_by": "model",
+          "brands": [
+            "carnival"
+          ],
+          "ships": [
+            "Carnival Panorama"
+          ],
+          "destinations": [
+            "Mexican Riviera"
+          ],
+          "topics": [
+            "Itinerary changes & weather"
+          ]
+        },
+        {
+          "id": "x:2105410641796485456",
+          "platform": "x",
+          "url": "https://x.com/TravelGov/status/2105410641796485456",
+          "author": "@TravelGov",
+          "posted_at": "2026-09-30T21:33:08Z",
+          "excerpt": "Cabo San Lucas, Mexico: Hurricane Rachel, a Category 1 storm, is expected to move northwest toward Cabo San Lucas and pass south of the Baja California Peninsu…",
+          "sentiment": "neutral",
+          "sentiment_reason": "US State Dept travel notice: Cabo San Lucas port closed for Hurricane Rachel; informational, affects Mexican Riviera itineraries",
+          "rated_by": "model",
+          "brands": [],
+          "ships": [],
+          "destinations": [
+            "Mexican Riviera"
+          ],
+          "topics": [
+            "Itinerary changes & weather"
+          ]
+        }
+      ]
+    },
+    {
+      "posts": 1,
+      "positive": 0,
+      "neutral": 0,
+      "negative": 1,
+      "net_score": -100,
+      "weighted_score": -100,
+      "label": "Service & crew",
+      "highlight": false,
+      "boost": 1.0,
+      "rank": 1.0,
+      "brands": [
+        "rci"
+      ],
+      "samples": [
+        {
+          "id": "threads:Dd4O-XjoMX2",
+          "platform": "threads",
+          "url": "https://www.threads.com/@royalcaribbeanblog/post/Dd4O-XjoMX2/",
+          "author": "@royalcaribbeanblog",
+          "posted_at": "2026-09-29T16:53:27Z",
+          "excerpt": "The incident occurred on the current sailing. Cruise ship water leak floods hallway and cabins before crew quickly stops it.",
+          "sentiment": "negative",
+          "sentiment_reason": "Shares a report of a water leak flooding a hallway and cabins on the current sailing (ship identified from the day's news coverage: Harmony of the Seas)",
+          "rated_by": "model",
+          "brands": [
+            "rci"
+          ],
+          "ships": [
+            "Harmony of the Seas"
+          ],
+          "destinations": [],
+          "topics": [
+            "Service & crew"
+          ]
+        }
+      ]
+    }
+  ],
+  "posts": [
+    {
+      "id": "threads:DdvL67fisYi",
+      "platform": "threads",
+      "url": "https://www.threads.com/@cruisehive/post/DdvL67fisYi/",
+      "author": "@cruisehive",
+      "posted_at": "2026-09-26T04:33:36Z",
+      "excerpt": "Carnival Panorama Cancels Ports as Hurricane Polo Threatens Mexico. #cruise #cruises #cruisenews #travelnews",
+      "sentiment": "negative",
+      "sentiment_reason": "Reports Carnival Panorama cancelling ports as Hurricane Polo threatened Mexico; missed ports for guests",
+      "rated_by": "model",
+      "brands": [
+        "carnival"
+      ],
+      "ships": [
+        "Carnival Panorama"
+      ],
+      "destinations": [
+        "Mexican Riviera"
+      ],
+      "topics": [
+        "Itinerary changes & weather"
+      ]
+    },
+    {
+      "id": "threads:Dd1JGCulKXE",
+      "platform": "threads",
+      "url": "https://www.threads.com/@cnbc/post/Dd1JGCulKXE/",
+      "author": "@cnbc",
+      "posted_at": "2026-09-28T12:04:20Z",
+      "excerpt": "Bank of America says to scoop up shares of this cruise line operator at a discount.",
+      "sentiment": "positive",
+      "sentiment_reason": "CNBC relays Bank of America's call to buy Royal Caribbean shares after the pullback",
+      "rated_by": "model",
+      "brands": [
+        "rci"
+      ],
+      "ships": [],
+      "destinations": [],
+      "topics": []
+    },
+    {
+      "id": "threads:Dd4O-XjoMX2",
+      "platform": "threads",
+      "url": "https://www.threads.com/@royalcaribbeanblog/post/Dd4O-XjoMX2/",
+      "author": "@royalcaribbeanblog",
+      "posted_at": "2026-09-29T16:53:27Z",
+      "excerpt": "The incident occurred on the current sailing. Cruise ship water leak floods hallway and cabins before crew quickly stops it.",
+      "sentiment": "negative",
+      "sentiment_reason": "Shares a report of a water leak flooding a hallway and cabins on the current sailing (ship identified from the day's news coverage: Harmony of the Seas)",
+      "rated_by": "model",
+      "brands": [
+        "rci"
+      ],
+      "ships": [
+        "Harmony of the Seas"
+      ],
+      "destinations": [],
+      "topics": [
+        "Service & crew"
+      ]
+    },
+    {
+      "id": "threads:Dd6cJgHkSl_",
+      "platform": "threads",
+      "url": "https://www.threads.com/@msccruises.us/video/Dd6cJgHkSl_/",
+      "author": "@msccruises.us",
+      "posted_at": "2026-09-30T13:27:02Z",
+      "excerpt": "Float out complete! A major milestone for MSC World Atlantic as she takes to the water for the first time at the Chantiers de l'Atlantique shipyard.",
+      "sentiment": "positive",
+      "sentiment_reason": "MSC celebrating the float-out milestone of MSC World Atlantic",
+      "rated_by": "model",
+      "brands": [
+        "msc"
+      ],
+      "ships": [
+        "MSC World Atlantic"
+      ],
+      "destinations": [],
+      "topics": []
+    },
+    {
+      "id": "x:2103859902963683800",
+      "platform": "x",
+      "url": "https://x.com/eWhispers/status/2103859902963683800",
+      "author": "@eWhispers",
+      "posted_at": "2026-09-26T14:51:03Z",
+      "excerpt": "Carnival Corporation & plc $CCL is set to report earnings on Tuesday, September 29, 2026 at roughly 9:15 AM ET. Wall Street is looking for $1.36 per share on r…",
+      "sentiment": "neutral",
+      "sentiment_reason": "Earnings-preview post ahead of Carnival's Q3 report; factual, no opinion on the brand",
+      "rated_by": "model",
+      "brands": [
+        "carnival_corp"
+      ],
+      "ships": [],
+      "destinations": [],
+      "topics": []
+    },
+    {
+      "id": "x:2104808389918302422",
+      "platform": "x",
+      "url": "https://x.com/noroestemx/status/2104808389918302422",
+      "author": "@noroestemx",
+      "posted_at": "2026-09-29T05:40:00Z",
+      "excerpt": "El crucero Navigator of the Seas adelantó para este lunes su llegada a #Mazatlán debido al huracán Polo, luego de que su arribo estaba programado originalmente…",
+      "sentiment": "neutral",
+      "sentiment_reason": "Local news: Navigator of the Seas moved its Mazatlán call up a day ahead of Hurricane Polo; operational, no complaint",
+      "rated_by": "model",
+      "brands": [
+        "rci"
+      ],
+      "ships": [
+        "Navigator of the Seas"
+      ],
+      "destinations": [
+        "Mexican Riviera"
+      ],
+      "topics": []
+    },
+    {
+      "id": "x:2105410641796485456",
+      "platform": "x",
+      "url": "https://x.com/TravelGov/status/2105410641796485456",
+      "author": "@TravelGov",
+      "posted_at": "2026-09-30T21:33:08Z",
+      "excerpt": "Cabo San Lucas, Mexico: Hurricane Rachel, a Category 1 storm, is expected to move northwest toward Cabo San Lucas and pass south of the Baja California Peninsu…",
+      "sentiment": "neutral",
+      "sentiment_reason": "US State Dept travel notice: Cabo San Lucas port closed for Hurricane Rachel; informational, affects Mexican Riviera itineraries",
+      "rated_by": "model",
+      "brands": [],
+      "ships": [],
+      "destinations": [
+        "Mexican Riviera"
+      ],
+      "topics": [
+        "Itinerary changes & weather"
+      ]
+    }
+  ]
+}

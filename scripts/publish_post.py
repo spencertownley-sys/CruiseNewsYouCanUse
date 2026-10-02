@@ -290,6 +290,7 @@ PAGE_TEMPLATE = """<!doctype html>
     <nav class="site-nav">
       <a href="{asset_prefix}index.html">Home</a>
       <a href="{asset_prefix}index.html#search">Search</a>
+      <a href="{asset_prefix}social.html">Social Pulse</a>
       <a href="https://github.com/spencertownley-sys/CruiseNewsYouCanUse">About this brief</a>
     </nav>
   </div>
@@ -346,6 +347,46 @@ def render_post_page(entry, parsed):
     )
 
 
+def social_strip():
+    """Compact Social Pulse summary for the homepage, read from
+    data/social/latest.json when the social listening run has produced one."""
+    latest = DATA_DIR / "social" / "latest.json"
+    if not latest.exists():
+        return ""
+    try:
+        rep = json.loads(latest.read_text())
+    except ValueError:
+        return ""
+    t = rep.get("totals", {})
+    if not t.get("posts"):
+        return ""
+
+    def cls(score):
+        return "pos" if score >= 15 else ("neg" if score <= -15 else "neu")
+
+    def fmt(score):
+        return f"{score:+d}" if score else "0"
+
+    chips = "".join(
+        f'<li><span class="brand">{escape(b["name"])}</span>'
+        f'<span class="score {cls(b["net_score"])}">{fmt(b["net_score"])}</span>'
+        f'<span class="n">{b["posts"]}</span></li>'
+        for b in rep.get("brands", [])[:6])
+    standouts = [s["name"] for s in rep.get("standouts", {}).get("ships", [])] + \
+                [d["name"] for d in rep.get("standouts", {}).get("destinations", [])]
+    so = f'<p class="strip-standouts">Standing out: {escape(", ".join(standouts[:4]))}</p>' if standouts else ""
+    day = datetime.date.fromisoformat(rep["date"]).strftime("%b %-d")
+    return f"""<section class="social-strip">
+  <div class="strip-head">
+    <p class="strip-title"><a href="social.html">Social Pulse</a> <span class="muted">{day}</span></p>
+    <p class="strip-total">{t["posts"]} posts &middot; net <span class="score {cls(t["net_score"])}">{fmt(t["net_score"])}</span></p>
+  </div>
+  <ul class="strip-brands">{chips}</ul>
+  {so}
+  <a class="read-more" href="social.html">See brand, ship and destination scores &rarr;</a>
+</section>"""
+
+
 def render_index_page(entries):
     if not entries:
         list_html = '<p class="empty-state">No posts yet — check back after the next weekday brief.</p>'
@@ -371,6 +412,7 @@ def render_index_page(entries):
 (Carnival, Princess, Holland America, Seabourn), Norwegian Cruise Line Holdings, Royal Caribbean
 Group, and the wider cruise industry &mdash; earnings, bookings, itinerary changes, incidents, and
 what's trending with cruisers online.</p>
+{social_strip()}
 <section class="search" id="search">
   <form class="search-form" role="search" onsubmit="return false">
     <label class="search-label" for="search-input">Search every brief</label>

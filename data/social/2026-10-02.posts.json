@@ -1,0 +1,421 @@
+{
+  "date": "2026-10-02",
+  "window": {
+    "since": "2026-09-25T15:00:00Z",
+    "until": "2026-10-02T15:00:00Z"
+  },
+  "_instructions": "Fill 'posts' with public posts published inside the window. Every post needs platform, url, author, text and a sentiment of positive / neutral / negative with a short sentiment_reason. Run the queries below (web search; Bluesky can also use `fetch`). Skip ads, job posts and giveaways. Keep the text as posted; the scorer makes the excerpts.",
+  "_queries": [
+    {
+      "platform": "x",
+      "query": "site:x.com \"Princess Cruises\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Carnival\" cruise"
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Holland America\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Seabourn\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Royal Caribbean\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Norwegian Cruise Line\" OR \"NCL\" cruise"
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Celebrity Cruises\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"MSC Cruises\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Virgin Voyages\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Disney Cruise\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com cruise ship complaint OR cancelled OR norovirus"
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com cruise \"best cruise\" OR \"amazing cruise\" OR \"never again\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Princess Cruises\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Carnival\" cruise"
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Holland America\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Seabourn\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Royal Caribbean\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Norwegian Cruise Line\" OR \"NCL\" cruise"
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Celebrity Cruises\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"MSC Cruises\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Virgin Voyages\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Disney Cruise\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net cruise ship complaint OR cancelled OR norovirus"
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net cruise \"best cruise\" OR \"amazing cruise\" OR \"never again\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Princess Cruises\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Carnival\" cruise"
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Holland America\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Seabourn\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Royal Caribbean\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Norwegian Cruise Line\" OR \"NCL\" cruise"
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Celebrity Cruises\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"MSC Cruises\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Virgin Voyages\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Disney Cruise\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app cruise ship complaint OR cancelled OR norovirus"
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app cruise \"best cruise\" OR \"amazing cruise\" OR \"never again\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Princess Cruises\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Carnival\" cruise"
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Holland America\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Seabourn\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Royal Caribbean\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Norwegian Cruise Line\" OR \"NCL\" cruise"
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Celebrity Cruises\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"MSC Cruises\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Virgin Voyages\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Disney Cruise\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com cruise ship complaint OR cancelled OR norovirus"
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com cruise \"best cruise\" OR \"amazing cruise\" OR \"never again\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Princess Cruises\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Carnival\" cruise"
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Holland America\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Seabourn\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Royal Caribbean\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Norwegian Cruise Line\" OR \"NCL\" cruise"
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Celebrity Cruises\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"MSC Cruises\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Virgin Voyages\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Disney Cruise\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com cruise ship complaint OR cancelled OR norovirus"
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com cruise \"best cruise\" OR \"amazing cruise\" OR \"never again\""
+    },
+    {
+      "platform": "all",
+      "query": "cruise norovirus"
+    },
+    {
+      "platform": "all",
+      "query": "cruise outbreak"
+    },
+    {
+      "platform": "all",
+      "query": "cruise itinerary change"
+    },
+    {
+      "platform": "all",
+      "query": "cruise missed port"
+    },
+    {
+      "platform": "all",
+      "query": "cruise man overboard"
+    },
+    {
+      "platform": "all",
+      "query": "cruise medical evacuation"
+    }
+  ],
+  "_focus_highlights": [
+    "Norovirus & illness",
+    "Itinerary changes & weather",
+    "Safety & incidents"
+  ],
+  "posts": [
+    {
+      "url": "https://x.com/TravelGov/status/2105410641796485456",
+      "text": "Cabo San Lucas, Mexico: Hurricane Rachel, a Category 1 storm, is expected to move northwest toward Cabo San Lucas and pass south of the Baja California Peninsula by Saturday, October 3. Rough seas led authorities to close the port on Wednesday, September 30, until further notice. https://t.co/ftXaCUX2HP",
+      "sentiment": "neutral",
+      "sentiment_reason": "US State Dept travel notice: Cabo San Lucas port closed for Hurricane Rachel; informational, affects Mexican Riviera itineraries",
+      "platform": "x",
+      "id": "x:2105410641796485456",
+      "author": "@TravelGov",
+      "posted_at": "2026-09-30T21:33:08Z",
+      "engagement": {
+        "likes": 92,
+        "reposts": 0,
+        "replies": 0
+      },
+      "rated_by": "model",
+      "brands": [],
+      "ships": [],
+      "destinations": [
+        "Mexican Riviera"
+      ]
+    },
+    {
+      "url": "https://x.com/noroestemx/status/2104808389918302422",
+      "text": "El crucero Navigator of the Seas adelantó para este lunes su llegada a #Mazatlán debido al huracán Polo, luego de que su arribo estaba programado originalmente para el martes 29, con lo que el puerto cerró la actividad naviera del mes\n🔗 https://t.co/8jcuha3tBk https://t.co/jBWC5zc1M5",
+      "sentiment": "neutral",
+      "sentiment_reason": "Local news: Navigator of the Seas moved its Mazatlán call up a day ahead of Hurricane Polo; operational, no complaint",
+      "platform": "x",
+      "id": "x:2104808389918302422",
+      "author": "@noroestemx",
+      "posted_at": "2026-09-29T05:40:00Z",
+      "engagement": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0
+      },
+      "destinations": [
+        "Mexican Riviera"
+      ],
+      "rated_by": "model",
+      "brands": [
+        "rci"
+      ],
+      "ships": [
+        "Navigator of the Seas"
+      ]
+    },
+    {
+      "url": "https://x.com/eWhispers/status/2103859902963683800",
+      "text": "Carnival Corporation & plc $CCL is set to report earnings on Tuesday, September 29, 2026 at roughly 9:15 AM ET. Wall Street is looking for $1.36 per share on revenue of $8.36 billion, a 2.5% bump from a year ago. Short interest has dropped 35.1% since last quarter and the stock has cruised 14.5% higher since its last report.",
+      "sentiment": "neutral",
+      "sentiment_reason": "Earnings-preview post ahead of Carnival's Q3 report; factual, no opinion on the brand",
+      "platform": "x",
+      "id": "x:2103859902963683800",
+      "author": "@eWhispers",
+      "posted_at": "2026-09-26T14:51:03Z",
+      "engagement": {
+        "likes": 107,
+        "reposts": 5,
+        "replies": 0
+      },
+      "rated_by": "model",
+      "brands": [
+        "carnival_corp"
+      ],
+      "ships": [],
+      "destinations": []
+    },
+    {
+      "url": "https://www.threads.com/@msccruises.us/video/Dd6cJgHkSl_/",
+      "text": "Float out complete! A major milestone for MSC World Atlantic as she takes to the water for the first time at the Chantiers de l'Atlantique shipyard.",
+      "sentiment": "positive",
+      "sentiment_reason": "MSC celebrating the float-out milestone of MSC World Atlantic",
+      "platform": "threads",
+      "id": "threads:Dd6cJgHkSl_",
+      "author": "@msccruises.us",
+      "posted_at": "2026-09-30T13:27:02Z",
+      "rated_by": "model",
+      "brands": [
+        "msc"
+      ],
+      "ships": [
+        "MSC World Atlantic"
+      ],
+      "destinations": []
+    },
+    {
+      "url": "https://www.threads.com/@royalcaribbeanblog/post/Dd4O-XjoMX2/",
+      "text": "The incident occurred on the current sailing. Cruise ship water leak floods hallway and cabins before crew quickly stops it.",
+      "sentiment": "negative",
+      "sentiment_reason": "Shares a report of a water leak flooding a hallway and cabins on the current sailing (ship identified from the day's news coverage: Harmony of the Seas)",
+      "platform": "threads",
+      "id": "threads:Dd4O-XjoMX2",
+      "author": "@royalcaribbeanblog",
+      "posted_at": "2026-09-29T16:53:27Z",
+      "brands": [
+        "rci"
+      ],
+      "ships": [
+        "Harmony of the Seas"
+      ],
+      "rated_by": "model",
+      "destinations": []
+    },
+    {
+      "url": "https://www.threads.com/@cruisehive/post/DdvL67fisYi/",
+      "text": "Carnival Panorama Cancels Ports as Hurricane Polo Threatens Mexico. #cruise #cruises #cruisenews #travelnews",
+      "sentiment": "negative",
+      "sentiment_reason": "Reports Carnival Panorama cancelling ports as Hurricane Polo threatened Mexico; missed ports for guests",
+      "platform": "threads",
+      "id": "threads:DdvL67fisYi",
+      "author": "@cruisehive",
+      "posted_at": "2026-09-26T04:33:36Z",
+      "destinations": [
+        "Mexican Riviera"
+      ],
+      "rated_by": "model",
+      "brands": [
+        "carnival"
+      ],
+      "ships": [
+        "Carnival Panorama"
+      ]
+    },
+    {
+      "url": "https://www.threads.com/@cnbc/post/Dd1JGCulKXE/",
+      "text": "Bank of America says to scoop up shares of this cruise line operator at a discount.",
+      "sentiment": "positive",
+      "sentiment_reason": "CNBC relays Bank of America's call to buy Royal Caribbean shares after the pullback",
+      "platform": "threads",
+      "id": "threads:Dd1JGCulKXE",
+      "author": "@cnbc",
+      "posted_at": "2026-09-28T12:04:20Z",
+      "brands": [
+        "rci"
+      ],
+      "rated_by": "model",
+      "ships": [],
+      "destinations": []
+    }
+  ],
+  "_note": "Launch baseline gathered by hand on Oct 2, 2026 with a 7-day window. Normal daily runs use the configured 24h (72h on Mondays) window."
+}

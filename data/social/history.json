@@ -1,0 +1,24 @@
+{
+  "2026-10-02": {
+    "posts": 7,
+    "net_score": 0,
+    "brands": {
+      "carnival_corp": {
+        "posts": 1,
+        "net_score": 0
+      },
+      "carnival": {
+        "posts": 1,
+        "net_score": -100
+      },
+      "rci": {
+        "posts": 3,
+        "net_score": 0
+      },
+      "msc": {
+        "posts": 1,
+        "net_score": 100
+      }
+    }
+  }
+}
