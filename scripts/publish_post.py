@@ -306,7 +306,7 @@ PAGE_TEMPLATE = """<!doctype html>
 """
 
 
-def render_post_page(entry, parsed):
+def render_post_page(entry, parsed, episodes):
     top3_block = ""
     if parsed["top3_html"]:
         top3_block = f"""<div class="top-stories" id="top-3">
@@ -322,6 +322,7 @@ def render_post_page(entry, parsed):
 </div>"""
 
     window_html = f'<p class="post-window">{escape(parsed["window"])}</p>' if parsed["window"] else ""
+    podcast_block = podcast_player_block(entry["date"], episodes, asset_prefix="../")
 
     content = f"""<a class="back-link" href="../index.html">&larr; All posts</a>
 <article>
@@ -330,6 +331,7 @@ def render_post_page(entry, parsed):
     <h1>{escape(parsed['title'])}</h1>
     {window_html}
   </div>
+  {podcast_block}
   {top3_block}
   <div class="post-body">
   {parsed['body_html']}
@@ -345,6 +347,28 @@ def render_post_page(entry, parsed):
         site_tagline=SITE_TAGLINE,
         content=content,
     )
+
+
+PODCAST_MANIFEST = DATA_DIR / "podcast.json"
+
+
+def load_podcast_manifest():
+    if PODCAST_MANIFEST.exists():
+        try:
+            return {e["date"]: e for e in json.loads(PODCAST_MANIFEST.read_text())}
+        except (ValueError, KeyError):
+            return {}
+    return {}
+
+
+def podcast_player_block(date_iso, episodes, asset_prefix):
+    episode = episodes.get(date_iso)
+    if not episode:
+        return ""
+    return f"""<div class="podcast-player" id="podcast">
+  <h2>🎧 Listen to today's brief</h2>
+  <audio controls preload="none" src="{asset_prefix}{episode['url']}"></audio>
+</div>"""
 
 
 def social_strip():
@@ -387,14 +411,15 @@ def social_strip():
 </section>"""
 
 
-def render_index_page(entries):
+def render_index_page(entries, episodes):
     if not entries:
         list_html = '<p class="empty-state">No posts yet — check back after the next weekday brief.</p>'
     else:
         cards = []
         for e in sorted(entries, key=lambda x: x["date"], reverse=True):
+            badge = ' <span class="podcast-badge" title="Podcast episode available">🎧</span>' if e["date"] in episodes else ""
             cards.append(f"""<li class="post-card">
-  <p class="post-date">{e['display_date']}</p>
+  <p class="post-date">{e['display_date']}{badge}</p>
   <h2><a href="{e['url']}">{escape(e['title'])}</a></h2>
   <p class="post-excerpt">{escape(e.get('excerpt', ''))}</p>
   <a class="read-more" href="{e['url']}">Read the brief &rarr;</a>
@@ -477,11 +502,13 @@ def main():
     entries.append(entry)
     save_manifest(entries)
 
+    episodes = load_podcast_manifest()
+
     POSTS_DIR.mkdir(exist_ok=True)
-    post_html = render_post_page(entry, parsed)
+    post_html = render_post_page(entry, parsed, episodes)
     (POSTS_DIR / f"{slug}.html").write_text(post_html)
 
-    index_html = render_index_page(entries)
+    index_html = render_index_page(entries, episodes)
     (ROOT / "index.html").write_text(index_html)
 
     n_records = rebuild_search_index(entries)
