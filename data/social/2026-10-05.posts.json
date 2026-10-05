@@ -1,0 +1,418 @@
+{
+  "date": "2026-10-05",
+  "window": {
+    "since": "2026-10-02T15:00:00Z",
+    "until": "2026-10-05T15:00:00Z"
+  },
+  "_instructions": "Fill 'posts' with public posts published inside the window. Every post needs platform, url, author, text and a sentiment of positive / neutral / negative with a short sentiment_reason. Run the queries below (web search; Bluesky can also use `fetch`). Skip ads, job posts and giveaways. Keep the text as posted; the scorer makes the excerpts.",
+  "_queries": [
+    {
+      "platform": "x",
+      "query": "site:x.com \"Princess Cruises\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Carnival\" cruise"
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Holland America\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Seabourn\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Royal Caribbean\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Norwegian Cruise Line\" OR \"NCL\" cruise"
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Celebrity Cruises\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"MSC Cruises\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Virgin Voyages\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Disney Cruise\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com cruise ship complaint OR cancelled OR norovirus"
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com cruise \"best cruise\" OR \"amazing cruise\" OR \"never again\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Princess Cruises\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Carnival\" cruise"
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Holland America\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Seabourn\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Royal Caribbean\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Norwegian Cruise Line\" OR \"NCL\" cruise"
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Celebrity Cruises\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"MSC Cruises\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Virgin Voyages\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Disney Cruise\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net cruise ship complaint OR cancelled OR norovirus"
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net cruise \"best cruise\" OR \"amazing cruise\" OR \"never again\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Princess Cruises\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Carnival\" cruise"
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Holland America\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Seabourn\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Royal Caribbean\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Norwegian Cruise Line\" OR \"NCL\" cruise"
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Celebrity Cruises\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"MSC Cruises\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Virgin Voyages\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Disney Cruise\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app cruise ship complaint OR cancelled OR norovirus"
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app cruise \"best cruise\" OR \"amazing cruise\" OR \"never again\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Princess Cruises\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Carnival\" cruise"
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Holland America\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Seabourn\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Royal Caribbean\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Norwegian Cruise Line\" OR \"NCL\" cruise"
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Celebrity Cruises\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"MSC Cruises\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Virgin Voyages\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Disney Cruise\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com cruise ship complaint OR cancelled OR norovirus"
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com cruise \"best cruise\" OR \"amazing cruise\" OR \"never again\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Princess Cruises\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Carnival\" cruise"
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Holland America\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Seabourn\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Royal Caribbean\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Norwegian Cruise Line\" OR \"NCL\" cruise"
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Celebrity Cruises\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"MSC Cruises\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Virgin Voyages\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Disney Cruise\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com cruise ship complaint OR cancelled OR norovirus"
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com cruise \"best cruise\" OR \"amazing cruise\" OR \"never again\""
+    },
+    {
+      "platform": "all",
+      "query": "cruise norovirus"
+    },
+    {
+      "platform": "all",
+      "query": "cruise outbreak"
+    },
+    {
+      "platform": "all",
+      "query": "cruise itinerary change"
+    },
+    {
+      "platform": "all",
+      "query": "cruise missed port"
+    },
+    {
+      "platform": "all",
+      "query": "cruise man overboard"
+    },
+    {
+      "platform": "all",
+      "query": "cruise medical evacuation"
+    }
+  ],
+  "_focus_highlights": [
+    "Norovirus & illness",
+    "Itinerary changes & weather",
+    "Safety & incidents"
+  ],
+  "posts": [
+    {
+      "url": "https://www.threads.com/@newshour/post/Dd_94nFG2pK/hurricane-rachel-has-been-upgraded-to-a-category-storm-off-mexicos-pacific/",
+      "text": "Hurricane Rachel has been upgraded to a Category 3 storm off Mexico's Pacific coast.",
+      "sentiment": "neutral",
+      "sentiment_reason": "PBS NewsHour reports Hurricane Rachel upgraded to Category 3 off Mexico's Pacific coast, the storm disrupting Mexican Riviera cruise itineraries",
+      "platform": "threads",
+      "id": "threads:Dd_94nFG2pK",
+      "author": "@newshour",
+      "posted_at": "2026-10-02T16:58:02Z",
+      "destinations": [
+        "Mexican Riviera"
+      ],
+      "rated_by": "model",
+      "brands": [],
+      "ships": []
+    },
+    {
+      "url": "https://x.com/TravelGov/status/2105410641796485456",
+      "text": "Cabo San Lucas, Mexico: Hurricane Rachel, a Category 1 storm, is expected to move northwest toward Cabo San Lucas and pass south of the Baja California Peninsula by Saturday, October 3. Rough seas led authorities to close the port on Wednesday, September 30, until further notice. https://t.co/ftXaCUX2HP",
+      "sentiment": "neutral",
+      "sentiment_reason": "Official US govt travel advisory on Hurricane Rachel threatening Cabo San Lucas and the port closure since Sept 30 - factual safety info, not opinion",
+      "platform": "x",
+      "id": "x:2105410641796485456",
+      "author": "@TravelGov",
+      "posted_at": "2026-09-30T21:33:08Z",
+      "engagement": {
+        "likes": 92,
+        "reposts": 0,
+        "replies": 0
+      }
+    },
+    {
+      "url": "https://x.com/JamaicaGleaner/status/2102735352628723838",
+      "text": "Royal Caribbean Group and Sandals Resorts have sealed a landmark 50-50 partnership, ending speculation that the global cruise giant would acquire majority ownership of the Jamaica-born resort company.\n\nRead more: https://t.co/EMmrbYTQRd https://t.co/ACsdEIadJ9",
+      "sentiment": "positive",
+      "sentiment_reason": "News that Royal Caribbean Group and Sandals sealed a 50-50 partnership rather than a majority buyout, framed as reassuring for the Jamaican resort brand's independence",
+      "platform": "x",
+      "id": "x:2102735352628723838",
+      "author": "@JamaicaGleaner",
+      "posted_at": "2026-09-23T12:22:29Z",
+      "engagement": {
+        "likes": 98,
+        "reposts": 2,
+        "replies": 0
+      }
+    },
+    {
+      "url": "https://x.com/NationwideRadio/status/2102544524782305477",
+      "text": "Nationwide News understands that Sandals Resorts International is not being bought out by the Royal Caribbean Group despite reports in sections of the international and local press.\n\nHigh-level sources familiar with the matter tell Nationwide News that talks are under way on a https://t.co/r7S73p0voL",
+      "sentiment": "neutral",
+      "sentiment_reason": "Jamaican radio outlet clarifying Sandals is not being bought out by Royal Caribbean, deal talks described as ongoing",
+      "platform": "x",
+      "id": "x:2102544524782305477",
+      "author": "@NationwideRadio",
+      "posted_at": "2026-09-22T23:44:12Z",
+      "engagement": {
+        "likes": 79,
+        "reposts": 3,
+        "replies": 0
+      }
+    },
+    {
+      "url": "https://x.com/theRCLblog/status/2104653652342571391",
+      "text": "New changes if you need to cancel a cruise https://t.co/VYZql7NTQJ #cruise #travel",
+      "sentiment": "negative",
+      "sentiment_reason": "Royal Caribbean Blog flags Royal Caribbean's new, tighter cancellation-penalty policy as a guest-unfriendly change cruisers need to know about",
+      "platform": "x",
+      "id": "x:2104653652342571391",
+      "author": "@theRCLblog",
+      "posted_at": "2026-09-28T19:25:07Z",
+      "engagement": {
+        "likes": 14,
+        "reposts": 2,
+        "replies": 0
+      }
+    },
+    {
+      "url": "https://www.threads.com/@msccruises.us/video/Dd6cJgHkSl_/video-float-out-complete-a-major-milestone-for-msc-world-atlantic-as-she-takes-to-the/",
+      "text": "Float out complete! A major milestone for MSC World Atlantic as she takes to the water for the first time.",
+      "sentiment": "positive",
+      "sentiment_reason": "MSC Cruises' own celebratory brand announcement of MSC World Atlantic completing float-out ahead of its Winter 2027 debut",
+      "platform": "threads",
+      "id": "threads:Dd6cJgHkSl_",
+      "author": "@msccruises.us",
+      "posted_at": "2026-09-30T13:27:02Z"
+    },
+    {
+      "url": "https://www.threads.com/@1007wmms/post/DXc55ymCg-r/a-carnival-cruise-ship-departing-from-texas-diverted-its-route-in-the-gulf-of",
+      "text": "A Carnival cruise ship departing from Texas diverted its route in the Gulf of Mexico to rescue a distressed sailor and his cat.",
+      "sentiment": "positive",
+      "sentiment_reason": "Local radio account shares a heartwarming story of a Carnival ship diverting to rescue a distressed sailor and his cat in the Gulf of Mexico",
+      "platform": "threads",
+      "id": "threads:DXc55ymCg-r",
+      "author": "@1007wmms",
+      "posted_at": "2026-04-22T23:01:27Z"
+    },
+    {
+      "url": "https://www.threads.com/@cruisehive/post/Dd1UvKzCnTw/noreaster-forces-cruise-ship-to-skip-port-unsafe-swells-cut-island-visit/",
+      "text": "Nor'easter forces cruise ship to skip port: unsafe swells cut island visit.",
+      "sentiment": "negative",
+      "sentiment_reason": "Cruise Hive reports a Nor'easter forced a cruise ship to skip a port call and that Celebrity dropped a guest perk, due to unsafe swells",
+      "platform": "threads",
+      "id": "threads:Dd1UvKzCnTw",
+      "author": "@cruisehive",
+      "posted_at": "2026-09-28T13:46:04Z"
+    },
+    {
+      "url": "https://www.threads.com/@pjlovespj/post/DU1KoUVEhZE/i-just-got-off-royal-carribean-on-friday-and-i-recommend-but-dont-do-any-old",
+      "text": "I just got off Royal Caribbean on Friday and I recommend, but don't do any old boats.",
+      "sentiment": "positive",
+      "sentiment_reason": "Cruiser recommends Royal Caribbean after a recent sailing, with a caveat about avoiding the older ships in the fleet",
+      "platform": "threads",
+      "id": "threads:DU1KoUVEhZE",
+      "author": "@pjlovespj",
+      "posted_at": "2026-02-16T19:35:13Z"
+    },
+    {
+      "url": "https://x.com/fox35orlando/status/2105485368065667240",
+      "text": "Water poured down from the ceiling on Royal Caribbean's Harmony of the Seas, flooding a Floor 10 hallway and soaking guest cabins during a current sailing out of Port Canaveral. https://t.co/3Rfb1mZzQt",
+      "sentiment": "negative",
+      "sentiment_reason": "Local TV news reports water poured from the ceiling flooding a hallway and soaking guest cabins on Royal Caribbean's Harmony of the Seas during a current sailing",
+      "platform": "x",
+      "id": "x:2105485368065667240",
+      "author": "@fox35orlando",
+      "posted_at": "2026-10-01T02:30:04Z",
+      "engagement": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0
+      },
+      "brands": [
+        "rci"
+      ],
+      "ships": [
+        "Harmony of the Seas"
+      ]
+    }
+  ]
+}
