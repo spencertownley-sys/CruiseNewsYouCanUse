@@ -306,7 +306,7 @@ PAGE_TEMPLATE = """<!doctype html>
 """
 
 
-def render_post_page(entry, parsed, episodes):
+def render_post_page(entry, parsed):
     top3_block = ""
     if parsed["top3_html"]:
         top3_block = f"""<div class="top-stories" id="top-3">
@@ -322,7 +322,6 @@ def render_post_page(entry, parsed, episodes):
 </div>"""
 
     window_html = f'<p class="post-window">{escape(parsed["window"])}</p>' if parsed["window"] else ""
-    podcast_block = podcast_player_block(entry["date"], episodes, asset_prefix="../")
 
     content = f"""<a class="back-link" href="../index.html">&larr; All posts</a>
 <article>
@@ -331,7 +330,6 @@ def render_post_page(entry, parsed, episodes):
     <h1>{escape(parsed['title'])}</h1>
     {window_html}
   </div>
-  {podcast_block}
   {top3_block}
   <div class="post-body">
   {parsed['body_html']}
@@ -349,26 +347,43 @@ def render_post_page(entry, parsed, episodes):
     )
 
 
-PODCAST_MANIFEST = DATA_DIR / "podcast.json"
+PODCAST_SOURCE_PAGE = ROOT / "podcast-source.html"
+
+PODCAST_SOURCE_TEMPLATE = """<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title} — podcast source</title>
+<meta name="robots" content="noindex">
+</head>
+<body>
+<p><em>Paste this page's URL into NotebookLM as a source, then generate an Audio Overview. This
+page always holds the latest weekday brief — re-add it each morning to get today's content.</em></p>
+<h1>{title}</h1>
+{window_html}
+{top3_html}
+{body_html}
+{watch_next_html}
+</body>
+</html>
+"""
 
 
-def load_podcast_manifest():
-    if PODCAST_MANIFEST.exists():
-        try:
-            return {e["date"]: e for e in json.loads(PODCAST_MANIFEST.read_text())}
-        except (ValueError, KeyError):
-            return {}
-    return {}
-
-
-def podcast_player_block(date_iso, episodes, asset_prefix):
-    episode = episodes.get(date_iso)
-    if not episode:
-        return ""
-    return f"""<div class="podcast-player" id="podcast">
-  <h2>🎧 Listen to today's brief</h2>
-  <audio controls preload="none" src="{asset_prefix}{episode['url']}"></audio>
-</div>"""
+def render_podcast_source_page(parsed):
+    """A minimal, nav-free rendering of the latest brief at a fixed URL,
+    meant to be pasted into NotebookLM as an Audio Overview source — see
+    the README's 'Daily podcast' section."""
+    window_html = f"<p><em>{escape(parsed['window'])}</em></p>" if parsed["window"] else ""
+    top3_html = f"<h2>Top 3</h2>\n{parsed['top3_html']}" if parsed["top3_html"] else ""
+    watch_next_html = f"<h2>Watch next</h2>\n{parsed['watch_next_html']}" if parsed["watch_next_html"] else ""
+    return PODCAST_SOURCE_TEMPLATE.format(
+        title=escape(parsed["title"]),
+        window_html=window_html,
+        top3_html=top3_html,
+        body_html=parsed["body_html"],
+        watch_next_html=watch_next_html,
+    )
 
 
 def social_strip():
@@ -411,15 +426,14 @@ def social_strip():
 </section>"""
 
 
-def render_index_page(entries, episodes):
+def render_index_page(entries):
     if not entries:
         list_html = '<p class="empty-state">No posts yet — check back after the next weekday brief.</p>'
     else:
         cards = []
         for e in sorted(entries, key=lambda x: x["date"], reverse=True):
-            badge = ' <span class="podcast-badge" title="Podcast episode available">🎧</span>' if e["date"] in episodes else ""
             cards.append(f"""<li class="post-card">
-  <p class="post-date">{e['display_date']}{badge}</p>
+  <p class="post-date">{e['display_date']}</p>
   <h2><a href="{e['url']}">{escape(e['title'])}</a></h2>
   <p class="post-excerpt">{escape(e.get('excerpt', ''))}</p>
   <a class="read-more" href="{e['url']}">Read the brief &rarr;</a>
@@ -502,20 +516,21 @@ def main():
     entries.append(entry)
     save_manifest(entries)
 
-    episodes = load_podcast_manifest()
-
     POSTS_DIR.mkdir(exist_ok=True)
-    post_html = render_post_page(entry, parsed, episodes)
+    post_html = render_post_page(entry, parsed)
     (POSTS_DIR / f"{slug}.html").write_text(post_html)
 
-    index_html = render_index_page(entries, episodes)
+    index_html = render_index_page(entries)
     (ROOT / "index.html").write_text(index_html)
+
+    PODCAST_SOURCE_PAGE.write_text(render_podcast_source_page(parsed))
 
     n_records = rebuild_search_index(entries)
 
     print(f"Wrote posts/{slug}.html")
     print(f"Updated index.html ({len(entries)} post(s) total)")
     print(f"Updated data/posts.json")
+    print(f"Updated podcast-source.html (paste its URL into NotebookLM for today's Audio Overview)")
     print(f"Rebuilt data/search.json ({n_records} searchable sections)")
 
 

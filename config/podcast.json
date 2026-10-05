@@ -1,8 +1,0 @@
-{
-  "enabled": true,
-  "target_minutes_min": 5,
-  "target_minutes_max": 10,
-  "language_code": "en",
-  "voice_note": "Two co-hosts, casual but well-informed, talking to colleagues in the cruise industry. Lead with the Top 3 stories, then move through the brand sections, calling out financial items by ticker. Skip any section that says 'Nothing new.' entirely rather than noting its absence.",
-  "notebook_title_prefix": "Cruise Brief Podcast"
-}
