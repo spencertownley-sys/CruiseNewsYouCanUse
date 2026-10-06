@@ -1,0 +1,417 @@
+{
+  "date": "2026-10-06",
+  "window": {
+    "since": "2026-10-05T15:00:00Z",
+    "until": "2026-10-06T15:00:00Z"
+  },
+  "_instructions": "Fill 'posts' with public posts published inside the window. Every post needs platform, url, author, text and a sentiment of positive / neutral / negative with a short sentiment_reason. Run the queries below (web search; Bluesky can also use `fetch`). Skip ads, job posts and giveaways. Keep the text as posted; the scorer makes the excerpts.",
+  "_queries": [
+    {
+      "platform": "x",
+      "query": "site:x.com \"Princess Cruises\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Carnival\" cruise"
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Holland America\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Seabourn\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Royal Caribbean\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Norwegian Cruise Line\" OR \"NCL\" cruise"
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Celebrity Cruises\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"MSC Cruises\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Virgin Voyages\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Disney Cruise\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com cruise ship complaint OR cancelled OR norovirus"
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com cruise \"best cruise\" OR \"amazing cruise\" OR \"never again\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Princess Cruises\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Carnival\" cruise"
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Holland America\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Seabourn\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Royal Caribbean\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Norwegian Cruise Line\" OR \"NCL\" cruise"
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Celebrity Cruises\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"MSC Cruises\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Virgin Voyages\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Disney Cruise\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net cruise ship complaint OR cancelled OR norovirus"
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net cruise \"best cruise\" OR \"amazing cruise\" OR \"never again\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Princess Cruises\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Carnival\" cruise"
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Holland America\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Seabourn\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Royal Caribbean\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Norwegian Cruise Line\" OR \"NCL\" cruise"
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Celebrity Cruises\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"MSC Cruises\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Virgin Voyages\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Disney Cruise\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app cruise ship complaint OR cancelled OR norovirus"
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app cruise \"best cruise\" OR \"amazing cruise\" OR \"never again\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Princess Cruises\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Carnival\" cruise"
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Holland America\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Seabourn\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Royal Caribbean\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Norwegian Cruise Line\" OR \"NCL\" cruise"
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Celebrity Cruises\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"MSC Cruises\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Virgin Voyages\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Disney Cruise\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com cruise ship complaint OR cancelled OR norovirus"
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com cruise \"best cruise\" OR \"amazing cruise\" OR \"never again\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Princess Cruises\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Carnival\" cruise"
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Holland America\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Seabourn\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Royal Caribbean\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Norwegian Cruise Line\" OR \"NCL\" cruise"
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Celebrity Cruises\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"MSC Cruises\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Virgin Voyages\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Disney Cruise\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com cruise ship complaint OR cancelled OR norovirus"
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com cruise \"best cruise\" OR \"amazing cruise\" OR \"never again\""
+    },
+    {
+      "platform": "all",
+      "query": "cruise norovirus"
+    },
+    {
+      "platform": "all",
+      "query": "cruise outbreak"
+    },
+    {
+      "platform": "all",
+      "query": "cruise itinerary change"
+    },
+    {
+      "platform": "all",
+      "query": "cruise missed port"
+    },
+    {
+      "platform": "all",
+      "query": "cruise man overboard"
+    },
+    {
+      "platform": "all",
+      "query": "cruise medical evacuation"
+    }
+  ],
+  "_focus_highlights": [
+    "Norovirus & illness",
+    "Itinerary changes & weather",
+    "Safety & incidents"
+  ],
+  "posts": [
+    {
+      "url": "https://x.com/DisneyCruise/status/2082106465863561249",
+      "text": "✨ A new chapter awaits. 💙\n\nOn October 7, tune in to the livestream reveal of the Disney Believe ⚓✨ — a ship inspired by promise, possibility, and what lies beyond the horizon.\n\nDo you believe? \n\nMore details coming soon. https://t.co/NChXk9OgDb",
+      "sentiment": "positive",
+      "sentiment_reason": "Disney Cruise Line teases Oct 7 livestream reveal of Disney Believe, builds anticipation",
+      "platform": "x",
+      "id": "x:2082106465863561249",
+      "author": "@DisneyCruise",
+      "posted_at": "2026-07-28T14:10:39Z",
+      "engagement": {
+        "likes": 664,
+        "reposts": 22,
+        "replies": 0
+      }
+    },
+    {
+      "url": "https://x.com/TheDCLBlog/status/2082122909678485927",
+      "text": "Disney Believe Reveal Scheduled for October 7th via Livestream announcement included a video with a number of characters that are likely going to represent unique aspects of the ship. Here is the video and the transcript with characters. https://t.co/g1hkcQwDjI",
+      "sentiment": "neutral",
+      "sentiment_reason": "Fan blog reporting the scheduled Disney Believe reveal date, informational",
+      "platform": "x",
+      "id": "x:2082122909678485927",
+      "author": "@TheDCLBlog",
+      "posted_at": "2026-07-28T15:16:00Z",
+      "engagement": {
+        "likes": 98,
+        "reposts": 7,
+        "replies": 0
+      }
+    },
+    {
+      "url": "https://x.com/Adalakogeorgos/status/2105550823287607775",
+      "text": "Έσπασαν οι κάβοι στο κρουαζιερόπλοιο και χτύπησε σκάφος στο λιμάνι της Ρόδου  \nΔείτε βίντεο\n\nΜεγάλη κινητοποίηση σημειώθηκε το βράδυ της 30ής Σεπτεμβρίου 2026 στο κεντρικό λιμάνι της Ρόδου, όταν έσπασαν οι κάβοι πρόσδεσης του πολυτελούς κρουαζιερόπλοιου «Scarlet Lady», με https://t.co/WEdxPugDUO",
+      "sentiment": "negative",
+      "sentiment_reason": "Local eyewitness video/account of Virgin Voyages' Scarlet Lady breaking moorings and striking a boat in Rhodes port",
+      "platform": "x",
+      "id": "x:2105550823287607775",
+      "author": "@Adalakogeorgos",
+      "posted_at": "2026-10-01T06:50:10Z",
+      "engagement": {
+        "likes": 0,
+        "reposts": 1,
+        "replies": 0
+      },
+      "brands": [
+        "virgin"
+      ],
+      "ships": [
+        "Scarlet Lady"
+      ]
+    },
+    {
+      "url": "https://x.com/KTLA/status/2101756934831620118",
+      "text": "A man jumped overboard from a Carnival cruise ship headed to Southern California from Mexico, prompting the vessel to turn around and search for him Saturday, according to the cruise line and reports. https://t.co/4Y183nnoBW https://t.co/l1B5ByiWxX",
+      "sentiment": "negative",
+      "sentiment_reason": "News report that a man jumped overboard from a Carnival ship en route from Mexico to Southern California, prompting a search",
+      "platform": "x",
+      "id": "x:2101756934831620118",
+      "author": "@KTLA",
+      "posted_at": "2026-09-20T19:34:36Z",
+      "engagement": {
+        "likes": 101,
+        "reposts": 24,
+        "replies": 0
+      },
+      "brands": [
+        "carnival"
+      ]
+    },
+    {
+      "url": "https://x.com/WSJ/status/2082399543921168655",
+      "text": "Viking has become a passenger favorite for its commitment to monotony, but a new competitor is threatening to rock the boat. https://t.co/CwxQQpWIk8",
+      "sentiment": "neutral",
+      "sentiment_reason": "WSJ piece framing Viking as a passenger favorite now facing a new competitive threat",
+      "platform": "x",
+      "id": "x:2082399543921168655",
+      "author": "@WSJ",
+      "posted_at": "2026-07-29T09:35:15Z",
+      "engagement": {
+        "likes": 27,
+        "reposts": 15,
+        "replies": 0
+      },
+      "brands": [
+        "viking"
+      ]
+    },
+    {
+      "url": "https://x.com/travelweekly/status/2105659002994466862",
+      "text": "Ad: 🎉 Celebrate 80 years in Alaska with Holland America Line! Book between 17th Sept and 31st Oct 2026 for your chance to WIN 1 of 10 places on an unforgettable Alaska Cruisetour FAM in 2027. Book Alaska and receive DOUBLE entries! 🚢\n\nhttps://t.co/b6IjxNvOJU https://t.co/CVz3zVyNeY",
+      "sentiment": "positive",
+      "sentiment_reason": "Travel Weekly covers Holland America nearing its 80th year sailing Alaska after a strong season",
+      "platform": "x",
+      "id": "x:2105659002994466862",
+      "author": "@travelweekly",
+      "posted_at": "2026-10-01T14:00:02Z",
+      "engagement": {
+        "likes": 4,
+        "reposts": 0,
+        "replies": 0
+      },
+      "brands": [
+        "hal"
+      ],
+      "destinations": [
+        "Alaska"
+      ]
+    },
+    {
+      "url": "https://x.com/celticfire64/status/2080042326064324747",
+      "text": "Man Boards Carnival Cruise In New Orleans. Then They Say His Birth Certificate Isn’t Good Enough—And Boot Him: ‘They Won’t Refund Us!’ #Carnival #Cruiseship #NewOrleans #Cruiseline\nhttps://t.co/TAZfe3RBQJ @CarnivalCruise #CarnivalCruiseLine \"SHAME-ON-YOU.'''",
+      "sentiment": "negative",
+      "sentiment_reason": "Passenger complaint that Carnival denied boarding over an ID/birth certificate issue with no refund offered",
+      "platform": "x",
+      "id": "x:2080042326064324747",
+      "author": "@celticfire64",
+      "posted_at": "2026-07-22T21:28:30Z",
+      "engagement": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      }
+    },
+    {
+      "url": "https://www.threads.com/@dcl_podcast/post/DcGeUJIIJgp/we-have-a-sneak-peek-at-some-disney-believe-details-ahead-of-their-october",
+      "text": "We have a sneak peek at some Disney Believe details ahead of their October reveal.",
+      "sentiment": "positive",
+      "sentiment_reason": "Disney fan podcast sharing a sneak peek of Disney Believe details ahead of the October reveal",
+      "platform": "threads",
+      "id": "threads:DcGeUJIIJgp",
+      "author": "@dcl_podcast",
+      "posted_at": "2026-08-16T12:34:04Z",
+      "brands": [
+        "disney"
+      ]
+    }
+  ]
+}
