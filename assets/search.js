@@ -4,8 +4,8 @@
   var input = document.getElementById("search-input");
   var results = document.getElementById("search-results");
   var clearBtn = document.getElementById("search-clear");
-  var archive = document.querySelector(".post-list");
-  var archiveHeading = document.querySelector(".archive-heading");
+  var archive = document.querySelector("[data-hide-on-search]");
+  var archiveHeading = null;
   if (!input || !results) return;
 
   var index = null;

@@ -24,12 +24,7 @@
     </nav>
   </div>
 </header>
-<main>
-<p class="intro-blurb">A daily digest of what's new across Carnival Corporation
-(Carnival, Princess, Holland America, Seabourn), Norwegian Cruise Line Holdings, Royal Caribbean
-Group, and the wider cruise industry &mdash; earnings, bookings, itinerary changes, incidents, and
-what's trending with cruisers online.</p>
-
+<main class="home">
 <section class="search" id="search">
   <form class="search-form" role="search" onsubmit="return false">
     <label class="search-label" for="search-input">Search every brief</label>
@@ -37,54 +32,91 @@ what's trending with cruisers online.</p>
       <input id="search-input" type="search" placeholder="e.g. Princess, norovirus, RCL guidance, Alaska" autocomplete="off">
       <button type="button" id="search-clear" class="search-clear" hidden>Clear</button>
     </div>
-    <p class="search-hint">8 daily briefs on file since Wednesday, September 30, 2026. Every day's update is kept here and searchable.</p>
+    <p class="search-hint">8 daily briefs on file since Wednesday, September 30, 2026, all searchable.</p>
   </form>
   <div id="search-results" class="search-results" hidden></div>
 </section>
-<h2 class="archive-heading" id="archive">All briefs</h2>
-<ul class="post-list">
-<li class="post-card">
-  <p class="post-date">Friday, October 9, 2026</p>
-  <h2><a href="posts/2026-10-09.html">Cruise brief — Fri Oct 9, 2026</a></h2>
-  <p class="post-excerpt">NCLH Norwegian expects Norwegian Aura to be delivered early, so it opened two Mediterranean sailings (May 2 and May 12, 2027) ahead of the ship's planned May 21 maiden voyage. Expe…</p>
-  <a class="read-more" href="posts/2026-10-09.html">Read the brief &rarr;</a>
-</li><li class="post-card">
-  <p class="post-date">Thursday, October 8, 2026</p>
-  <h2><a href="posts/2026-10-08.html">Cruise brief — Thu Oct 8, 2026</a></h2>
-  <p class="post-excerpt">Twin storm systems are hitting Carnival on both coasts: Tropical Storm Isaias threatens Gulf homeports while Pacific storms knocked Cabo San Lucas off a Carnival Radiance sailing. …</p>
-  <a class="read-more" href="posts/2026-10-08.html">Read the brief &rarr;</a>
-</li><li class="post-card">
-  <p class="post-date">Wednesday, October 7, 2026</p>
-  <h2><a href="posts/2026-10-07.html">Cruise brief — Wed Oct 7, 2026</a></h2>
-  <p class="post-excerpt">Carnival Corp is reshuffling ships between its brands. Cunard's Queen Anne moves to P&amp;amp;O Cruises in 2029, and P&amp;amp;O's Arcadia moves to Holland America, which takes HAL to 12 s…</p>
-  <a class="read-more" href="posts/2026-10-07.html">Read the brief &rarr;</a>
-</li><li class="post-card">
-  <p class="post-date">Tuesday, October 6, 2026</p>
-  <h2><a href="posts/2026-10-06.html">Cruise brief — Tue Oct 6, 2026</a></h2>
-  <p class="post-excerpt">CCL and RCL both jumped today — Carnival +3.6% to $26.47, Royal Caribbean +3.8% to $285.50 — with no single new catalyst identified; both are still riding the tailwind from Carniva…</p>
-  <a class="read-more" href="posts/2026-10-06.html">Read the brief &rarr;</a>
-</li><li class="post-card">
-  <p class="post-date">Monday, October 5, 2026</p>
-  <h2><a href="posts/2026-10-05.html">Cruise brief — Mon Oct 5, 2026</a></h2>
-  <p class="post-excerpt">RCL Royal Caribbean shares rallied 17% over the week on growing enthusiasm for the Sandals resorts joint venture; Citi dropped its 90-day upside catalyst watch (Buy, $362 target), …</p>
-  <a class="read-more" href="posts/2026-10-05.html">Read the brief &rarr;</a>
-</li><li class="post-card">
-  <p class="post-date">Friday, October 2, 2026</p>
-  <h2><a href="posts/2026-10-02.html">Cruise brief — Fri Oct 2, 2026</a></h2>
-  <p class="post-excerpt">Royal Caribbean reassigned booked cabins on Ovation of the Seas without full compensation, citing muster and lifeboat capacity after the ship's April refit added 40 staterooms — a …</p>
-  <a class="read-more" href="posts/2026-10-02.html">Read the brief &rarr;</a>
-</li><li class="post-card">
-  <p class="post-date">Thursday, October 1, 2026</p>
-  <h2><a href="posts/2026-10-01.html">Cruise brief — Thu Oct 1, 2026</a></h2>
-  <p class="post-excerpt">Analyst price-target cuts kept rolling in on Carnival (Mizuho, BNP Paribas Exane, Argus) even as the Street stays bullish after this week's record Q3 — the disconnect is all about …</p>
-  <a class="read-more" href="posts/2026-10-01.html">Read the brief &rarr;</a>
-</li><li class="post-card">
-  <p class="post-date">Wednesday, September 30, 2026</p>
-  <h2><a href="posts/2026-09-30.html">Cruise brief — Wed Sep 30, 2026</a></h2>
-  <p class="post-excerpt">CCL Carnival posted record Q3 results (EPS $1.43 vs. $1.36 est.; revenue $8.44B) and raised full-year EPS guidance to ~$2.24, sending shares up ~12-13% and lifting the whole sector…</p>
-  <a class="read-more" href="posts/2026-09-30.html">Read the brief &rarr;</a>
-</li>
-</ul>
+<div class="home-grid">
+  <article class="featured-brief" data-hide-on-search>
+    <div class="post-header">
+      <p class="post-date"><span class="latest-tag">Latest brief</span> Friday, October 9, 2026</p>
+      <h1><a href="posts/2026-10-09.html">Cruise brief — Fri Oct 9, 2026</a></h1>
+      <p class="post-window">Covering roughly Thu Oct 8 – Fri Oct 9, 2026</p>
+    </div>
+    <div class="top-stories" id="top-3">
+  <h2>Top 3</h2>
+  <ol>
+<li><span class="ticker">NCLH</span> Norwegian expects Norwegian Aura to be delivered early, so it opened two Mediterranean sailings (May 2 and May 12, 2027) ahead of the ship's planned May 21 maiden voyage. <a href="https://cruiseindustrynews.com/cruise-news/2026/10/expecting-early-delivery-norwegian-moves-up-auras-debut-with-2-sailings/">Expecting Early Delivery, Norwegian Moves Up Aura's Debut With 2 Sailings</a></li>
+<li>Disney Cruise Line's Tracy Wilson says the line is aiming for 13 ships by 2031, including a smaller, non-LNG class from Meyer Werft starting in 2028. <a href="https://www.seatrade-cruise.com/people-opinions/tracy-wilson-on-the-modern-marvels-coming-to-disney-cruise-line">Tracy Wilson on the 'modern marvels' coming to Disney Cruise Line</a></li>
+<li>Mexico says large cruise ships can no longer call at Loreto in Baja California Sur, citing blue whale habitat. The decision takes a West Coast port out of future itineraries. <a href="https://cruiseindustrynews.com/cruise-news/2026/10/mexican-government-rejects-cruise-ships-in-loreto/">Mexican Government Rejects Cruise Ships in Loreto</a></li>
+</ol>
+</div>
+    <div class="post-body">
+    <h2 id="carnival-corp-brands">Carnival Corp &amp; brands</h2>
+<h3 id="carnival-cruise-line">Carnival Cruise Line</h3>
+<p><span class="ticker">CCL</span> was up about 0.5% to $26.27 intraday, with no company news in the window. <a href="https://finance.yahoo.com/quote/CCL">Carnival Corporation (CCL) quote</a></p>
+<h3 id="princess">Princess</h3>
+<p class="nothing-new">Nothing new.</p>
+<h3 id="holland-america">Holland America</h3>
+<p class="nothing-new">Nothing new.</p>
+<h3 id="seabourn">Seabourn</h3>
+<p class="nothing-new">Nothing new.</p>
+<h3 id="other-carnival-brands">Other Carnival brands</h3>
+<p class="nothing-new">Nothing new.</p>
+<h2 id="norwegian-cruise-line-holdings">Norwegian Cruise Line Holdings</h2>
+<p><span class="ticker">NCLH</span> was up about 0.4% to $15.55 intraday. Norwegian Aura will start with a 10-night Trieste–Athens sailing and a 9-night return before its maiden season. Both new sailings are part of NCL's Fall Flash Sale. <a href="https://www.seatrade-cruise.com/marketing/new-med-cruises-added-with-norwegian-aura-s-early-delivery">New Med cruises added with Norwegian Aura's early delivery</a></p>
+<h2 id="royal-caribbean-group">Royal Caribbean Group</h2>
+<p><span class="ticker">RCL</span> was roughly flat (-0.1%) at $281.03 intraday. The company confirmed its Q3 2026 earnings call for Tuesday, Oct 27 at 10 a.m. ET. <a href="https://cruiseindustrynews.com/cruise-news/2026/10/rcl-to-hold-third-quarter-2026-earnings-conference-call/">RCL to Hold Third Quarter 2026 Earnings Conference Call</a></p>
+<h2 id="industry-wide">Industry-wide</h2>
+<p>Mexico reclassified Loreto as a cabotage zone, which bars ships on international itineraries. Holland America's Zaandam had three Loreto calls planned for 2026–27. <a href="https://cruiseindustrynews.com/cruise-news/2026/10/mexican-government-rejects-cruise-ships-in-loreto/">Mexican Government Rejects Cruise Ships in Loreto</a>. Windstar says it has raised Caribbean prices this winter and is not seeing the pricing pressure reported across the region. <a href="https://cruiseindustrynews.com/cruise-news/2026/10/windstar-sees-no-caribbean-pricing-pressure/">Windstar Sees No Caribbean Pricing Pressure</a></p>
+<h2 id="social-buzz">Social buzz</h2>
+<p>No new viral threads surfaced in the window. The Disney Believe and storm-reroute chatter was covered in yesterday's brief.</p>
+    </div>
+    <div class="watch-next" id="watch-next">
+  <h2>Watch next</h2>
+  <p>Carnival Radiance is due back in Long Beach on Oct 11. Disney Believe opens bookings to Castaway Club members on Oct 12 and to everyone on Oct 19. Tropical Storms Rachel, Simon and Isaias could cause more Gulf and Mexican Riviera itinerary changes. Royal Caribbean reports Q3 earnings Oct 27, and NCLH reports around Nov 4.</p>
+</div>
+    <p class="permalink"><a href="posts/2026-10-09.html">Permanent link to this brief &rarr;</a></p>
+  </article>
+  <aside class="home-sidebar" aria-label="More briefs">
+  <section class="side-block">
+    <h2 class="side-heading">This week <span class="muted">Oct 5–9</span></h2>
+    <ul class="side-list"><li class="current"><a href="posts/2026-10-09.html">
+  <span class="side-day">Fri Oct 9 · on this page</span>
+  <span class="side-excerpt">NCLH Norwegian expects Norwegian Aura to be delivered early, so it opened two Mediterranean sailings (May 2 and May 12, 2027) ahead of the ship's planned May 21 maiden voyage. Expe…</span>
+</a></li><li><a href="posts/2026-10-08.html">
+  <span class="side-day">Thu Oct 8</span>
+  <span class="side-excerpt">Twin storm systems are hitting Carnival on both coasts: Tropical Storm Isaias threatens Gulf homeports while Pacific storms knocked Cabo San Lucas off a Carnival Radiance sailing. …</span>
+</a></li><li><a href="posts/2026-10-07.html">
+  <span class="side-day">Wed Oct 7</span>
+  <span class="side-excerpt">Carnival Corp is reshuffling ships between its brands. Cunard's Queen Anne moves to P&amp;O Cruises in 2029, and P&amp;O's Arcadia moves to Holland America, which takes HAL to 12 ships. Ca…</span>
+</a></li><li><a href="posts/2026-10-06.html">
+  <span class="side-day">Tue Oct 6</span>
+  <span class="side-excerpt">CCL and RCL both jumped today — Carnival +3.6% to $26.47, Royal Caribbean +3.8% to $285.50 — with no single new catalyst identified; both are still riding the tailwind from Carniva…</span>
+</a></li><li><a href="posts/2026-10-05.html">
+  <span class="side-day">Mon Oct 5</span>
+  <span class="side-excerpt">RCL Royal Caribbean shares rallied 17% over the week on growing enthusiasm for the Sandals resorts joint venture; Citi dropped its 90-day upside catalyst watch (Buy, $362 target), …</span>
+</a></li></ul>
+  </section>
+  <section class="side-block">
+    <h2 class="side-heading">Earlier weeks</h2>
+<details class="side-week">
+  <summary><span>Week of Sep 28 – Oct 2</span><span class="side-count">3 briefs</span></summary>
+  <ul class="side-list"><li><a href="posts/2026-10-02.html">
+  <span class="side-day">Fri Oct 2</span>
+  <span class="side-excerpt">Royal Caribbean reassigned booked cabins on Ovation of the Seas without full compensation, citing muster and lifeboat capacity after the ship's April refit added 40 staterooms — a …</span>
+</a></li><li><a href="posts/2026-10-01.html">
+  <span class="side-day">Thu Oct 1</span>
+  <span class="side-excerpt">Analyst price-target cuts kept rolling in on Carnival (Mizuho, BNP Paribas Exane, Argus) even as the Street stays bullish after this week's record Q3 — the disconnect is all about …</span>
+</a></li><li><a href="posts/2026-09-30.html">
+  <span class="side-day">Wed Sep 30</span>
+  <span class="side-excerpt">CCL Carnival posted record Q3 results (EPS $1.43 vs. $1.36 est.; revenue $8.44B) and raised full-year EPS guidance to ~$2.24, sending shares up ~12-13% and lifting the whole sector…</span>
+</a></li></ul>
+</details>
+  </section>
+  
+</aside>
+</div>
 <script src="assets/search.js" defer></script>
 </main>
 <footer class="site-footer">
