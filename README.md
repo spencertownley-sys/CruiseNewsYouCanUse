@@ -97,11 +97,9 @@ with that day's content, so the same bookmarked URL always has the latest brief.
 
 ## Social listening app (Earshot)
 
-`social-listening-app/` is a separate product being built here for now: a self-serve social
-listening web app (Next.js) where each user builds their own Listening Profiles. It grew out of
-the Social Pulse work above. Its PRD, architecture and build plan are in
-`social-listening-app/docs/`, and it will move to its own repo
-(`spencertownley-sys/social-listening-app`). It is not part of the GitHub Pages site.
+Earshot, the self-serve social listening app that grew out of the Social Pulse work above,
+now lives in its own repo: https://github.com/spencertownley-sys/social-listening-app (live at
+https://earshot-listening.up.railway.app).
 
 ## Structure
 
