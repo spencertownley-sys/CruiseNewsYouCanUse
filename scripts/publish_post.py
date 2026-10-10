@@ -426,33 +426,94 @@ def social_strip():
 </section>"""
 
 
+def week_start(d):
+    """Monday of the week containing date d."""
+    return d - datetime.timedelta(days=d.weekday())
+
+
+def fmt_range(start, end):
+    if start.month == end.month:
+        return f"{start.strftime('%b')} {start.day}–{end.day}"
+    return f"{start.strftime('%b')} {start.day} – {end.strftime('%b')} {end.day}"
+
+
+def sidebar_item(e, current=False):
+    d = datetime.date.fromisoformat(e["date"])
+    cls = ' class="current"' if current else ""
+    label = d.strftime("%a %b %-d") + (" · on this page" if current else "")
+    return f"""<li{cls}><a href="{e['url']}">
+  <span class="side-day">{label}</span>
+  <span class="side-excerpt">{escape(html_unescape(e.get('excerpt', '')))}</span>
+</a></li>"""
+
+
+def render_sidebar(entries, latest):
+    """Right-hand rail: this week's other briefs listed individually, every
+    earlier week collapsed into one expandable group."""
+    latest_week = week_start(datetime.date.fromisoformat(latest["date"]))
+    this_week = [e for e in entries
+                 if week_start(datetime.date.fromisoformat(e["date"])) == latest_week]
+    older = [e for e in entries
+             if week_start(datetime.date.fromisoformat(e["date"])) < latest_week]
+
+    week_items = "".join(sidebar_item(e, current=(e["date"] == latest["date"])) for e in this_week)
+    if len(this_week) == 1:
+        week_items += '<li class="side-note">First brief of the week.</li>'
+
+    groups = {}
+    for e in older:
+        groups.setdefault(week_start(datetime.date.fromisoformat(e["date"])), []).append(e)
+    older_html = ""
+    for ws in sorted(groups, reverse=True):
+        items = groups[ws]
+        n = len(items)
+        items_html = "".join(sidebar_item(e) for e in items)
+        older_html += f"""<details class="side-week">
+  <summary><span>Week of {fmt_range(ws, ws + datetime.timedelta(days=4))}</span><span class="side-count">{n} brief{"s" if n != 1 else ""}</span></summary>
+  <ul class="side-list">{items_html}</ul>
+</details>"""
+    older_block = f"""<h2 class="side-heading">Earlier weeks</h2>
+{older_html}""" if older_html else ""
+
+    return f"""<aside class="home-sidebar" aria-label="More briefs">
+  <section class="side-block">
+    <h2 class="side-heading">This week <span class="muted">{fmt_range(latest_week, latest_week + datetime.timedelta(days=4))}</span></h2>
+    <ul class="side-list">{week_items}</ul>
+  </section>
+  <section class="side-block">
+    {older_block}
+  </section>
+  {social_strip()}
+</aside>"""
+
+
 def render_index_page(entries):
+    entries = sorted(entries, key=lambda x: x["date"], reverse=True)
     if not entries:
-        list_html = '<p class="empty-state">No posts yet — check back after the next weekday brief.</p>'
-    else:
-        cards = []
-        for e in sorted(entries, key=lambda x: x["date"], reverse=True):
-            cards.append(f"""<li class="post-card">
-  <p class="post-date">{e['display_date']}</p>
-  <h2><a href="{e['url']}">{escape(e['title'])}</a></h2>
-  <p class="post-excerpt">{escape(e.get('excerpt', ''))}</p>
-  <a class="read-more" href="{e['url']}">Read the brief &rarr;</a>
-</li>""")
-        list_html = f'<ul class="post-list">\n{"".join(cards)}\n</ul>'
+        content = '<p class="empty-state">No posts yet — check back after the next weekday brief.</p>'
+        return PAGE_TEMPLATE.format(page_title=SITE_NAME, meta_description=SITE_TAGLINE,
+                                    asset_prefix="", site_name=SITE_NAME,
+                                    site_tagline=SITE_TAGLINE, content=content)
+
+    latest = entries[0]
+    src = DATA_DIR / f"{latest['date']}.md"
+    parsed = parse_source(src.read_text())
+
+    window_html = f'<p class="post-window">{escape(parsed["window"])}</p>' if parsed["window"] else ""
+    top3_block = f"""<div class="top-stories" id="top-3">
+  <h2>Top 3</h2>
+  {parsed['top3_html']}
+</div>""" if parsed["top3_html"] else ""
+    watch_block = f"""<div class="watch-next" id="watch-next">
+  <h2>Watch next</h2>
+  {parsed['watch_next_html']}
+</div>""" if parsed["watch_next_html"] else ""
 
     count = len(entries)
-    oldest = min(entries, key=lambda x: x["date"])["display_date"] if entries else ""
-    archive_note = (
-        f'{count} daily brief{"s" if count != 1 else ""} on file since {oldest}. Every day\'s update is kept here and searchable.'
-        if entries else "Every day's update will be kept here and searchable."
-    )
+    oldest = entries[-1]["display_date"]
+    archive_note = f'{count} daily brief{"s" if count != 1 else ""} on file since {oldest}, all searchable.'
 
-    content = f"""<p class="intro-blurb">A daily digest of what's new across Carnival Corporation
-(Carnival, Princess, Holland America, Seabourn), Norwegian Cruise Line Holdings, Royal Caribbean
-Group, and the wider cruise industry &mdash; earnings, bookings, itinerary changes, incidents, and
-what's trending with cruisers online.</p>
-{social_strip()}
-<section class="search" id="search">
+    content = f"""<section class="search" id="search">
   <form class="search-form" role="search" onsubmit="return false">
     <label class="search-label" for="search-input">Search every brief</label>
     <div class="search-row">
@@ -463,11 +524,25 @@ what's trending with cruisers online.</p>
   </form>
   <div id="search-results" class="search-results" hidden></div>
 </section>
-<h2 class="archive-heading" id="archive">All briefs</h2>
-{list_html}
+<div class="home-grid">
+  <article class="featured-brief" data-hide-on-search>
+    <div class="post-header">
+      <p class="post-date"><span class="latest-tag">Latest brief</span> {latest['display_date']}</p>
+      <h1><a href="{latest['url']}">{escape(parsed['title'])}</a></h1>
+      {window_html}
+    </div>
+    {top3_block}
+    <div class="post-body">
+    {parsed['body_html']}
+    </div>
+    {watch_block}
+    <p class="permalink"><a href="{latest['url']}">Permanent link to this brief &rarr;</a></p>
+  </article>
+  {render_sidebar(entries, latest)}
+</div>
 <script src="assets/search.js" defer></script>"""
 
-    return PAGE_TEMPLATE.format(
+    page = PAGE_TEMPLATE.format(
         page_title=SITE_NAME,
         meta_description=SITE_TAGLINE,
         asset_prefix="",
@@ -475,6 +550,7 @@ what's trending with cruisers online.</p>
         site_tagline=SITE_TAGLINE,
         content=content,
     )
+    return page.replace("<main>", '<main class="home">', 1)
 
 
 def main():
@@ -500,7 +576,7 @@ def main():
     # Build a short excerpt from the first Top 3 item, stripped of markdown/html.
     excerpt_source = parsed["top3_html"] or parsed["body_html"]
     excerpt_text = re.sub(r"<[^>]+>", " ", excerpt_source)
-    excerpt_text = re.sub(r"\s+", " ", excerpt_text).strip()
+    excerpt_text = html_unescape(re.sub(r"\s+", " ", excerpt_text).strip())
     excerpt = (excerpt_text[:180] + "…") if len(excerpt_text) > 180 else excerpt_text
 
     entries = load_manifest()
