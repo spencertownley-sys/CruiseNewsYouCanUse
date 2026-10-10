@@ -1,0 +1,29 @@
+name: jimothy-ci
+
+on:
+  push:
+    paths: ['jimothy/**', '.github/workflows/jimothy-ci.yml']
+  pull_request:
+    paths: ['jimothy/**', '.github/workflows/jimothy-ci.yml']
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: jimothy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: jimothy/package-lock.json
+      - run: npm ci
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: jimothy-dist
+          path: jimothy/dist
