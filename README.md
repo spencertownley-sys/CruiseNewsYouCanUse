@@ -95,12 +95,6 @@ is:
 Takes about a minute. Every time `publish_post.py` runs it overwrites `podcast-source.html`
 with that day's content, so the same bookmarked URL always has the latest brief.
 
-## Social listening app (Earshot)
-
-Earshot, the self-serve social listening app that grew out of the Social Pulse work above,
-now lives in its own repo: https://github.com/spencertownley-sys/social-listening-app (live at
-https://earshot-listening.up.railway.app).
-
 ## Structure
 
 ```
