@@ -317,6 +317,7 @@ PAGE_TEMPLATE = """<!doctype html>
 <meta name="description" content="{meta_description}">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src {style_src}; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'self'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="stylesheet" href="{asset_prefix}assets/cookie-banner.css">
 <link rel="stylesheet" href="{asset_prefix}assets/style.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>">
 {extra_head}</head>
@@ -339,9 +340,10 @@ PAGE_TEMPLATE = """<!doctype html>
 {content}
 </main>
 <footer class="site-footer">
-  <p>{site_name}: a daily digest for cruise-industry watchers. Sources linked throughout. <a href="{asset_prefix}about.html">About and corrections</a></p>
+  <p>{site_name}: a daily digest for cruise-industry watchers. Sources linked throughout. <a href="{asset_prefix}about.html">About and corrections</a> &middot; <a href="{asset_prefix}about.html#privacy">Privacy</a></p>
   <p class="disclaimer">Cruise News You Can Use is an automated news digest for general information only. It is not financial, investment, legal or travel advice. Share prices, analyst ratings and price targets are reported from the linked sources, may be out of date or wrong, and are not a recommendation to buy, sell or hold any security. Check the original source and speak to a licensed financial adviser before making an investment decision.</p>
 </footer>
+<script src="{asset_prefix}assets/cookie-banner.js" defer data-cookie-banner data-mode="notice" data-policy-url="{asset_prefix}about.html#privacy"></script>
 </body>
 </html>
 """

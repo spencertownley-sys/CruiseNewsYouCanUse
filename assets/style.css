@@ -941,3 +941,7 @@ main.home { max-width: 1160px; }
   .home-grid { grid-template-columns: 1fr; gap: 2rem; }
   .home-sidebar { grid-column: auto; grid-row: auto; position: static; max-height: none; overflow: visible; border-top: 1px solid var(--line); padding-top: 1.5rem; }
 }
+
+/* ---------- Cookie notice theme (assets/cookie-banner.css) ---------- */
+
+.cb { --cb-bg: #fffdf9; --cb-fg: #1c2b33; --cb-border: #e4ddcd; --cb-accent: #0b2a3f; --cb-accent-fg: #ffffff; --cb-radius: 6px; --cb-font: "Helvetica Neue", Arial, sans-serif; }
