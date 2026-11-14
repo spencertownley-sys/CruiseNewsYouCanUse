@@ -697,6 +697,22 @@ def build_entry(parsed, post_date):
 
 
 SITEMAP = ROOT / "sitemap.xml"
+NOT_FOUND_PAGE = ROOT / "404.html"
+
+
+def render_404_page():
+    """404.html for GitHub Pages: absolute links so it works from any missing path."""
+    base = "/CruiseNewsYouCanUse/"
+    content = f"""<article class="about">
+  <div class="post-header">
+    <h1>Page not found</h1>
+    <p class="post-window">That address does not exist, or the page has moved.</p>
+  </div>
+  <div class="post-body">
+    <p>Try the <a href="{base}">latest brief</a> or <a href="{base}index.html#search">search every brief</a>.</p>
+  </div>
+</article>"""
+    return render_page(f"Page not found — {SITE_NAME}", "Page not found.", base, content, noindex=True)
 
 
 def write_sitemap(entries):
@@ -730,6 +746,7 @@ def rebuild_all():
         PODCAST_SOURCE_PAGE.write_text(render_podcast_source_page(latest_parsed))
     ABOUT_PAGE.write_text(render_about_page())
     write_sitemap(entries)
+    NOT_FOUND_PAGE.write_text(render_404_page())
     n_records = rebuild_search_index(entries)
     print(f"Rebuilt {len(entries)} post page(s), index.html, data/posts.json and data/search.json ({n_records} searchable sections)")
 
@@ -776,6 +793,7 @@ def main():
     PODCAST_SOURCE_PAGE.write_text(render_podcast_source_page(parsed))
     ABOUT_PAGE.write_text(render_about_page())
     write_sitemap(entries)
+    NOT_FOUND_PAGE.write_text(render_404_page())
 
     n_records = rebuild_search_index(entries)
 
