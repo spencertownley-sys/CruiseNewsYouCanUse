@@ -70,8 +70,8 @@ list. X posts are filled in automatically (text, date, likes) through X's public
 dates for X, Threads and Instagram posts are decoded from their ids, so anything outside the
 day's window is dropped. Threads, Instagram, Facebook and Bluesky text comes from search results
 or page fetches, since those networks have no public read API. Outputs are kept in
-`data/social/` (`<date>.posts.json` rated posts, `<date>.json` report, `history.json`,
-`latest.json`, which also feeds the homepage strip).
+`data/social/` (`<date>.json` report, `history.json`,
+`latest.json`). Raw gathered posts and handles are kept only in the git-ignored `.work/social/<date>.posts.json` and are never published; the pages show short excerpts without handles.
 
 ## Daily podcast (manual, via NotebookLM)
 

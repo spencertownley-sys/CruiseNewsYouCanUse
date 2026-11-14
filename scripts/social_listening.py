@@ -6,7 +6,8 @@ Reads config/social_listening.json (the backend controls), takes a day's
 gathered posts from X, Threads, Bluesky, Instagram and Facebook, rates each
 post positive / neutral / negative, and produces:
 
-  data/social/<date>.posts.json   the rated posts (kept as the record)
+  .work/social/<date>.posts.json   the rated raw posts (local working file, git-ignored:
+                                   raw posts and handles are never published)
   data/social/<date>.json         the day's scored report
   data/social/history.json        rolling per-day, per-brand scores
   data/social/latest.json         copy of the newest report
@@ -47,7 +48,7 @@ Subcommands
   run --date YYYY-MM-DD
       score + render.
 
-Posts file shape (data/social/<date>.posts.json)
+Posts file shape (.work/social/<date>.posts.json)
 -------------------------------------------------
 {
   "date": "2026-10-02",
@@ -86,6 +87,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = ROOT / "config" / "social_listening.json"
 SOCIAL_DIR = ROOT / "data" / "social"
+# Raw gathered posts (full text, handles) stay out of the published repo.
+WORK_SOCIAL_DIR = ROOT / ".work" / "social"
 PAGES_DIR = ROOT / "social"
 HISTORY = SOCIAL_DIR / "history.json"
 LATEST = SOCIAL_DIR / "latest.json"
@@ -105,7 +108,8 @@ def load_config():
 
 
 def posts_path(date):
-    return SOCIAL_DIR / f"{date}.posts.json"
+    WORK_SOCIAL_DIR.mkdir(parents=True, exist_ok=True)
+    return WORK_SOCIAL_DIR / f"{date}.posts.json"
 
 
 def report_path(date):
@@ -329,9 +333,9 @@ def slim(post, cfg):
         "id": post["id"],
         "platform": post["platform"],
         "url": post.get("url"),
-        "author": post.get("author"),
+        # No author: handles are not published. The excerpt is capped at 160 characters.
         "posted_at": post.get("posted_at"),
-        "excerpt": excerpt(post.get("text", ""), cfg["scoring"].get("excerpt_chars", 160)),
+        "excerpt": excerpt(post.get("text", ""), min(160, cfg["scoring"].get("excerpt_chars", 160))),
         "sentiment": post["sentiment"],
         "sentiment_reason": post.get("sentiment_reason"),
         "rated_by": post.get("rated_by", "model"),
@@ -868,9 +872,9 @@ def sentiment_bar(bk):
     )
 
 
-def post_cell(p):
+def post_cell(p, platform_label):
     """The 'Post' cell of the all-posts table; links only when the URL is http(s)."""
-    label = e(p.get("author") or "post")
+    label = e(platform_label)
     url = safe_url(p.get("url"))
     link = f'<a href="{e(url)}" rel="nofollow noopener" target="_blank">{label}</a>' if url else label
     return f'{link}: {e(p["excerpt"])}'
@@ -890,7 +894,7 @@ def sample_html(samples, platforms):
         link = f'<a href="{e(safe_url(p.get("url")))}" rel="nofollow noopener" target="_blank">{e(plat)}</a>' if safe_url(p.get("url")) else e(plat)
         reason = f'<span class="why">{e(p["sentiment_reason"])}</span>' if p.get("sentiment_reason") else ""
         items.append(
-            f'<li>{sentiment_chip(p["sentiment"])} <span class="who">{e(p.get("author") or "")}</span> on {link}'
+            f'<li>{sentiment_chip(p["sentiment"])} Post on {link}'
             f'<span class="what">{e(p["excerpt"])}</span>{reason}</li>')
     return '<ul class="samples">' + "".join(items) + "</ul>"
 
@@ -1040,7 +1044,7 @@ def render_report(report, cfg, hist, all_dates, asset_prefix):
         f'<td>{sentiment_chip(p["sentiment"])}</td>'
         f'<td>{e(", ".join(_brand_names(p["brands"], cfg)) or "—")}</td>'
         f'<td>{e(", ".join(p["ships"] + p["destinations"]) or "—")}</td>'
-        f'<td>{post_cell(p)}</td></tr>'
+        f'<td>{post_cell(p, platforms.get(p["platform"], {}).get("label", p["platform"]))}</td></tr>'
         for p in report["posts"])
     posts_html = (f'<details class="all-posts"><summary>All {len(report["posts"])} rated posts</summary>'
                   f'<div class="table-wrap"><table class="pulse-table"><thead><tr><th>Platform</th><th>Sentiment</th><th>Brand</th><th>Ship / place</th><th>Post</th></tr></thead>'
@@ -1062,8 +1066,8 @@ window, then each post is rated positive, neutral or negative ({rb['model']} rat
 {rb['lexicon']} by the fallback word list). Net sentiment is positives minus negatives as a share of all posts, from
 &minus;100 to +100; the weighted figure applies the per-platform weights. Ships and destinations are recognised from the
 lists in the backend config, and a ship or place is called out as a standout when it draws enough mentions with a
-clearly positive or negative tilt. Brands, ships, destinations, watch topics, platform weights and standout thresholds
-are all adjustable in <a href="https://github.com/spencertownley-sys/CruiseNewsYouCanUse/blob/main/config/social_listening.json">config/social_listening.json</a>.
+clearly positive or negative tilt. Posts are shown as short excerpts without the poster's handle; to have a post
+removed, <a href="https://github.com/spencertownley-sys/CruiseNewsYouCanUse/issues/new">open an issue</a>.
 Sample sizes are small, so treat single-day scores as a pulse, not a poll.</p></section>"""
 
     content = f"""<a class="back-link" href="{asset_prefix}index.html">&larr; All briefs</a>
