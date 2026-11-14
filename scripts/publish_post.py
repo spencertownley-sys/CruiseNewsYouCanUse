@@ -43,6 +43,7 @@ Rules for the source file:
 
 import argparse
 import datetime
+import html as htmllib
 import json
 import re
 import sys
@@ -322,7 +323,7 @@ PAGE_TEMPLATE = """<!doctype html>
   <div class="site-header-inner">
     <div class="site-brand">
       <span class="wave">🌊</span>
-      <h1 class="site-title"><a href="{asset_prefix}index.html">{site_name}</a></h1>
+      <p class="site-title"><a href="{asset_prefix}index.html">{site_name}</a></p>
     </div>
     <p class="site-tagline">{site_tagline}</p>
     <nav class="site-nav">
@@ -344,18 +345,55 @@ PAGE_TEMPLATE = """<!doctype html>
 """
 
 
-def render_page(page_title, meta_description, asset_prefix, content, noindex=False):
-    """Fill PAGE_TEMPLATE; every generated page goes through here."""
-    extra_head = '<meta name="robots" content="noindex">\n' if noindex else ""
+def attr(text):
+    """Escape text for use inside an HTML attribute or <title> (idempotent on already-escaped input)."""
+    return htmllib.escape(html_unescape(str(text)), quote=True)
+
+
+def render_page(page_title, meta_description, asset_prefix, content, noindex=False,
+                path=None, og_type="website", extra_head=""):
+    """Fill PAGE_TEMPLATE; every generated page goes through here.
+
+    path is the page's location under SITE_URL (e.g. "posts/2026-11-13.html",
+    "" for the home page); pages with a path get a canonical link and Open
+    Graph tags. Extra head markup (JSON-LD) is passed in through extra_head,
+    so it never goes through str.format."""
+    head = ""
+    if noindex:
+        head += '<meta name="robots" content="noindex">\n'
+    if path is not None and not noindex:
+        url = attr(SITE_URL + path)
+        head += (
+            f'<link rel="canonical" href="{url}">\n'
+            f'<meta property="og:title" content="{attr(page_title)}">\n'
+            f'<meta property="og:description" content="{attr(meta_description)}">\n'
+            f'<meta property="og:url" content="{url}">\n'
+            f'<meta property="og:type" content="{og_type}">\n'
+            f'<meta property="og:site_name" content="{attr(SITE_NAME)}">\n'
+            '<meta name="twitter:card" content="summary">\n'
+        )
+    head += extra_head
     return PAGE_TEMPLATE.format(
-        extra_head=extra_head,
-        page_title=page_title,
-        meta_description=meta_description,
+        extra_head=head,
+        page_title=attr(page_title),
+        meta_description=attr(meta_description),
         asset_prefix=asset_prefix,
         site_name=SITE_NAME,
         site_tagline=SITE_TAGLINE,
         content=content,
     )
+
+
+def article_json_ld(entry):
+    data = {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        "headline": entry["title"],
+        "datePublished": entry["date"],
+        "url": SITE_URL + entry["url"],
+    }
+    body = json.dumps(data, ensure_ascii=False).replace("</", "<\\/")
+    return f'<script type="application/ld+json">{body}</script>\n'
 
 
 def render_post_page(entry, parsed):
@@ -378,7 +416,7 @@ def render_post_page(entry, parsed):
     content = f"""<a class="back-link" href="../index.html">&larr; All posts</a>
 <article>
   <div class="post-header">
-    <p class="post-date">{entry['display_date']}</p>
+    <p class="post-date"><time datetime="{entry['date']}">{entry['display_date']}</time></p>
     <h1>{escape(parsed['title'])}</h1>
     {window_html}
   </div>
@@ -390,7 +428,8 @@ def render_post_page(entry, parsed):
 </article>"""
 
     return render_page(f"{parsed['title']} — {SITE_NAME}",
-                       escape(entry.get("excerpt", parsed["title"])), "../", content)
+                       entry.get("excerpt", parsed["title"]), "../", content,
+                       path=entry["url"], og_type="article", extra_head=article_json_ld(entry))
 
 
 ISSUES_URL = "https://github.com/spencertownley-sys/CruiseNewsYouCanUse/issues/new"
@@ -441,7 +480,7 @@ def render_about_page():
 </article>"""
     return render_page(f"About {SITE_NAME}",
                        "How Cruise News You Can Use is made, what it is not, how to report a correction, and how privacy is handled.",
-                       "", content)
+                       "", content, path="about.html")
 
 
 PODCAST_SOURCE_PAGE = ROOT / "podcast-source.html"
@@ -587,7 +626,7 @@ def render_index_page(entries):
     entries = sorted(entries, key=lambda x: x["date"], reverse=True)
     if not entries:
         content = '<p class="empty-state">No posts yet — check back after the next weekday brief.</p>'
-        return render_page(SITE_NAME, SITE_TAGLINE, "", content)
+        return render_page(SITE_NAME, SITE_TAGLINE, "", content, path="")
 
     latest = entries[0]
     src = DATA_DIR / f"{latest['date']}.md"
@@ -621,7 +660,7 @@ def render_index_page(entries):
 <div class="home-grid">
   <article class="featured-brief" data-hide-on-search>
     <div class="post-header">
-      <p class="post-date"><span class="latest-tag">Latest brief</span> {latest['display_date']}</p>
+      <p class="post-date"><span class="latest-tag">Latest brief</span> <time datetime="{latest['date']}">{latest['display_date']}</time></p>
       <h1><a href="{latest['url']}">{escape(parsed['title'])}</a></h1>
       {window_html}
     </div>
@@ -636,7 +675,7 @@ def render_index_page(entries):
 </div>
 <script src="assets/search.js" defer></script>"""
 
-    page = render_page(SITE_NAME, SITE_TAGLINE, "", content)
+    page = render_page(SITE_NAME, SITE_TAGLINE, "", content, path="")
     return page.replace("<main>", '<main class="home">', 1)
 
 
@@ -655,6 +694,20 @@ def build_entry(parsed, post_date):
         "excerpt": excerpt,
         "url": f"posts/{date_iso}.html",
     }
+
+
+SITEMAP = ROOT / "sitemap.xml"
+
+
+def write_sitemap(entries):
+    """sitemap.xml from the manifest: home, About and every post (not social, podcast or 404)."""
+    urls = [(SITE_URL, None), (SITE_URL + "about.html", None)]
+    urls += [(SITE_URL + e["url"], e["date"]) for e in sorted(entries, key=lambda x: x["date"], reverse=True)]
+    rows = "".join(
+        f"  <url><loc>{escape(u)}</loc>" + (f"<lastmod>{d}</lastmod>" if d else "") + "</url>\n"
+        for u, d in urls)
+    SITEMAP.write_text('<?xml version="1.0" encoding="UTF-8"?>\n'
+                       '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + rows + "</urlset>\n")
 
 
 def rebuild_all():
@@ -676,6 +729,7 @@ def rebuild_all():
     if latest_parsed is not None:
         PODCAST_SOURCE_PAGE.write_text(render_podcast_source_page(latest_parsed))
     ABOUT_PAGE.write_text(render_about_page())
+    write_sitemap(entries)
     n_records = rebuild_search_index(entries)
     print(f"Rebuilt {len(entries)} post page(s), index.html, data/posts.json and data/search.json ({n_records} searchable sections)")
 
@@ -721,6 +775,7 @@ def main():
 
     PODCAST_SOURCE_PAGE.write_text(render_podcast_source_page(parsed))
     ABOUT_PAGE.write_text(render_about_page())
+    write_sitemap(entries)
 
     n_records = rebuild_search_index(entries)
 
