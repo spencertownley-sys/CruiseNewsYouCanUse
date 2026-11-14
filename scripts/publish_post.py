@@ -315,6 +315,8 @@ PAGE_TEMPLATE = """<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{page_title}</title>
 <meta name="description" content="{meta_description}">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src {style_src}; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'self'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <link rel="stylesheet" href="{asset_prefix}assets/style.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>">
 {extra_head}</head>
@@ -351,13 +353,15 @@ def attr(text):
 
 
 def render_page(page_title, meta_description, asset_prefix, content, noindex=False,
-                path=None, og_type="website", extra_head=""):
+                path=None, og_type="website", extra_head="", inline_styles=False):
     """Fill PAGE_TEMPLATE; every generated page goes through here.
 
     path is the page's location under SITE_URL (e.g. "posts/2026-11-13.html",
     "" for the home page); pages with a path get a canonical link and Open
     Graph tags. Extra head markup (JSON-LD) is passed in through extra_head,
-    so it never goes through str.format."""
+    so it never goes through str.format. inline_styles allows style="" attributes
+    (the Social Pulse sentiment bars set their widths inline); every other page
+    keeps style-src 'self'."""
     head = ""
     if noindex:
         head += '<meta name="robots" content="noindex">\n'
@@ -375,6 +379,7 @@ def render_page(page_title, meta_description, asset_prefix, content, noindex=Fal
     head += extra_head
     return PAGE_TEMPLATE.format(
         extra_head=head,
+        style_src="'self' 'unsafe-inline'" if inline_styles else "'self'",
         page_title=attr(page_title),
         meta_description=attr(meta_description),
         asset_prefix=asset_prefix,
@@ -647,7 +652,7 @@ def render_index_page(entries):
     archive_note = f'{count} daily brief{"s" if count != 1 else ""} on file since {oldest}, all searchable.'
 
     content = f"""<section class="search" id="search">
-  <form class="search-form" role="search" onsubmit="return false">
+  <form class="search-form" role="search">
     <label class="search-label" for="search-input">Search every brief</label>
     <div class="search-row">
       <input id="search-input" type="search" placeholder="e.g. Princess, norovirus, RCL guidance, Alaska" autocomplete="off">

@@ -11,6 +11,9 @@
   var index = null;
   var loading = null;
 
+  // Enter must not reload the page (done here, not inline, so the CSP can forbid inline scripts).
+  if (input.form) input.form.addEventListener("submit", function (e) { e.preventDefault(); });
+
   function load() {
     if (!loading) {
       loading = fetch("data/search.json", { cache: "no-cache" })
