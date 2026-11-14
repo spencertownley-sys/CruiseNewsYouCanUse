@@ -719,7 +719,7 @@ def render_404_page():
     <p>Try the <a href="{base}">latest brief</a> or <a href="{base}index.html#search">search every brief</a>.</p>
   </div>
 </article>"""
-    return render_page(f"Page not found — {SITE_NAME}", "Page not found.", base, content, noindex=True)
+    return render_page(f"Page not found | {SITE_NAME}", "Page not found.", base, content, noindex=True)
 
 
 def write_sitemap(entries):
