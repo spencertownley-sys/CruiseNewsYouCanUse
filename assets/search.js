@@ -11,6 +11,9 @@
   var index = null;
   var loading = null;
 
+  // Enter must not reload the page (done here, not inline, so the CSP can forbid inline scripts).
+  if (input.form) input.form.addEventListener("submit", function (e) { e.preventDefault(); });
+
   function load() {
     if (!loading) {
       loading = fetch("data/search.json", { cache: "no-cache" })
@@ -26,8 +29,6 @@
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
   }
-
-  function escapeRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
 
   function terms(q) {
     return q.toLowerCase().split(/\s+/).filter(function (t) { return t.length > 1; });
@@ -45,11 +46,30 @@
     var out = text.slice(start, end);
     if (start > 0) out = "…" + out;
     if (end < text.length) out = out + "…";
-    var html = escapeHtml(out);
+    // Find matches on the raw text, then escape each segment on its own, so a term like
+    // "amp" or "mark" can never match inside an entity or an inserted <mark> tag.
+    var lowerOut = out.toLowerCase();
+    var ranges = [];
     ts.forEach(function (t) {
-      html = html.replace(new RegExp("(" + escapeRe(escapeHtml(t)) + ")", "gi"), "<mark>$1</mark>");
+      var from = 0, at;
+      while ((at = lowerOut.indexOf(t, from)) !== -1) {
+        ranges.push([at, at + t.length]);
+        from = at + t.length;
+      }
     });
-    return html;
+    ranges.sort(function (x, y) { return x[0] - y[0] || y[1] - x[1]; });
+    var merged = [];
+    ranges.forEach(function (r) {
+      var last = merged[merged.length - 1];
+      if (last && r[0] <= last[1]) last[1] = Math.max(last[1], r[1]);
+      else merged.push([r[0], r[1]]);
+    });
+    var html = "", cursor = 0;
+    merged.forEach(function (r) {
+      html += escapeHtml(out.slice(cursor, r[0])) + "<mark>" + escapeHtml(out.slice(r[0], r[1])) + "</mark>";
+      cursor = r[1];
+    });
+    return html + escapeHtml(out.slice(cursor));
   }
 
   function score(rec, ts) {

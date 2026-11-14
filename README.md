@@ -10,10 +10,14 @@ This site is generated automatically. A scheduled run produces a digest, convert
 post with `scripts/publish_post.py`, and pushes the result here.
 
 **Live site:** https://spencertownley-sys.github.io/CruiseNewsYouCanUse/
-(enable GitHub Pages under Settings → Pages → Deploy from branch `main` / root, if it isn't
-already on.)
+Deployed by `.github/workflows/pages.yml`, which publishes only the built pages and assets
+(not `scripts/`, `config/` or raw markdown). Set Settings → Pages → Source to **GitHub Actions**.
 
 ## How a new post gets added
+
+Install the generator's dependencies once: `pip install -r requirements.txt`. After changing
+`scripts/publish_post.py` or the styles, regenerate every page with
+`python3 scripts/publish_post.py --rebuild-all` and `python3 scripts/social_listening.py render`.
 
 1. The day's digest is written as Markdown to `data/<YYYY-MM-DD>.md`, following the shape
    shown in `scripts/publish_post.py`'s docstring: an `# H1` title, an optional italic
@@ -70,8 +74,8 @@ list. X posts are filled in automatically (text, date, likes) through X's public
 dates for X, Threads and Instagram posts are decoded from their ids, so anything outside the
 day's window is dropped. Threads, Instagram, Facebook and Bluesky text comes from search results
 or page fetches, since those networks have no public read API. Outputs are kept in
-`data/social/` (`<date>.posts.json` rated posts, `<date>.json` report, `history.json`,
-`latest.json`, which also feeds the homepage strip).
+`data/social/` (`<date>.json` report, `history.json`,
+`latest.json`). Raw gathered posts and handles are kept only in the git-ignored `.work/social/<date>.posts.json` and are never published; the pages show short excerpts without handles.
 
 ## Daily podcast (manual, via NotebookLM)
 

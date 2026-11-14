@@ -92,6 +92,9 @@ a:hover { color: var(--coral); text-decoration: underline; }
 }
 
 .site-nav a {
+  display: inline-block;
+  padding: 0.6rem 0;
+  min-height: 24px;
   color: #bcd9df;
   margin-right: 1.25rem;
 }
@@ -217,10 +220,10 @@ main {
 }
 
 .top-stories h2 {
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--good);
+  color: var(--navy-deep);
   margin: 0 0 0.75rem;
 }
 
@@ -282,10 +285,10 @@ main {
 }
 
 .watch-next h2 {
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--coral);
+  color: var(--navy-deep);
   margin: 0 0 0.4rem;
   border: none;
   padding: 0;
@@ -305,6 +308,8 @@ main {
 }
 
 .site-footer a { color: var(--teal); }
+
+.site-footer .disclaimer { max-width: 40rem; margin: 0.75rem auto 0; font-size: 0.78rem; line-height: 1.5; }
 
 @media (max-width: 600px) {
   .site-title { font-size: 1.5rem; }
@@ -829,12 +834,12 @@ main.home { max-width: 1160px; }
 
 .latest-tag {
   display: inline-block;
-  background: var(--coral);
+  background: var(--navy);
   color: #fff;
   border-radius: 3px;
   padding: 0.05rem 0.45rem;
   margin-right: 0.4rem;
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   letter-spacing: 0.06em;
 }
 
@@ -939,3 +944,7 @@ main.home { max-width: 1160px; }
   .home-grid { grid-template-columns: 1fr; gap: 2rem; }
   .home-sidebar { grid-column: auto; grid-row: auto; position: static; max-height: none; overflow: visible; border-top: 1px solid var(--line); padding-top: 1.5rem; }
 }
+
+/* ---------- Cookie notice theme (assets/cookie-banner.css) ---------- */
+
+.cb { --cb-bg: #fffdf9; --cb-fg: #1c2b33; --cb-border: #e4ddcd; --cb-accent: #0b2a3f; --cb-accent-fg: #ffffff; --cb-radius: 6px; --cb-font: "Helvetica Neue", Arial, sans-serif; }

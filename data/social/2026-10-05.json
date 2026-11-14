@@ -1,6 +1,6 @@
 {
   "date": "2026-10-05",
-  "generated_at": "2026-10-05T15:22:51Z",
+  "generated_at": "2026-11-14T14:01:02Z",
   "window": {
     "since": "2026-10-02T15:00:00Z",
     "until": "2026-10-05T15:00:00Z"
@@ -101,7 +101,6 @@
           "id": "threads:Dd_94nFG2pK",
           "platform": "threads",
           "url": "https://www.threads.com/@newshour/post/Dd_94nFG2pK/hurricane-rachel-has-been-upgraded-to-a-category-storm-off-mexicos-pacific/",
-          "author": "@newshour",
           "posted_at": "2026-10-02T16:58:02Z",
           "excerpt": "Hurricane Rachel has been upgraded to a Category 3 storm off Mexico's Pacific coast.",
           "sentiment": "neutral",
@@ -137,7 +136,6 @@
           "id": "threads:Dd_94nFG2pK",
           "platform": "threads",
           "url": "https://www.threads.com/@newshour/post/Dd_94nFG2pK/hurricane-rachel-has-been-upgraded-to-a-category-storm-off-mexicos-pacific/",
-          "author": "@newshour",
           "posted_at": "2026-10-02T16:58:02Z",
           "excerpt": "Hurricane Rachel has been upgraded to a Category 3 storm off Mexico's Pacific coast.",
           "sentiment": "neutral",
@@ -160,7 +158,6 @@
       "id": "threads:Dd_94nFG2pK",
       "platform": "threads",
       "url": "https://www.threads.com/@newshour/post/Dd_94nFG2pK/hurricane-rachel-has-been-upgraded-to-a-category-storm-off-mexicos-pacific/",
-      "author": "@newshour",
       "posted_at": "2026-10-02T16:58:02Z",
       "excerpt": "Hurricane Rachel has been upgraded to a Category 3 storm off Mexico's Pacific coast.",
       "sentiment": "neutral",
