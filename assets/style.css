@@ -92,6 +92,9 @@ a:hover { color: var(--coral); text-decoration: underline; }
 }
 
 .site-nav a {
+  display: inline-block;
+  padding: 0.6rem 0;
+  min-height: 24px;
   color: #bcd9df;
   margin-right: 1.25rem;
 }
@@ -217,10 +220,10 @@ main {
 }
 
 .top-stories h2 {
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--good);
+  color: var(--navy-deep);
   margin: 0 0 0.75rem;
 }
 
@@ -282,10 +285,10 @@ main {
 }
 
 .watch-next h2 {
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--coral);
+  color: var(--navy-deep);
   margin: 0 0 0.4rem;
   border: none;
   padding: 0;
@@ -831,12 +834,12 @@ main.home { max-width: 1160px; }
 
 .latest-tag {
   display: inline-block;
-  background: var(--coral);
+  background: var(--navy);
   color: #fff;
   border-radius: 3px;
   padding: 0.05rem 0.45rem;
   margin-right: 0.4rem;
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   letter-spacing: 0.06em;
 }
 
