@@ -299,7 +299,7 @@ PAGE_TEMPLATE = """<!doctype html>
 <meta name="description" content="{meta_description}">
 <link rel="stylesheet" href="{asset_prefix}assets/style.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌊</text></svg>">
-</head>
+{extra_head}</head>
 <body>
 <header class="site-header">
   <div class="site-header-inner">
@@ -311,7 +311,6 @@ PAGE_TEMPLATE = """<!doctype html>
     <nav class="site-nav">
       <a href="{asset_prefix}index.html">Home</a>
       <a href="{asset_prefix}index.html#search">Search</a>
-      <a href="{asset_prefix}social.html">Social Pulse</a>
       <a href="{asset_prefix}about.html">About</a>
     </nav>
   </div>
@@ -328,9 +327,11 @@ PAGE_TEMPLATE = """<!doctype html>
 """
 
 
-def render_page(page_title, meta_description, asset_prefix, content):
+def render_page(page_title, meta_description, asset_prefix, content, noindex=False):
     """Fill PAGE_TEMPLATE; every generated page goes through here."""
+    extra_head = '<meta name="robots" content="noindex">\n' if noindex else ""
     return PAGE_TEMPLATE.format(
+        extra_head=extra_head,
         page_title=page_title,
         meta_description=meta_description,
         asset_prefix=asset_prefix,
@@ -465,7 +466,7 @@ def render_podcast_source_page(parsed):
     )
 
 
-def social_strip():
+def social_strip():  # not used while Social Pulse is stale (CN-05); re-add to render_sidebar when the run works again
     """Compact Social Pulse summary for the homepage, read from
     data/social/latest.json when the social listening run has produced one."""
     latest = DATA_DIR / "social" / "latest.json"
@@ -562,7 +563,6 @@ def render_sidebar(entries, latest):
   <section class="side-block">
     {older_block}
   </section>
-  {social_strip()}
 </aside>"""
 
 

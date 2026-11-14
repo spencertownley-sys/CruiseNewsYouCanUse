@@ -1091,6 +1091,7 @@ Sample sizes are small, so treat single-day scores as a pulse, not a poll.</p></
         f"Social sentiment on the major cruise lines for {display_date}: {t['posts']} posts, net {fmt_score(t['net_score'])}.",
         asset_prefix,
         content,
+        noindex=True,  # stale until the social run works again; keep it out of search results
     )
 
 
