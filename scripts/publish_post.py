@@ -67,6 +67,9 @@ MANIFEST = DATA_DIR / "posts.json"
 
 SITE_NAME = "Cruise News You Can Use"
 SITE_TAGLINE = "Daily updates on the major cruise lines and the rest of the cruise world."
+DISCLAIMER = (
+    "Cruise News You Can Use is an automated news digest for general information only. It is not financial, investment, legal or travel advice. Share prices, analyst ratings and price targets are reported from the linked sources, may be out of date or wrong, and are not a recommendation to buy, sell or hold any security. Check the original source and speak to a licensed financial adviser before making an investment decision."
+)
 SITE_URL = "https://spencertownley-sys.github.io/CruiseNewsYouCanUse/"
 
 # The markdown is machine-written from web content, so its HTML is cleaned
@@ -317,7 +320,8 @@ PAGE_TEMPLATE = """<!doctype html>
 {content}
 </main>
 <footer class="site-footer">
-  <p>{site_name} &mdash; a daily digest for cruise-industry watchers. Sources linked throughout.</p>
+  <p>{site_name}: a daily digest for cruise-industry watchers. Sources linked throughout. <a href="{asset_prefix}about.html">About and corrections</a></p>
+  <p class="disclaimer">Cruise News You Can Use is an automated news digest for general information only. It is not financial, investment, legal or travel advice. Share prices, analyst ratings and price targets are reported from the linked sources, may be out of date or wrong, and are not a recommendation to buy, sell or hold any security. Check the original source and speak to a licensed financial adviser before making an investment decision.</p>
 </footer>
 </body>
 </html>
