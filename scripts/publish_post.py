@@ -458,7 +458,7 @@ def render_about_page():
     <p>{escape(SITE_NAME)} is a daily digest of cruise-industry news: earnings, bookings, itinerary changes, incidents, and cruise-line stock moves. Every day's brief is kept on the site and is searchable from the <a href="index.html#search">home page</a>.</p>
 
     <h2 id="how-briefs-are-made">How briefs are made</h2>
-    <p>Each brief is compiled automatically by an AI-assisted scheduled routine from public news reports and stock data, then published without line-by-line human editing. [PLACEHOLDER: owner to confirm this wording, and to say whether a person reads each brief before it is published.] Every item links to its source, so you can check the original report.</p>
+    <p>Each brief is compiled automatically by an AI-assisted scheduled routine from public news reports and stock data, then published without line-by-line human editing. [PLACEHOLDER: owner to confirm this wording, and to say whether a person reads each brief before it is published.] Most items link to their source report so you can check the original. A few items, mostly upcoming dates in Watch next, do not have a link yet.</p>
 
     <h2 id="not-advice">Not advice</h2>
     <p>{escape(DISCLAIMER)}</p>
