@@ -139,6 +139,18 @@ def render_markdown_block(text):
     return html
 
 
+LI_RE = re.compile(r"<li>(.*?)</li>", re.S)
+
+
+def warn_unsourced(label, html):
+    """Print a warning for every list item without a link, so the routine can
+    add a source before publishing ('claim. [Headline](url) (Outlet)')."""
+    for m in LI_RE.finditer(html):
+        if "<a href" not in m.group(1):
+            text = html_unescape(re.sub(r"<[^>]+>", "", m.group(1))).strip()
+            print(f"Unsourced item ({label}): {text[:100]}", file=sys.stderr)
+
+
 def parse_source(md_text):
     lines = md_text.splitlines()
     if not lines or not lines[0].startswith("# "):
@@ -177,6 +189,11 @@ def parse_source(md_text):
             body_html_parts.append(f"<h2>{escape(heading)}</h2>")
             if content:
                 body_html_parts.append(render_markdown_block(content))
+
+    body_joined = "\n".join(body_html_parts)
+    warn_unsourced("Top 3", top3_html)
+    warn_unsourced("body", body_joined)
+    warn_unsourced("Watch next", watch_next_html)
 
     return {
         "title": title,
