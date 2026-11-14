@@ -10,10 +10,14 @@ This site is generated automatically. A scheduled run produces a digest, convert
 post with `scripts/publish_post.py`, and pushes the result here.
 
 **Live site:** https://spencertownley-sys.github.io/CruiseNewsYouCanUse/
-(enable GitHub Pages under Settings → Pages → Deploy from branch `main` / root, if it isn't
-already on.)
+Deployed by `.github/workflows/pages.yml`, which publishes only the built pages and assets
+(not `scripts/`, `config/` or raw markdown). Set Settings → Pages → Source to **GitHub Actions**.
 
 ## How a new post gets added
+
+Install the generator's dependencies once: `pip install -r requirements.txt`. After changing
+`scripts/publish_post.py` or the styles, regenerate every page with
+`python3 scripts/publish_post.py --rebuild-all` and `python3 scripts/social_listening.py render`.
 
 1. The day's digest is written as Markdown to `data/<YYYY-MM-DD>.md`, following the shape
    shown in `scripts/publish_post.py`'s docstring: an `# H1` title, an optional italic
