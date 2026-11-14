@@ -828,6 +828,11 @@ def e(s):
     return html.escape(str(s if s is not None else ""))
 
 
+def safe_url(u):
+    """Only http(s) links are ever written into an href; scraped URLs are untrusted."""
+    return u if isinstance(u, str) and u.lower().startswith(("https://", "http://")) else ""
+
+
 def score_class(score):
     if score >= 15:
         return "pos"
@@ -863,6 +868,14 @@ def sentiment_bar(bk):
     )
 
 
+def post_cell(p):
+    """The 'Post' cell of the all-posts table; links only when the URL is http(s)."""
+    label = e(p.get("author") or "post")
+    url = safe_url(p.get("url"))
+    link = f'<a href="{e(url)}" rel="nofollow noopener" target="_blank">{label}</a>' if url else label
+    return f'{link}: {e(p["excerpt"])}'
+
+
 def sentiment_chip(s):
     glyph = {"positive": "▲", "negative": "▼", "neutral": "●"}[s]
     return f'<span class="chip {s}">{glyph} {s}</span>'
@@ -874,7 +887,7 @@ def sample_html(samples, platforms):
     items = []
     for p in samples:
         plat = platforms.get(p["platform"], {}).get("label", p["platform"])
-        link = f'<a href="{e(p["url"])}" rel="nofollow noopener" target="_blank">{e(plat)}</a>' if p.get("url") else e(plat)
+        link = f'<a href="{e(safe_url(p.get("url")))}" rel="nofollow noopener" target="_blank">{e(plat)}</a>' if safe_url(p.get("url")) else e(plat)
         reason = f'<span class="why">{e(p["sentiment_reason"])}</span>' if p.get("sentiment_reason") else ""
         items.append(
             f'<li>{sentiment_chip(p["sentiment"])} <span class="who">{e(p.get("author") or "")}</span> on {link}'
@@ -1027,7 +1040,7 @@ def render_report(report, cfg, hist, all_dates, asset_prefix):
         f'<td>{sentiment_chip(p["sentiment"])}</td>'
         f'<td>{e(", ".join(_brand_names(p["brands"], cfg)) or "—")}</td>'
         f'<td>{e(", ".join(p["ships"] + p["destinations"]) or "—")}</td>'
-        f'<td><a href="{e(p["url"])}" rel="nofollow noopener" target="_blank">{e(p.get("author") or "post")}</a>: {e(p["excerpt"])}</td></tr>'
+        f'<td>{post_cell(p)}</td></tr>'
         for p in report["posts"])
     posts_html = (f'<details class="all-posts"><summary>All {len(report["posts"])} rated posts</summary>'
                   f'<div class="table-wrap"><table class="pulse-table"><thead><tr><th>Platform</th><th>Sentiment</th><th>Brand</th><th>Ship / place</th><th>Post</th></tr></thead>'

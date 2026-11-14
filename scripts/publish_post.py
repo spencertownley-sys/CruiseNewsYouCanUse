@@ -53,7 +53,12 @@ from xml.sax.saxutils import escape
 try:
     import markdown as md
 except ImportError:
-    sys.exit("The 'markdown' package is required: pip install markdown --break-system-packages")
+    sys.exit("The 'markdown' package is required: pip install -r requirements.txt")
+
+try:
+    import nh3
+except ImportError:
+    sys.exit("The 'nh3' package is required: pip install -r requirements.txt")
 
 ROOT = Path(__file__).resolve().parent.parent
 POSTS_DIR = ROOT / "posts"
@@ -63,6 +68,19 @@ MANIFEST = DATA_DIR / "posts.json"
 SITE_NAME = "Cruise News You Can Use"
 SITE_TAGLINE = "Daily updates on the major cruise lines and the rest of the cruise world."
 SITE_URL = "https://spencertownley-sys.github.io/CruiseNewsYouCanUse/"
+
+# The markdown is machine-written from web content, so its HTML is cleaned
+# before it is published: no scripts, no inline handlers, http(s) links only.
+ALLOWED_TAGS = {"p", "a", "ul", "ol", "li", "strong", "em", "code", "h2", "h3", "h4",
+                "blockquote", "span", "br"}
+ALLOWED_ATTRIBUTES = {"a": {"href"}, "span": {"class"}}
+ALLOWED_URL_SCHEMES = {"http", "https"}
+
+
+def sanitize_html(html):
+    return nh3.clean(html, tags=ALLOWED_TAGS, attributes=ALLOWED_ATTRIBUTES,
+                     url_schemes=ALLOWED_URL_SCHEMES, link_rel="noopener nofollow")
+
 
 TICKER_RE = re.compile(r"\[([A-Z]{2,6})\](?!\()")
 
@@ -108,7 +126,7 @@ def split_sections(body_lines):
 
 def render_markdown_block(text):
     text = style_tickers(text)
-    html = md.markdown(text, extensions=["extra"])
+    html = sanitize_html(md.markdown(text, extensions=["extra"]))
     # Flag "Nothing new" one-liners for italic muted styling.
     html = re.sub(
         r"<p>(Nothing new\.?)</p>",
@@ -553,11 +571,58 @@ def render_index_page(entries):
     return page.replace("<main>", '<main class="home">', 1)
 
 
+def build_entry(parsed, post_date):
+    """Manifest entry for one post: dates, URL and a short plain-text excerpt."""
+    date_iso = post_date.isoformat()
+    excerpt_source = parsed["top3_html"] or parsed["body_html"]
+    excerpt_text = re.sub(r"<[^>]+>", " ", excerpt_source)
+    excerpt_text = html_unescape(re.sub(r"\s+", " ", excerpt_text).strip())
+    excerpt = (excerpt_text[:180] + "…") if len(excerpt_text) > 180 else excerpt_text
+    return {
+        "date": date_iso,
+        "display_date": post_date.strftime("%A, %B %-d, %Y"),
+        "title": parsed["title"],
+        "window": parsed["window"],
+        "excerpt": excerpt,
+        "url": f"posts/{date_iso}.html",
+    }
+
+
+def rebuild_all():
+    """Regenerate every page from data/<date>.md: all posts, the home page,
+    the podcast source page and the search index. Used after template or
+    sanitiser changes so no page is left on an old template."""
+    entries = []
+    latest_parsed = None
+    for md_file in sorted(DATA_DIR.glob("????-??-??.md")):
+        parsed = parse_source(md_file.read_text())
+        post_date = datetime.date.fromisoformat(md_file.stem)
+        entry = build_entry(parsed, post_date)
+        entries.append(entry)
+        POSTS_DIR.mkdir(exist_ok=True)
+        (POSTS_DIR / f"{md_file.stem}.html").write_text(render_post_page(entry, parsed))
+        latest_parsed = parsed
+    save_manifest(entries)
+    (ROOT / "index.html").write_text(render_index_page(entries))
+    if latest_parsed is not None:
+        PODCAST_SOURCE_PAGE.write_text(render_podcast_source_page(latest_parsed))
+    n_records = rebuild_search_index(entries)
+    print(f"Rebuilt {len(entries)} post page(s), index.html, data/posts.json and data/search.json ({n_records} searchable sections)")
+
+
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--md", required=True, help="Path to the source Markdown file for this post")
+    ap.add_argument("--md", help="Path to the source Markdown file for this post")
     ap.add_argument("--date", help="ISO date (YYYY-MM-DD) for this post; inferred from title if omitted")
+    ap.add_argument("--rebuild-all", action="store_true",
+                    help="Regenerate every page from data/*.md instead of adding one post")
     args = ap.parse_args()
+
+    if args.rebuild_all:
+        rebuild_all()
+        return
+    if not args.md:
+        ap.error("--md is required unless --rebuild-all is given")
 
     src_path = Path(args.md)
     md_text = src_path.read_text()
@@ -569,26 +634,11 @@ def main():
         post_date = extract_date_from_title(parsed["title"], datetime.date.today())
 
     date_iso = post_date.isoformat()
-    display_date = post_date.strftime("%A, %B %-d, %Y")
     slug = date_iso
-    url = f"posts/{slug}.html"
-
-    # Build a short excerpt from the first Top 3 item, stripped of markdown/html.
-    excerpt_source = parsed["top3_html"] or parsed["body_html"]
-    excerpt_text = re.sub(r"<[^>]+>", " ", excerpt_source)
-    excerpt_text = html_unescape(re.sub(r"\s+", " ", excerpt_text).strip())
-    excerpt = (excerpt_text[:180] + "…") if len(excerpt_text) > 180 else excerpt_text
 
     entries = load_manifest()
     entries = [e for e in entries if e["date"] != date_iso]  # replace if re-publishing same date
-    entry = {
-        "date": date_iso,
-        "display_date": display_date,
-        "title": parsed["title"],
-        "window": parsed["window"],
-        "excerpt": excerpt,
-        "url": url,
-    }
+    entry = build_entry(parsed, post_date)
     entries.append(entry)
     save_manifest(entries)
 
