@@ -821,7 +821,7 @@ def fetch_bluesky(date, cfg):
 def _page_template():
     sys.path.insert(0, str(ROOT / "scripts"))
     import publish_post  # noqa: E402  (shares the site header/footer)
-    return publish_post.PAGE_TEMPLATE, publish_post.SITE_NAME, publish_post.SITE_TAGLINE
+    return publish_post.render_page, publish_post.SITE_NAME, publish_post.SITE_TAGLINE
 
 
 def e(s):
@@ -915,7 +915,7 @@ def sparkline(series, width=140, height=36):
 
 
 def render_report(report, cfg, hist, all_dates, asset_prefix):
-    tmpl, site_name, site_tagline = _page_template()
+    render_page, site_name, site_tagline = _page_template()
     platforms = cfg["platforms"]
     t = report["totals"]
     date = report["date"]
@@ -1082,13 +1082,11 @@ Sample sizes are small, so treat single-day scores as a pulse, not a poll.</p></
   {archive_html}
   {method}
 </article>"""
-    return tmpl.format(
-        page_title=f"Social Pulse — {display_date} — {site_name}",
-        meta_description=f"Social sentiment on the major cruise lines for {display_date}: {t['posts']} posts, net {fmt_score(t['net_score'])}.",
-        asset_prefix=asset_prefix,
-        site_name=site_name,
-        site_tagline=site_tagline,
-        content=content,
+    return render_page(
+        f"Social Pulse — {display_date} — {site_name}",
+        f"Social sentiment on the major cruise lines for {display_date}: {t['posts']} posts, net {fmt_score(t['net_score'])}.",
+        asset_prefix,
+        content,
     )
 
 

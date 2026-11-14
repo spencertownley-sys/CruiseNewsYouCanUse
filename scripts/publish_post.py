@@ -312,7 +312,7 @@ PAGE_TEMPLATE = """<!doctype html>
       <a href="{asset_prefix}index.html">Home</a>
       <a href="{asset_prefix}index.html#search">Search</a>
       <a href="{asset_prefix}social.html">Social Pulse</a>
-      <a href="https://github.com/spencertownley-sys/CruiseNewsYouCanUse">About this brief</a>
+      <a href="{asset_prefix}about.html">About</a>
     </nav>
   </div>
 </header>
@@ -326,6 +326,18 @@ PAGE_TEMPLATE = """<!doctype html>
 </body>
 </html>
 """
+
+
+def render_page(page_title, meta_description, asset_prefix, content):
+    """Fill PAGE_TEMPLATE; every generated page goes through here."""
+    return PAGE_TEMPLATE.format(
+        page_title=page_title,
+        meta_description=meta_description,
+        asset_prefix=asset_prefix,
+        site_name=SITE_NAME,
+        site_tagline=SITE_TAGLINE,
+        content=content,
+    )
 
 
 def render_post_page(entry, parsed):
@@ -359,14 +371,59 @@ def render_post_page(entry, parsed):
   {watch_block}
 </article>"""
 
-    return PAGE_TEMPLATE.format(
-        page_title=f"{parsed['title']} — {SITE_NAME}",
-        meta_description=escape(entry.get("excerpt", parsed["title"])),
-        asset_prefix="../",
-        site_name=SITE_NAME,
-        site_tagline=SITE_TAGLINE,
-        content=content,
-    )
+    return render_page(f"{parsed['title']} — {SITE_NAME}",
+                       escape(entry.get("excerpt", parsed["title"])), "../", content)
+
+
+ISSUES_URL = "https://github.com/spencertownley-sys/CruiseNewsYouCanUse/issues/new"
+OWNER_URL = "https://github.com/spencertownley-sys"
+GITHUB_PRIVACY_URL = "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement"
+ABOUT_PAGE = ROOT / "about.html"
+
+
+def render_about_page():
+    """about.html: what the site is, how briefs are made, the not-advice note,
+    corrections, privacy and storage, and who runs it. Regenerated on every run."""
+    content = f"""<article class="about">
+  <div class="post-header">
+    <h1>About {escape(SITE_NAME)}</h1>
+    <p class="post-window">What this site is, how it is made, and how to tell us about a mistake.</p>
+  </div>
+  <div class="post-body">
+    <h2 id="what-this-is">What this is</h2>
+    <p>{escape(SITE_NAME)} is a daily digest of cruise-industry news: earnings, bookings, itinerary changes, incidents, and cruise-line stock moves. Every day's brief is kept on the site and is searchable from the <a href="index.html#search">home page</a>.</p>
+
+    <h2 id="how-briefs-are-made">How briefs are made</h2>
+    <p>Each brief is compiled automatically by an AI-assisted scheduled routine from public news reports and stock data, then published without line-by-line human editing. [PLACEHOLDER: owner to confirm this wording, and to say whether a person reads each brief before it is published.] Every item links to its source, so you can check the original report.</p>
+
+    <h2 id="not-advice">Not advice</h2>
+    <p>{escape(DISCLAIMER)}</p>
+
+    <h2 id="corrections">Corrections</h2>
+    <p>If you spot a mistake, <a href="{ISSUES_URL}">report it on GitHub</a> (a free GitHub account is needed) and say which brief and which item. Confirmed errors are fixed in the next run.</p>
+
+    <h2 id="privacy">Privacy and storage</h2>
+    <p><em>Last updated: 14 November 2026</em></p>
+    <ul>
+      <li><strong>Cookies:</strong> this site sets none.</li>
+      <li><strong>Browser storage:</strong> the only item stored is <code>cookie-consent</code> in your browser's localStorage. It is necessary: it remembers that you have seen the notice at the bottom of the page, so it does not keep appearing. localStorage is shared with other projects on the same address (spencertownley-sys.github.io), which store their own items separately. You can clear it in your browser settings at any time.</li>
+      <li><strong>Other companies:</strong> your browser contacts none. Every file on this site, including the search index, is served from this site.</li>
+      <li><strong>Search:</strong> search runs in your browser. The words you type are not sent anywhere.</li>
+      <li><strong>Hosting:</strong> the site is hosted on GitHub Pages (GitHub, Inc., United States), which logs visitor IP addresses and browser details to deliver pages and keep the service secure. The site owner does not receive or use those logs. See <a href="{GITHUB_PRIVACY_URL}">GitHub's privacy statement</a>.</li>
+      <li><strong>Social Pulse:</strong> if the Social Pulse pages are in use, they show short excerpts of public social posts without handles. Anyone can ask for a post to be removed by <a href="{ISSUES_URL}">opening an issue</a>.</li>
+      <li><strong>Who is responsible:</strong> [PLACEHOLDER: owner legal name, city, state and country]. Contact: [PLACEHOLDER: contact email].</li>
+      <li><strong>How long data is kept:</strong> this site keeps no personal data of its own. [PLACEHOLDER: owner to state retention for anything else, for example enquiries received by email.]</li>
+      <li><strong>Your rights:</strong> visitors in the EU, the UK, California and other US states can ask to access, correct or delete personal information, and EU and UK visitors can complain to their data protection authority. This site does not sell or share personal information, and it honours Global Privacy Control signals because it does no tracking at all. To use a right, email [PLACEHOLDER: contact email]. You will get an answer within 30 days.</li>
+      <li><strong>Children:</strong> this site is not directed at children under 13 (under 16 in the EU and UK) and does not knowingly collect their data.</li>
+    </ul>
+
+    <h2 id="who-runs-it">Who runs it</h2>
+    <p>{escape(SITE_NAME)} is run by its repository owner, <a href="{OWNER_URL}">spencertownley-sys on GitHub</a>. The code that builds the site is public in the <a href="https://github.com/spencertownley-sys/CruiseNewsYouCanUse">repository</a>.</p>
+  </div>
+</article>"""
+    return render_page(f"About {SITE_NAME}",
+                       "How Cruise News You Can Use is made, what it is not, how to report a correction, and how privacy is handled.",
+                       "", content)
 
 
 PODCAST_SOURCE_PAGE = ROOT / "podcast-source.html"
@@ -513,9 +570,7 @@ def render_index_page(entries):
     entries = sorted(entries, key=lambda x: x["date"], reverse=True)
     if not entries:
         content = '<p class="empty-state">No posts yet — check back after the next weekday brief.</p>'
-        return PAGE_TEMPLATE.format(page_title=SITE_NAME, meta_description=SITE_TAGLINE,
-                                    asset_prefix="", site_name=SITE_NAME,
-                                    site_tagline=SITE_TAGLINE, content=content)
+        return render_page(SITE_NAME, SITE_TAGLINE, "", content)
 
     latest = entries[0]
     src = DATA_DIR / f"{latest['date']}.md"
@@ -564,14 +619,7 @@ def render_index_page(entries):
 </div>
 <script src="assets/search.js" defer></script>"""
 
-    page = PAGE_TEMPLATE.format(
-        page_title=SITE_NAME,
-        meta_description=SITE_TAGLINE,
-        asset_prefix="",
-        site_name=SITE_NAME,
-        site_tagline=SITE_TAGLINE,
-        content=content,
-    )
+    page = render_page(SITE_NAME, SITE_TAGLINE, "", content)
     return page.replace("<main>", '<main class="home">', 1)
 
 
@@ -610,6 +658,7 @@ def rebuild_all():
     (ROOT / "index.html").write_text(render_index_page(entries))
     if latest_parsed is not None:
         PODCAST_SOURCE_PAGE.write_text(render_podcast_source_page(latest_parsed))
+    ABOUT_PAGE.write_text(render_about_page())
     n_records = rebuild_search_index(entries)
     print(f"Rebuilt {len(entries)} post page(s), index.html, data/posts.json and data/search.json ({n_records} searchable sections)")
 
@@ -654,6 +703,7 @@ def main():
     (ROOT / "index.html").write_text(index_html)
 
     PODCAST_SOURCE_PAGE.write_text(render_podcast_source_page(parsed))
+    ABOUT_PAGE.write_text(render_about_page())
 
     n_records = rebuild_search_index(entries)
 
