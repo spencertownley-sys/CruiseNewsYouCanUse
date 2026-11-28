@@ -30,5 +30,31 @@
     "posts": 0,
     "net_score": 0,
     "brands": {}
+  },
+  "2026-11-27": {
+    "posts": 12,
+    "net_score": 42,
+    "brands": {
+      "carnival": {
+        "posts": 1,
+        "net_score": 0
+      },
+      "hal": {
+        "posts": 1,
+        "net_score": 100
+      },
+      "cunard": {
+        "posts": 3,
+        "net_score": 0
+      },
+      "rci": {
+        "posts": 2,
+        "net_score": 50
+      },
+      "disney": {
+        "posts": 5,
+        "net_score": 60
+      }
+    }
   }
 }

@@ -1,0 +1,1147 @@
+{
+  "date": "2026-11-27",
+  "generated_at": "2026-11-28T01:31:41Z",
+  "window": {
+    "since": "2026-11-26T15:00:00Z",
+    "until": "2026-11-27T15:00:00Z"
+  },
+  "config_version": 1,
+  "totals": {
+    "posts": 12,
+    "positive": 6,
+    "neutral": 5,
+    "negative": 1,
+    "net_score": 42,
+    "weighted_score": 42
+  },
+  "dropped": {
+    "muted": 0,
+    "disabled_platform": 0,
+    "empty": 0,
+    "duplicate": 0
+  },
+  "rated_by": {
+    "model": 12,
+    "lexicon": 0
+  },
+  "platforms": {
+    "x": {
+      "posts": 0,
+      "positive": 0,
+      "neutral": 0,
+      "negative": 0,
+      "net_score": 0,
+      "weighted_score": 0,
+      "label": "X"
+    },
+    "threads": {
+      "posts": 0,
+      "positive": 0,
+      "neutral": 0,
+      "negative": 0,
+      "net_score": 0,
+      "weighted_score": 0,
+      "label": "Threads"
+    },
+    "bluesky": {
+      "posts": 12,
+      "positive": 6,
+      "neutral": 5,
+      "negative": 1,
+      "net_score": 42,
+      "weighted_score": 42,
+      "label": "Bluesky"
+    },
+    "instagram": {
+      "posts": 0,
+      "positive": 0,
+      "neutral": 0,
+      "negative": 0,
+      "net_score": 0,
+      "weighted_score": 0,
+      "label": "Instagram"
+    },
+    "facebook": {
+      "posts": 0,
+      "positive": 0,
+      "neutral": 0,
+      "negative": 0,
+      "net_score": 0,
+      "weighted_score": 0,
+      "label": "Facebook"
+    }
+  },
+  "brands": [
+    {
+      "posts": 1,
+      "positive": 0,
+      "neutral": 1,
+      "negative": 0,
+      "platforms": {
+        "bluesky": {
+          "posts": 1,
+          "positive": 0,
+          "neutral": 1,
+          "negative": 0,
+          "net_score": 0,
+          "weighted_score": 0
+        }
+      },
+      "net_score": 0,
+      "weighted_score": 0,
+      "key": "carnival",
+      "name": "Carnival Cruise Line",
+      "group": "Carnival Corporation",
+      "ships": [
+        {
+          "posts": 1,
+          "positive": 0,
+          "neutral": 1,
+          "negative": 0,
+          "net_score": 0,
+          "weighted_score": 0,
+          "name": "Carnival Dream",
+          "brand": "carnival",
+          "standout": false,
+          "samples": [
+            {
+              "id": "bluesky:3n3a4qzvlhk25",
+              "platform": "bluesky",
+              "url": "https://bsky.app/profile/cruisehive.com/post/3n3a4qzvlhk25",
+              "author": "@cruisehive.com",
+              "posted_at": "2026-11-26T16:46:05.678Z",
+              "excerpt": "Galveston Road Construction Prompts Carnival Dream Embarkation Update. www.cruisehive.com/galveston-ro... #cruise #cruises #cruisenews #travelnews",
+              "sentiment": "neutral",
+              "sentiment_reason": "news: Carnival Dream boarding moves terminals in Galveston",
+              "rated_by": "model",
+              "brands": [
+                "carnival"
+              ],
+              "ships": [
+                "Carnival Dream"
+              ],
+              "destinations": [
+                "Galveston"
+              ],
+              "topics": []
+            }
+          ]
+        }
+      ],
+      "destinations": [
+        {
+          "name": "Galveston",
+          "posts": 1,
+          "positive": 0,
+          "neutral": 1,
+          "negative": 0,
+          "net_score": 0,
+          "weighted_score": 0
+        }
+      ],
+      "samples": [
+        {
+          "id": "bluesky:3n3a4qzvlhk25",
+          "platform": "bluesky",
+          "url": "https://bsky.app/profile/cruisehive.com/post/3n3a4qzvlhk25",
+          "author": "@cruisehive.com",
+          "posted_at": "2026-11-26T16:46:05.678Z",
+          "excerpt": "Galveston Road Construction Prompts Carnival Dream Embarkation Update. www.cruisehive.com/galveston-ro... #cruise #cruises #cruisenews #travelnews",
+          "sentiment": "neutral",
+          "sentiment_reason": "news: Carnival Dream boarding moves terminals in Galveston",
+          "rated_by": "model",
+          "brands": [
+            "carnival"
+          ],
+          "ships": [
+            "Carnival Dream"
+          ],
+          "destinations": [
+            "Galveston"
+          ],
+          "topics": []
+        }
+      ]
+    },
+    {
+      "posts": 1,
+      "positive": 1,
+      "neutral": 0,
+      "negative": 0,
+      "platforms": {
+        "bluesky": {
+          "posts": 1,
+          "positive": 1,
+          "neutral": 0,
+          "negative": 0,
+          "net_score": 100,
+          "weighted_score": 100
+        }
+      },
+      "net_score": 100,
+      "weighted_score": 100,
+      "key": "hal",
+      "name": "Holland America Line",
+      "group": "Carnival Corporation",
+      "ships": [],
+      "destinations": [],
+      "samples": [
+        {
+          "id": "bluesky:3n3a5bhj7y226",
+          "platform": "bluesky",
+          "url": "https://bsky.app/profile/paulandcarole.bsky.social/post/3n3a5bhj7y226",
+          "author": "@paulandcarole.bsky.social",
+          "posted_at": "2026-11-26T16:55:16.816Z",
+          "excerpt": "We are big fans of Holland America! Do you think the ship looks like a frogs face? Comment 🐸 if you do! They have a #BlackFriday offer book a Have It All fare…",
+          "sentiment": "positive",
+          "sentiment_reason": "self-described big Holland America fans sharing a Black Friday offer",
+          "rated_by": "model",
+          "brands": [
+            "hal"
+          ],
+          "ships": [],
+          "destinations": [],
+          "topics": []
+        }
+      ]
+    },
+    {
+      "posts": 3,
+      "positive": 1,
+      "neutral": 1,
+      "negative": 1,
+      "platforms": {
+        "bluesky": {
+          "posts": 3,
+          "positive": 1,
+          "neutral": 1,
+          "negative": 1,
+          "net_score": 0,
+          "weighted_score": 0
+        }
+      },
+      "net_score": 0,
+      "weighted_score": 0,
+      "key": "cunard",
+      "name": "Cunard",
+      "group": "Carnival Corporation",
+      "ships": [
+        {
+          "posts": 2,
+          "positive": 1,
+          "neutral": 1,
+          "negative": 0,
+          "net_score": 50,
+          "weighted_score": 50,
+          "name": "Queen Mary 2",
+          "brand": "cunard",
+          "standout": false,
+          "samples": [
+            {
+              "id": "bluesky:3n3amohwdwc2g",
+              "platform": "bluesky",
+              "url": "https://bsky.app/profile/ryanbiddulph.bsky.social/post/3n3amohwdwc2g",
+              "author": "@ryanbiddulph.bsky.social",
+              "posted_at": "2026-11-26T21:30:59.589Z",
+              "excerpt": "Sailing in Style on Queen Mary 2, from Brooklyn hiclassmag.com/sailing-in-s...",
+              "sentiment": "positive",
+              "sentiment_reason": "'sailing in style' feature on Queen Mary 2 from Brooklyn",
+              "rated_by": "model",
+              "brands": [
+                "cunard"
+              ],
+              "ships": [
+                "Queen Mary 2"
+              ],
+              "destinations": [],
+              "topics": []
+            },
+            {
+              "id": "bluesky:3n3a5m3jg34y4",
+              "platform": "bluesky",
+              "url": "https://bsky.app/profile/oceanlinerphotography.com/post/3n3a5m3jg34y4",
+              "author": "@oceanlinerphotography.com",
+              "posted_at": "2026-11-26T17:01:13Z",
+              "excerpt": "Queen Mary 2 (Cunard Line) • Transatlantic • December 16, 2025 The first full sea day after Southampton brought a heavy westerly swell. On December 16, 2025, t…",
+              "sentiment": "neutral",
+              "sentiment_reason": "Queen Mary 2 transatlantic photo log, rough swell on first sea day",
+              "rated_by": "model",
+              "brands": [
+                "cunard"
+              ],
+              "ships": [
+                "Queen Mary 2"
+              ],
+              "destinations": [
+                "Northern Europe"
+              ],
+              "topics": []
+            }
+          ]
+        }
+      ],
+      "destinations": [
+        {
+          "name": "Northern Europe",
+          "posts": 1,
+          "positive": 0,
+          "neutral": 1,
+          "negative": 0,
+          "net_score": 0,
+          "weighted_score": 0
+        }
+      ],
+      "samples": [
+        {
+          "id": "bluesky:3n3bbwsg6as2v",
+          "platform": "bluesky",
+          "url": "https://bsky.app/profile/tbrunner.bsky.social/post/3n3bbwsg6as2v",
+          "author": "@tbrunner.bsky.social",
+          "posted_at": "2026-11-27T03:51:27.608Z",
+          "excerpt": "the beef wellington was better than cunard. eldest daughter jumping with joy.",
+          "sentiment": "negative",
+          "sentiment_reason": "says a home-cooked beef wellington beat the one on Cunard",
+          "rated_by": "model",
+          "brands": [
+            "cunard"
+          ],
+          "ships": [],
+          "destinations": [],
+          "topics": []
+        },
+        {
+          "id": "bluesky:3n3amohwdwc2g",
+          "platform": "bluesky",
+          "url": "https://bsky.app/profile/ryanbiddulph.bsky.social/post/3n3amohwdwc2g",
+          "author": "@ryanbiddulph.bsky.social",
+          "posted_at": "2026-11-26T21:30:59.589Z",
+          "excerpt": "Sailing in Style on Queen Mary 2, from Brooklyn hiclassmag.com/sailing-in-s...",
+          "sentiment": "positive",
+          "sentiment_reason": "'sailing in style' feature on Queen Mary 2 from Brooklyn",
+          "rated_by": "model",
+          "brands": [
+            "cunard"
+          ],
+          "ships": [
+            "Queen Mary 2"
+          ],
+          "destinations": [],
+          "topics": []
+        },
+        {
+          "id": "bluesky:3n3a5m3jg34y4",
+          "platform": "bluesky",
+          "url": "https://bsky.app/profile/oceanlinerphotography.com/post/3n3a5m3jg34y4",
+          "author": "@oceanlinerphotography.com",
+          "posted_at": "2026-11-26T17:01:13Z",
+          "excerpt": "Queen Mary 2 (Cunard Line) • Transatlantic • December 16, 2025 The first full sea day after Southampton brought a heavy westerly swell. On December 16, 2025, t…",
+          "sentiment": "neutral",
+          "sentiment_reason": "Queen Mary 2 transatlantic photo log, rough swell on first sea day",
+          "rated_by": "model",
+          "brands": [
+            "cunard"
+          ],
+          "ships": [
+            "Queen Mary 2"
+          ],
+          "destinations": [
+            "Northern Europe"
+          ],
+          "topics": []
+        }
+      ]
+    },
+    {
+      "posts": 2,
+      "positive": 1,
+      "neutral": 1,
+      "negative": 0,
+      "platforms": {
+        "bluesky": {
+          "posts": 2,
+          "positive": 1,
+          "neutral": 1,
+          "negative": 0,
+          "net_score": 50,
+          "weighted_score": 50
+        }
+      },
+      "net_score": 50,
+      "weighted_score": 50,
+      "key": "rci",
+      "name": "Royal Caribbean",
+      "group": "Royal Caribbean Group",
+      "ships": [],
+      "destinations": [
+        {
+          "name": "Caribbean",
+          "posts": 2,
+          "positive": 1,
+          "neutral": 1,
+          "negative": 0,
+          "net_score": 50,
+          "weighted_score": 50
+        }
+      ],
+      "samples": [
+        {
+          "id": "bluesky:3n3av46eaes2k",
+          "platform": "bluesky",
+          "url": "https://bsky.app/profile/terita.bsky.social/post/3n3av46eaes2k",
+          "author": "@terita.bsky.social",
+          "posted_at": "2026-11-27T00:01:49.256Z",
+          "excerpt": "My family wants to switch to Royal Caribbean next year. I actually like Carnival. I don’t think I’m mature enough for these fancy cruise lines.",
+          "sentiment": "positive",
+          "sentiment_reason": "likes Carnival; family keen to try Royal Caribbean next year",
+          "rated_by": "model",
+          "brands": [
+            "rci"
+          ],
+          "ships": [],
+          "destinations": [
+            "Caribbean"
+          ],
+          "topics": []
+        },
+        {
+          "id": "bluesky:3n3bpxjbi322n",
+          "platform": "bluesky",
+          "url": "https://bsky.app/profile/eoghancorry.bsky.social/post/3n3bpxjbi322n",
+          "author": "@eoghancorry.bsky.social",
+          "posted_at": "2026-11-27T08:02:23.955Z",
+          "excerpt": "TRAVEL Extra today: Norse Atlantic contests validity of BOC & Aercap lease termination notices, Hibernia Line terminates Cork-Boulogne ferry service after just…",
+          "sentiment": "neutral",
+          "sentiment_reason": "Irish trade news roundup mentioning a Royal Caribbean trade event in Dublin",
+          "rated_by": "model",
+          "brands": [
+            "rci"
+          ],
+          "ships": [],
+          "destinations": [
+            "Caribbean"
+          ],
+          "topics": []
+        }
+      ]
+    },
+    {
+      "posts": 5,
+      "positive": 3,
+      "neutral": 2,
+      "negative": 0,
+      "platforms": {
+        "bluesky": {
+          "posts": 5,
+          "positive": 3,
+          "neutral": 2,
+          "negative": 0,
+          "net_score": 60,
+          "weighted_score": 60
+        }
+      },
+      "net_score": 60,
+      "weighted_score": 60,
+      "key": "disney",
+      "name": "Disney Cruise Line",
+      "group": "Other",
+      "ships": [
+        {
+          "posts": 2,
+          "positive": 1,
+          "neutral": 1,
+          "negative": 0,
+          "net_score": 50,
+          "weighted_score": 50,
+          "name": "Disney Wish",
+          "brand": "disney",
+          "standout": false,
+          "samples": [
+            {
+              "id": "bluesky:3n3atyxqg6c2f",
+              "platform": "bluesky",
+              "url": "https://bsky.app/profile/ncucerzan.bsky.social/post/3n3atyxqg6c2f",
+              "author": "@ncucerzan.bsky.social",
+              "posted_at": "2026-11-26T23:42:07.908Z",
+              "excerpt": "Thanksgiving Carved Roasted Turkey dinner and Prime Rib Roast from tonight’s special menu onboard the Disney Wish",
+              "sentiment": "positive",
+              "sentiment_reason": "shares the Thanksgiving turkey and prime rib dinner on Disney Wish",
+              "rated_by": "model",
+              "brands": [
+                "disney"
+              ],
+              "ships": [
+                "Disney Wish"
+              ],
+              "destinations": [],
+              "topics": []
+            },
+            {
+              "id": "bluesky:3n3aqwvrqnc2f",
+              "platform": "bluesky",
+              "url": "https://bsky.app/profile/ncucerzan.bsky.social/post/3n3aqwvrqnc2f",
+              "author": "@ncucerzan.bsky.social",
+              "posted_at": "2026-11-26T22:47:17.521Z",
+              "excerpt": "Thanksgiving menu onboard the Disney Wish",
+              "sentiment": "neutral",
+              "sentiment_reason": "posts the Disney Wish Thanksgiving menu",
+              "rated_by": "model",
+              "brands": [
+                "disney"
+              ],
+              "ships": [
+                "Disney Wish"
+              ],
+              "destinations": [],
+              "topics": []
+            }
+          ]
+        },
+        {
+          "posts": 1,
+          "positive": 0,
+          "neutral": 1,
+          "negative": 0,
+          "net_score": 0,
+          "weighted_score": 0,
+          "name": "Disney Adventure",
+          "brand": "disney",
+          "standout": false,
+          "samples": [
+            {
+              "id": "bluesky:3n3a7lazohrnu",
+              "platform": "bluesky",
+              "url": "https://bsky.app/profile/oceanlinerphotography.com/post/3n3a7lazohrnu",
+              "author": "@oceanlinerphotography.com",
+              "posted_at": "2026-11-26T17:36:33Z",
+              "excerpt": "Disney Adventure (Disney Cruise Line) • Los Angeles, California • February 9, 2026 Los Angeles saw the ship after dark on February 9, 2026, during her maiden c…",
+              "sentiment": "neutral",
+              "sentiment_reason": "photos of Disney Adventure's maiden Los Angeles call",
+              "rated_by": "model",
+              "brands": [
+                "disney"
+              ],
+              "ships": [
+                "Disney Adventure"
+              ],
+              "destinations": [],
+              "topics": []
+            }
+          ]
+        }
+      ],
+      "destinations": [
+        {
+          "name": "Bahamas",
+          "posts": 1,
+          "positive": 1,
+          "neutral": 0,
+          "negative": 0,
+          "net_score": 100,
+          "weighted_score": 100
+        }
+      ],
+      "samples": [
+        {
+          "id": "bluesky:3n3amn5ok4c25",
+          "platform": "bluesky",
+          "url": "https://bsky.app/profile/mfloydthaut.bsky.social/post/3n3amn5ok4c25",
+          "author": "@mfloydthaut.bsky.social",
+          "posted_at": "2026-11-26T21:30:15.292Z",
+          "excerpt": "Safe and sound in Orlando. Spending a couple days with the Mouse before heading on. Disney Cruise to the Bahamas for 5 days. Hope everyone has a wonderful Than…",
+          "sentiment": "positive",
+          "sentiment_reason": "excited for a 5-day Disney Cruise to the Bahamas",
+          "rated_by": "model",
+          "brands": [
+            "disney"
+          ],
+          "ships": [],
+          "destinations": [
+            "Bahamas"
+          ],
+          "topics": []
+        },
+        {
+          "id": "bluesky:3n3aqwvrqnc2f",
+          "platform": "bluesky",
+          "url": "https://bsky.app/profile/ncucerzan.bsky.social/post/3n3aqwvrqnc2f",
+          "author": "@ncucerzan.bsky.social",
+          "posted_at": "2026-11-26T22:47:17.521Z",
+          "excerpt": "Thanksgiving menu onboard the Disney Wish",
+          "sentiment": "neutral",
+          "sentiment_reason": "posts the Disney Wish Thanksgiving menu",
+          "rated_by": "model",
+          "brands": [
+            "disney"
+          ],
+          "ships": [
+            "Disney Wish"
+          ],
+          "destinations": [],
+          "topics": []
+        }
+      ]
+    }
+  ],
+  "unattributed": {
+    "posts": 0,
+    "positive": 0,
+    "neutral": 0,
+    "negative": 0,
+    "net_score": 0,
+    "weighted_score": 0
+  },
+  "standouts": {
+    "ships": [],
+    "destinations": []
+  },
+  "ships": [
+    {
+      "posts": 2,
+      "positive": 1,
+      "neutral": 1,
+      "negative": 0,
+      "net_score": 50,
+      "weighted_score": 50,
+      "name": "Disney Wish",
+      "brand": "disney",
+      "standout": false,
+      "samples": [
+        {
+          "id": "bluesky:3n3atyxqg6c2f",
+          "platform": "bluesky",
+          "url": "https://bsky.app/profile/ncucerzan.bsky.social/post/3n3atyxqg6c2f",
+          "author": "@ncucerzan.bsky.social",
+          "posted_at": "2026-11-26T23:42:07.908Z",
+          "excerpt": "Thanksgiving Carved Roasted Turkey dinner and Prime Rib Roast from tonight’s special menu onboard the Disney Wish",
+          "sentiment": "positive",
+          "sentiment_reason": "shares the Thanksgiving turkey and prime rib dinner on Disney Wish",
+          "rated_by": "model",
+          "brands": [
+            "disney"
+          ],
+          "ships": [
+            "Disney Wish"
+          ],
+          "destinations": [],
+          "topics": []
+        },
+        {
+          "id": "bluesky:3n3aqwvrqnc2f",
+          "platform": "bluesky",
+          "url": "https://bsky.app/profile/ncucerzan.bsky.social/post/3n3aqwvrqnc2f",
+          "author": "@ncucerzan.bsky.social",
+          "posted_at": "2026-11-26T22:47:17.521Z",
+          "excerpt": "Thanksgiving menu onboard the Disney Wish",
+          "sentiment": "neutral",
+          "sentiment_reason": "posts the Disney Wish Thanksgiving menu",
+          "rated_by": "model",
+          "brands": [
+            "disney"
+          ],
+          "ships": [
+            "Disney Wish"
+          ],
+          "destinations": [],
+          "topics": []
+        }
+      ]
+    },
+    {
+      "posts": 2,
+      "positive": 1,
+      "neutral": 1,
+      "negative": 0,
+      "net_score": 50,
+      "weighted_score": 50,
+      "name": "Queen Mary 2",
+      "brand": "cunard",
+      "standout": false,
+      "samples": [
+        {
+          "id": "bluesky:3n3amohwdwc2g",
+          "platform": "bluesky",
+          "url": "https://bsky.app/profile/ryanbiddulph.bsky.social/post/3n3amohwdwc2g",
+          "author": "@ryanbiddulph.bsky.social",
+          "posted_at": "2026-11-26T21:30:59.589Z",
+          "excerpt": "Sailing in Style on Queen Mary 2, from Brooklyn hiclassmag.com/sailing-in-s...",
+          "sentiment": "positive",
+          "sentiment_reason": "'sailing in style' feature on Queen Mary 2 from Brooklyn",
+          "rated_by": "model",
+          "brands": [
+            "cunard"
+          ],
+          "ships": [
+            "Queen Mary 2"
+          ],
+          "destinations": [],
+          "topics": []
+        },
+        {
+          "id": "bluesky:3n3a5m3jg34y4",
+          "platform": "bluesky",
+          "url": "https://bsky.app/profile/oceanlinerphotography.com/post/3n3a5m3jg34y4",
+          "author": "@oceanlinerphotography.com",
+          "posted_at": "2026-11-26T17:01:13Z",
+          "excerpt": "Queen Mary 2 (Cunard Line) • Transatlantic • December 16, 2025 The first full sea day after Southampton brought a heavy westerly swell. On December 16, 2025, t…",
+          "sentiment": "neutral",
+          "sentiment_reason": "Queen Mary 2 transatlantic photo log, rough swell on first sea day",
+          "rated_by": "model",
+          "brands": [
+            "cunard"
+          ],
+          "ships": [
+            "Queen Mary 2"
+          ],
+          "destinations": [
+            "Northern Europe"
+          ],
+          "topics": []
+        }
+      ]
+    },
+    {
+      "posts": 1,
+      "positive": 0,
+      "neutral": 1,
+      "negative": 0,
+      "net_score": 0,
+      "weighted_score": 0,
+      "name": "Carnival Dream",
+      "brand": "carnival",
+      "standout": false,
+      "samples": [
+        {
+          "id": "bluesky:3n3a4qzvlhk25",
+          "platform": "bluesky",
+          "url": "https://bsky.app/profile/cruisehive.com/post/3n3a4qzvlhk25",
+          "author": "@cruisehive.com",
+          "posted_at": "2026-11-26T16:46:05.678Z",
+          "excerpt": "Galveston Road Construction Prompts Carnival Dream Embarkation Update. www.cruisehive.com/galveston-ro... #cruise #cruises #cruisenews #travelnews",
+          "sentiment": "neutral",
+          "sentiment_reason": "news: Carnival Dream boarding moves terminals in Galveston",
+          "rated_by": "model",
+          "brands": [
+            "carnival"
+          ],
+          "ships": [
+            "Carnival Dream"
+          ],
+          "destinations": [
+            "Galveston"
+          ],
+          "topics": []
+        }
+      ]
+    },
+    {
+      "posts": 1,
+      "positive": 0,
+      "neutral": 1,
+      "negative": 0,
+      "net_score": 0,
+      "weighted_score": 0,
+      "name": "Disney Adventure",
+      "brand": "disney",
+      "standout": false,
+      "samples": [
+        {
+          "id": "bluesky:3n3a7lazohrnu",
+          "platform": "bluesky",
+          "url": "https://bsky.app/profile/oceanlinerphotography.com/post/3n3a7lazohrnu",
+          "author": "@oceanlinerphotography.com",
+          "posted_at": "2026-11-26T17:36:33Z",
+          "excerpt": "Disney Adventure (Disney Cruise Line) • Los Angeles, California • February 9, 2026 Los Angeles saw the ship after dark on February 9, 2026, during her maiden c…",
+          "sentiment": "neutral",
+          "sentiment_reason": "photos of Disney Adventure's maiden Los Angeles call",
+          "rated_by": "model",
+          "brands": [
+            "disney"
+          ],
+          "ships": [
+            "Disney Adventure"
+          ],
+          "destinations": [],
+          "topics": []
+        }
+      ]
+    }
+  ],
+  "destinations": [
+    {
+      "posts": 2,
+      "positive": 1,
+      "neutral": 1,
+      "negative": 0,
+      "net_score": 50,
+      "weighted_score": 50,
+      "name": "Caribbean",
+      "standout": false,
+      "samples": [
+        {
+          "id": "bluesky:3n3av46eaes2k",
+          "platform": "bluesky",
+          "url": "https://bsky.app/profile/terita.bsky.social/post/3n3av46eaes2k",
+          "author": "@terita.bsky.social",
+          "posted_at": "2026-11-27T00:01:49.256Z",
+          "excerpt": "My family wants to switch to Royal Caribbean next year. I actually like Carnival. I don’t think I’m mature enough for these fancy cruise lines.",
+          "sentiment": "positive",
+          "sentiment_reason": "likes Carnival; family keen to try Royal Caribbean next year",
+          "rated_by": "model",
+          "brands": [
+            "rci"
+          ],
+          "ships": [],
+          "destinations": [
+            "Caribbean"
+          ],
+          "topics": []
+        },
+        {
+          "id": "bluesky:3n3bpxjbi322n",
+          "platform": "bluesky",
+          "url": "https://bsky.app/profile/eoghancorry.bsky.social/post/3n3bpxjbi322n",
+          "author": "@eoghancorry.bsky.social",
+          "posted_at": "2026-11-27T08:02:23.955Z",
+          "excerpt": "TRAVEL Extra today: Norse Atlantic contests validity of BOC & Aercap lease termination notices, Hibernia Line terminates Cork-Boulogne ferry service after just…",
+          "sentiment": "neutral",
+          "sentiment_reason": "Irish trade news roundup mentioning a Royal Caribbean trade event in Dublin",
+          "rated_by": "model",
+          "brands": [
+            "rci"
+          ],
+          "ships": [],
+          "destinations": [
+            "Caribbean"
+          ],
+          "topics": []
+        }
+      ]
+    },
+    {
+      "posts": 1,
+      "positive": 1,
+      "neutral": 0,
+      "negative": 0,
+      "net_score": 100,
+      "weighted_score": 100,
+      "name": "Bahamas",
+      "standout": false,
+      "samples": [
+        {
+          "id": "bluesky:3n3amn5ok4c25",
+          "platform": "bluesky",
+          "url": "https://bsky.app/profile/mfloydthaut.bsky.social/post/3n3amn5ok4c25",
+          "author": "@mfloydthaut.bsky.social",
+          "posted_at": "2026-11-26T21:30:15.292Z",
+          "excerpt": "Safe and sound in Orlando. Spending a couple days with the Mouse before heading on. Disney Cruise to the Bahamas for 5 days. Hope everyone has a wonderful Than…",
+          "sentiment": "positive",
+          "sentiment_reason": "excited for a 5-day Disney Cruise to the Bahamas",
+          "rated_by": "model",
+          "brands": [
+            "disney"
+          ],
+          "ships": [],
+          "destinations": [
+            "Bahamas"
+          ],
+          "topics": []
+        }
+      ]
+    },
+    {
+      "posts": 1,
+      "positive": 0,
+      "neutral": 1,
+      "negative": 0,
+      "net_score": 0,
+      "weighted_score": 0,
+      "name": "Galveston",
+      "standout": false,
+      "samples": [
+        {
+          "id": "bluesky:3n3a4qzvlhk25",
+          "platform": "bluesky",
+          "url": "https://bsky.app/profile/cruisehive.com/post/3n3a4qzvlhk25",
+          "author": "@cruisehive.com",
+          "posted_at": "2026-11-26T16:46:05.678Z",
+          "excerpt": "Galveston Road Construction Prompts Carnival Dream Embarkation Update. www.cruisehive.com/galveston-ro... #cruise #cruises #cruisenews #travelnews",
+          "sentiment": "neutral",
+          "sentiment_reason": "news: Carnival Dream boarding moves terminals in Galveston",
+          "rated_by": "model",
+          "brands": [
+            "carnival"
+          ],
+          "ships": [
+            "Carnival Dream"
+          ],
+          "destinations": [
+            "Galveston"
+          ],
+          "topics": []
+        }
+      ]
+    },
+    {
+      "posts": 1,
+      "positive": 0,
+      "neutral": 1,
+      "negative": 0,
+      "net_score": 0,
+      "weighted_score": 0,
+      "name": "Northern Europe",
+      "standout": false,
+      "samples": [
+        {
+          "id": "bluesky:3n3a5m3jg34y4",
+          "platform": "bluesky",
+          "url": "https://bsky.app/profile/oceanlinerphotography.com/post/3n3a5m3jg34y4",
+          "author": "@oceanlinerphotography.com",
+          "posted_at": "2026-11-26T17:01:13Z",
+          "excerpt": "Queen Mary 2 (Cunard Line) • Transatlantic • December 16, 2025 The first full sea day after Southampton brought a heavy westerly swell. On December 16, 2025, t…",
+          "sentiment": "neutral",
+          "sentiment_reason": "Queen Mary 2 transatlantic photo log, rough swell on first sea day",
+          "rated_by": "model",
+          "brands": [
+            "cunard"
+          ],
+          "ships": [
+            "Queen Mary 2"
+          ],
+          "destinations": [
+            "Northern Europe"
+          ],
+          "topics": []
+        }
+      ]
+    }
+  ],
+  "topics": [],
+  "posts": [
+    {
+      "id": "bluesky:3n3a4qzvlhk25",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/cruisehive.com/post/3n3a4qzvlhk25",
+      "author": "@cruisehive.com",
+      "posted_at": "2026-11-26T16:46:05.678Z",
+      "excerpt": "Galveston Road Construction Prompts Carnival Dream Embarkation Update. www.cruisehive.com/galveston-ro... #cruise #cruises #cruisenews #travelnews",
+      "sentiment": "neutral",
+      "sentiment_reason": "news: Carnival Dream boarding moves terminals in Galveston",
+      "rated_by": "model",
+      "brands": [
+        "carnival"
+      ],
+      "ships": [
+        "Carnival Dream"
+      ],
+      "destinations": [
+        "Galveston"
+      ],
+      "topics": []
+    },
+    {
+      "id": "bluesky:3n3a5bhj7y226",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/paulandcarole.bsky.social/post/3n3a5bhj7y226",
+      "author": "@paulandcarole.bsky.social",
+      "posted_at": "2026-11-26T16:55:16.816Z",
+      "excerpt": "We are big fans of Holland America! Do you think the ship looks like a frogs face? Comment 🐸 if you do! They have a #BlackFriday offer book a Have It All fare…",
+      "sentiment": "positive",
+      "sentiment_reason": "self-described big Holland America fans sharing a Black Friday offer",
+      "rated_by": "model",
+      "brands": [
+        "hal"
+      ],
+      "ships": [],
+      "destinations": [],
+      "topics": []
+    },
+    {
+      "id": "bluesky:3n3a5m3jg34y4",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/oceanlinerphotography.com/post/3n3a5m3jg34y4",
+      "author": "@oceanlinerphotography.com",
+      "posted_at": "2026-11-26T17:01:13Z",
+      "excerpt": "Queen Mary 2 (Cunard Line) • Transatlantic • December 16, 2025 The first full sea day after Southampton brought a heavy westerly swell. On December 16, 2025, t…",
+      "sentiment": "neutral",
+      "sentiment_reason": "Queen Mary 2 transatlantic photo log, rough swell on first sea day",
+      "rated_by": "model",
+      "brands": [
+        "cunard"
+      ],
+      "ships": [
+        "Queen Mary 2"
+      ],
+      "destinations": [
+        "Northern Europe"
+      ],
+      "topics": []
+    },
+    {
+      "id": "bluesky:3n3a7lazohrnu",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/oceanlinerphotography.com/post/3n3a7lazohrnu",
+      "author": "@oceanlinerphotography.com",
+      "posted_at": "2026-11-26T17:36:33Z",
+      "excerpt": "Disney Adventure (Disney Cruise Line) • Los Angeles, California • February 9, 2026 Los Angeles saw the ship after dark on February 9, 2026, during her maiden c…",
+      "sentiment": "neutral",
+      "sentiment_reason": "photos of Disney Adventure's maiden Los Angeles call",
+      "rated_by": "model",
+      "brands": [
+        "disney"
+      ],
+      "ships": [
+        "Disney Adventure"
+      ],
+      "destinations": [],
+      "topics": []
+    },
+    {
+      "id": "bluesky:3n3amn5ok4c25",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/mfloydthaut.bsky.social/post/3n3amn5ok4c25",
+      "author": "@mfloydthaut.bsky.social",
+      "posted_at": "2026-11-26T21:30:15.292Z",
+      "excerpt": "Safe and sound in Orlando. Spending a couple days with the Mouse before heading on. Disney Cruise to the Bahamas for 5 days. Hope everyone has a wonderful Than…",
+      "sentiment": "positive",
+      "sentiment_reason": "excited for a 5-day Disney Cruise to the Bahamas",
+      "rated_by": "model",
+      "brands": [
+        "disney"
+      ],
+      "ships": [],
+      "destinations": [
+        "Bahamas"
+      ],
+      "topics": []
+    },
+    {
+      "id": "bluesky:3n3amohwdwc2g",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/ryanbiddulph.bsky.social/post/3n3amohwdwc2g",
+      "author": "@ryanbiddulph.bsky.social",
+      "posted_at": "2026-11-26T21:30:59.589Z",
+      "excerpt": "Sailing in Style on Queen Mary 2, from Brooklyn hiclassmag.com/sailing-in-s...",
+      "sentiment": "positive",
+      "sentiment_reason": "'sailing in style' feature on Queen Mary 2 from Brooklyn",
+      "rated_by": "model",
+      "brands": [
+        "cunard"
+      ],
+      "ships": [
+        "Queen Mary 2"
+      ],
+      "destinations": [],
+      "topics": []
+    },
+    {
+      "id": "bluesky:3n3aqwvrqnc2f",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/ncucerzan.bsky.social/post/3n3aqwvrqnc2f",
+      "author": "@ncucerzan.bsky.social",
+      "posted_at": "2026-11-26T22:47:17.521Z",
+      "excerpt": "Thanksgiving menu onboard the Disney Wish",
+      "sentiment": "neutral",
+      "sentiment_reason": "posts the Disney Wish Thanksgiving menu",
+      "rated_by": "model",
+      "brands": [
+        "disney"
+      ],
+      "ships": [
+        "Disney Wish"
+      ],
+      "destinations": [],
+      "topics": []
+    },
+    {
+      "id": "bluesky:3n3atyxqg6c2f",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/ncucerzan.bsky.social/post/3n3atyxqg6c2f",
+      "author": "@ncucerzan.bsky.social",
+      "posted_at": "2026-11-26T23:42:07.908Z",
+      "excerpt": "Thanksgiving Carved Roasted Turkey dinner and Prime Rib Roast from tonight’s special menu onboard the Disney Wish",
+      "sentiment": "positive",
+      "sentiment_reason": "shares the Thanksgiving turkey and prime rib dinner on Disney Wish",
+      "rated_by": "model",
+      "brands": [
+        "disney"
+      ],
+      "ships": [
+        "Disney Wish"
+      ],
+      "destinations": [],
+      "topics": []
+    },
+    {
+      "id": "bluesky:3n3av46eaes2k",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/terita.bsky.social/post/3n3av46eaes2k",
+      "author": "@terita.bsky.social",
+      "posted_at": "2026-11-27T00:01:49.256Z",
+      "excerpt": "My family wants to switch to Royal Caribbean next year. I actually like Carnival. I don’t think I’m mature enough for these fancy cruise lines.",
+      "sentiment": "positive",
+      "sentiment_reason": "likes Carnival; family keen to try Royal Caribbean next year",
+      "rated_by": "model",
+      "brands": [
+        "rci"
+      ],
+      "ships": [],
+      "destinations": [
+        "Caribbean"
+      ],
+      "topics": []
+    },
+    {
+      "id": "bluesky:3n3bbwsg6as2v",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/tbrunner.bsky.social/post/3n3bbwsg6as2v",
+      "author": "@tbrunner.bsky.social",
+      "posted_at": "2026-11-27T03:51:27.608Z",
+      "excerpt": "the beef wellington was better than cunard. eldest daughter jumping with joy.",
+      "sentiment": "negative",
+      "sentiment_reason": "says a home-cooked beef wellington beat the one on Cunard",
+      "rated_by": "model",
+      "brands": [
+        "cunard"
+      ],
+      "ships": [],
+      "destinations": [],
+      "topics": []
+    },
+    {
+      "id": "bluesky:3n3bpxjbi322n",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/eoghancorry.bsky.social/post/3n3bpxjbi322n",
+      "author": "@eoghancorry.bsky.social",
+      "posted_at": "2026-11-27T08:02:23.955Z",
+      "excerpt": "TRAVEL Extra today: Norse Atlantic contests validity of BOC & Aercap lease termination notices, Hibernia Line terminates Cork-Boulogne ferry service after just…",
+      "sentiment": "neutral",
+      "sentiment_reason": "Irish trade news roundup mentioning a Royal Caribbean trade event in Dublin",
+      "rated_by": "model",
+      "brands": [
+        "rci"
+      ],
+      "ships": [],
+      "destinations": [
+        "Caribbean"
+      ],
+      "topics": []
+    },
+    {
+      "id": "bluesky:3n3ces6ujn225",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/ncucerzan.bsky.social/post/3n3ces6ujn225",
+      "author": "@ncucerzan.bsky.social",
+      "posted_at": "2026-11-27T14:15:13.850Z",
+      "excerpt": "After being on the Wish for the first time, it’s time to update my Disney Cruise Line rankings: 1.) Fantasy 2.) Treasure 3.) Magic 4.) Wish 5.) Wonder 6.) Drea…",
+      "sentiment": "positive",
+      "sentiment_reason": "fresh off Disney Wish, ranks the Disney fleet and plainly enjoys it",
+      "rated_by": "model",
+      "brands": [
+        "disney"
+      ],
+      "ships": [],
+      "destinations": [],
+      "topics": []
+    }
+  ]
+}

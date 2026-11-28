@@ -1,0 +1,555 @@
+{
+  "date": "2026-11-27",
+  "window": {
+    "since": "2026-11-26T15:00:00Z",
+    "until": "2026-11-27T15:00:00Z"
+  },
+  "_instructions": "Fill 'posts' with public posts published inside the window. Every post needs platform, url, author, text and a sentiment of positive / neutral / negative with a short sentiment_reason. Run the queries below (web search; Bluesky can also use `fetch`). Skip ads, job posts and giveaways. Keep the text as posted; the scorer makes the excerpts.",
+  "_queries": [
+    {
+      "platform": "x",
+      "query": "site:x.com \"Princess Cruises\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Carnival\" cruise"
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Holland America\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Seabourn\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Royal Caribbean\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Norwegian Cruise Line\" OR \"NCL\" cruise"
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Celebrity Cruises\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"MSC Cruises\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Virgin Voyages\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com \"Disney Cruise\""
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com cruise ship complaint OR cancelled OR norovirus"
+    },
+    {
+      "platform": "x",
+      "query": "site:x.com cruise \"best cruise\" OR \"amazing cruise\" OR \"never again\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Princess Cruises\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Carnival\" cruise"
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Holland America\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Seabourn\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Royal Caribbean\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Norwegian Cruise Line\" OR \"NCL\" cruise"
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Celebrity Cruises\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"MSC Cruises\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Virgin Voyages\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net \"Disney Cruise\""
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net cruise ship complaint OR cancelled OR norovirus"
+    },
+    {
+      "platform": "threads",
+      "query": "site:threads.net cruise \"best cruise\" OR \"amazing cruise\" OR \"never again\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Princess Cruises\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Carnival\" cruise"
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Holland America\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Seabourn\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Royal Caribbean\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Norwegian Cruise Line\" OR \"NCL\" cruise"
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Celebrity Cruises\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"MSC Cruises\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Virgin Voyages\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app \"Disney Cruise\""
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app cruise ship complaint OR cancelled OR norovirus"
+    },
+    {
+      "platform": "bluesky",
+      "query": "site:bsky.app cruise \"best cruise\" OR \"amazing cruise\" OR \"never again\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Princess Cruises\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Carnival\" cruise"
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Holland America\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Seabourn\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Royal Caribbean\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Norwegian Cruise Line\" OR \"NCL\" cruise"
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Celebrity Cruises\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"MSC Cruises\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Virgin Voyages\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com \"Disney Cruise\""
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com cruise ship complaint OR cancelled OR norovirus"
+    },
+    {
+      "platform": "instagram",
+      "query": "site:instagram.com cruise \"best cruise\" OR \"amazing cruise\" OR \"never again\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Princess Cruises\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Carnival\" cruise"
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Holland America\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Seabourn\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Royal Caribbean\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Norwegian Cruise Line\" OR \"NCL\" cruise"
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Celebrity Cruises\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"MSC Cruises\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Virgin Voyages\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com \"Disney Cruise\""
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com cruise ship complaint OR cancelled OR norovirus"
+    },
+    {
+      "platform": "facebook",
+      "query": "site:facebook.com cruise \"best cruise\" OR \"amazing cruise\" OR \"never again\""
+    },
+    {
+      "platform": "all",
+      "query": "cruise norovirus"
+    },
+    {
+      "platform": "all",
+      "query": "cruise outbreak"
+    },
+    {
+      "platform": "all",
+      "query": "cruise itinerary change"
+    },
+    {
+      "platform": "all",
+      "query": "cruise missed port"
+    },
+    {
+      "platform": "all",
+      "query": "cruise man overboard"
+    },
+    {
+      "platform": "all",
+      "query": "cruise medical evacuation"
+    }
+  ],
+  "_focus_highlights": [
+    "Norovirus & illness",
+    "Itinerary changes & weather",
+    "Safety & incidents"
+  ],
+  "posts": [
+    {
+      "id": "bluesky:3n3av46eaes2k",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/terita.bsky.social/post/3n3av46eaes2k",
+      "author": "@terita.bsky.social",
+      "posted_at": "2026-11-27T00:01:49.256Z",
+      "text": "My family wants to switch to Royal Caribbean next year. \n\nI actually like Carnival. I don’t think I’m mature enough for these fancy cruise lines.",
+      "sentiment": "positive",
+      "sentiment_reason": "likes Carnival; family keen to try Royal Caribbean next year",
+      "engagement": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      "rated_by": "model",
+      "brands": [
+        "rci"
+      ],
+      "ships": [],
+      "destinations": [
+        "Caribbean"
+      ]
+    },
+    {
+      "id": "bluesky:3n3a4qzvlhk25",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/cruisehive.com/post/3n3a4qzvlhk25",
+      "author": "@cruisehive.com",
+      "posted_at": "2026-11-26T16:46:05.678Z",
+      "text": "Galveston Road Construction Prompts Carnival Dream Embarkation Update. www.cruisehive.com/galveston-ro... #cruise #cruises #cruisenews #travelnews",
+      "sentiment": "neutral",
+      "sentiment_reason": "news: Carnival Dream boarding moves terminals in Galveston",
+      "engagement": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      "rated_by": "model",
+      "brands": [
+        "carnival"
+      ],
+      "ships": [
+        "Carnival Dream"
+      ],
+      "destinations": [
+        "Galveston"
+      ]
+    },
+    {
+      "id": "bluesky:3n3a5bhj7y226",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/paulandcarole.bsky.social/post/3n3a5bhj7y226",
+      "author": "@paulandcarole.bsky.social",
+      "posted_at": "2026-11-26T16:55:16.816Z",
+      "text": "We are big fans of Holland America!\n\nDo you think the ship looks like a frogs face? Comment 🐸 if you do!\n\nThey have a #BlackFriday offer book a Have It All fare you recieve up to $800 in onboard credit! \n\nFind the deals here 👇\n holland-america.pxf.io/AgZ7OK (aff)\n\n#HollandAmerica  #HaveItAll",
+      "sentiment": "positive",
+      "sentiment_reason": "self-described big Holland America fans sharing a Black Friday offer",
+      "engagement": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0
+      },
+      "rated_by": "model",
+      "brands": [
+        "hal"
+      ],
+      "ships": [],
+      "destinations": []
+    },
+    {
+      "id": "bluesky:3n3bbwsg6as2v",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/tbrunner.bsky.social/post/3n3bbwsg6as2v",
+      "author": "@tbrunner.bsky.social",
+      "posted_at": "2026-11-27T03:51:27.608Z",
+      "text": "the beef wellington was better than cunard. eldest daughter jumping with joy.",
+      "sentiment": "negative",
+      "sentiment_reason": "says a home-cooked beef wellington beat the one on Cunard",
+      "engagement": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 1
+      },
+      "rated_by": "model",
+      "brands": [
+        "cunard"
+      ],
+      "ships": [],
+      "destinations": []
+    },
+    {
+      "id": "bluesky:3n3a5m3jg34y4",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/oceanlinerphotography.com/post/3n3a5m3jg34y4",
+      "author": "@oceanlinerphotography.com",
+      "posted_at": "2026-11-26T17:01:13Z",
+      "text": "Queen Mary 2 (Cunard Line) • Transatlantic • December 16, 2025\n\nThe first full sea day after Southampton brought a heavy westerly swell. On December 16, 2025, the onboard weather display reported rough…\n\nhttps://oceanlinerphotography.com/ships/queen-mary-2-transatlantic-day-2-at-sea-december-2025",
+      "sentiment": "neutral",
+      "sentiment_reason": "Queen Mary 2 transatlantic photo log, rough swell on first sea day",
+      "engagement": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      "rated_by": "model",
+      "brands": [
+        "cunard"
+      ],
+      "ships": [
+        "Queen Mary 2"
+      ],
+      "destinations": [
+        "Northern Europe"
+      ]
+    },
+    {
+      "id": "bluesky:3n3bpxjbi322n",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/eoghancorry.bsky.social/post/3n3bpxjbi322n",
+      "author": "@eoghancorry.bsky.social",
+      "posted_at": "2026-11-27T08:02:23.955Z",
+      "text": "TRAVEL Extra today: Norse Atlantic contests validity of BOC & Aercap lease termination notices, Hibernia Line terminates Cork-Boulogne ferry service after just six months, Royal Caribbean tanks the trade at event in Dublin\ntravelextra.ie",
+      "sentiment": "neutral",
+      "sentiment_reason": "Irish trade news roundup mentioning a Royal Caribbean trade event in Dublin",
+      "engagement": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      "rated_by": "model",
+      "brands": [
+        "rci"
+      ],
+      "ships": [],
+      "destinations": [
+        "Caribbean"
+      ]
+    },
+    {
+      "id": "bluesky:3n3ces6ujn225",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/ncucerzan.bsky.social/post/3n3ces6ujn225",
+      "author": "@ncucerzan.bsky.social",
+      "posted_at": "2026-11-27T14:15:13.850Z",
+      "text": "After being on the Wish for the first time, it’s time to update my Disney Cruise Line rankings:\n\n1.) Fantasy\n2.) Treasure \n3.) Magic\n4.) Wish\n5.) Wonder\n6.) Dream\n\nNot sailed: Adventure, Destiny",
+      "sentiment": "positive",
+      "sentiment_reason": "fresh off Disney Wish, ranks the Disney fleet and plainly enjoys it",
+      "engagement": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 0
+      },
+      "rated_by": "model",
+      "brands": [
+        "disney"
+      ],
+      "ships": [],
+      "destinations": []
+    },
+    {
+      "id": "bluesky:3n3a7lazohrnu",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/oceanlinerphotography.com/post/3n3a7lazohrnu",
+      "author": "@oceanlinerphotography.com",
+      "posted_at": "2026-11-26T17:36:33Z",
+      "text": "Disney Adventure (Disney Cruise Line) • Los Angeles, California • February 9, 2026\n\nLos Angeles saw the ship after dark on February 9, 2026, during her maiden call. The evening photographs follow the…\n\nhttps://oceanlinerphotography.com/ships/disney-adventure-los-angeles-evening-february-2026",
+      "sentiment": "neutral",
+      "sentiment_reason": "photos of Disney Adventure's maiden Los Angeles call",
+      "engagement": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0
+      },
+      "rated_by": "model",
+      "brands": [
+        "disney"
+      ],
+      "ships": [
+        "Disney Adventure"
+      ],
+      "destinations": []
+    },
+    {
+      "id": "bluesky:3n3amn5ok4c25",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/mfloydthaut.bsky.social/post/3n3amn5ok4c25",
+      "author": "@mfloydthaut.bsky.social",
+      "posted_at": "2026-11-26T21:30:15.292Z",
+      "text": "Safe and sound in Orlando. Spending a couple days with the Mouse before heading on. Disney Cruise to the Bahamas for 5 days. Hope everyone has a wonderful Thanksgiving.",
+      "sentiment": "positive",
+      "sentiment_reason": "excited for a 5-day Disney Cruise to the Bahamas",
+      "engagement": {
+        "likes": 10,
+        "reposts": 0,
+        "replies": 0
+      },
+      "rated_by": "model",
+      "brands": [
+        "disney"
+      ],
+      "ships": [],
+      "destinations": [
+        "Bahamas"
+      ]
+    },
+    {
+      "id": "bluesky:3n3amohwdwc2g",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/ryanbiddulph.bsky.social/post/3n3amohwdwc2g",
+      "author": "@ryanbiddulph.bsky.social",
+      "posted_at": "2026-11-26T21:30:59.589Z",
+      "text": "Sailing in Style on Queen Mary 2, from Brooklyn hiclassmag.com/sailing-in-s...",
+      "sentiment": "positive",
+      "sentiment_reason": "'sailing in style' feature on Queen Mary 2 from Brooklyn",
+      "engagement": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0
+      },
+      "rated_by": "model",
+      "brands": [
+        "cunard"
+      ],
+      "ships": [
+        "Queen Mary 2"
+      ],
+      "destinations": []
+    },
+    {
+      "id": "bluesky:3n3atyxqg6c2f",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/ncucerzan.bsky.social/post/3n3atyxqg6c2f",
+      "author": "@ncucerzan.bsky.social",
+      "posted_at": "2026-11-26T23:42:07.908Z",
+      "text": "Thanksgiving Carved Roasted Turkey dinner and Prime Rib Roast from tonight’s special menu onboard the Disney Wish",
+      "sentiment": "positive",
+      "sentiment_reason": "shares the Thanksgiving turkey and prime rib dinner on Disney Wish",
+      "engagement": {
+        "likes": 9,
+        "reposts": 0,
+        "replies": 1
+      },
+      "rated_by": "model",
+      "brands": [
+        "disney"
+      ],
+      "ships": [
+        "Disney Wish"
+      ],
+      "destinations": []
+    },
+    {
+      "id": "bluesky:3n3aqwvrqnc2f",
+      "platform": "bluesky",
+      "url": "https://bsky.app/profile/ncucerzan.bsky.social/post/3n3aqwvrqnc2f",
+      "author": "@ncucerzan.bsky.social",
+      "posted_at": "2026-11-26T22:47:17.521Z",
+      "text": "Thanksgiving menu onboard the Disney Wish",
+      "sentiment": "neutral",
+      "sentiment_reason": "posts the Disney Wish Thanksgiving menu",
+      "engagement": {
+        "likes": 7,
+        "reposts": 0,
+        "replies": 0
+      },
+      "rated_by": "model",
+      "brands": [
+        "disney"
+      ],
+      "ships": [
+        "Disney Wish"
+      ],
+      "destinations": []
+    }
+  ]
+}
