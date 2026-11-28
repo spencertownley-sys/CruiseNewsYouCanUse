@@ -25,8 +25,10 @@ Subcommands
       search API and merge them into the day's posts file. The other four
       platforms have no public API; the daily routine gathers them via web
       search (site:x.com, site:threads.net, site:instagram.com,
-      site:facebook.com) and appends them to the same file. If the network
-      blocks public.api.bsky.app this prints a notice and exits cleanly.
+      site:facebook.com) and appends them to the same file. Bluesky is queried
+      on api.bsky.app (falling back to public.api.bsky.app), one search per
+      brand alias, keeping only posts that name a brand or ship. A failing
+      term is skipped, never fatal.
 
   hydrate --date YYYY-MM-DD [--urls urls.txt]
       Add posts from a plain list of post URLs (one per line, optionally
@@ -79,6 +81,7 @@ import html
 import json
 import re
 import sys
+import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -763,7 +766,79 @@ def write_template(date, cfg):
     return path
 
 
+BLUESKY_HOSTS = ("api.bsky.app", "public.api.bsky.app")
+# A post that only matches on a ship name ("Queen Victoria", "Mardi Gras", "Wonder") must also read
+# like it is about cruising before it counts.
+CRUISE_CONTEXT = re.compile(
+    r"\b(cruis\w*|ship|ships|sail\w*|voyage\w*|port|ports|cabin|stateroom|balcony|deck|onboard|on board|"
+    r"embark\w*|disembark\w*|itinerary|itineraries|terminal|drydock|maiden|captain|crew|buffet|tender\w*|"
+    r"at sea|sea day|shore excursion\w*|homeport\w*|berth\w*|ocean liner|transatlantic|cunard|carnival cruise)\b",
+    re.I)  # api.bsky.app first: public.api.* 403s some networks
+
+
+def _get_json(url, tries=3):
+    """GET a JSON URL with a few retries on transient errors. Raises the last error."""
+    import time
+    last = None
+    for i in range(tries):
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "CruiseNewsYouCanUse/1.0", "Accept": "application/json"})
+            with urllib.request.urlopen(req, timeout=25) as r:
+                return json.loads(r.read().decode())
+        except urllib.error.HTTPError as e:
+            last = e
+            if e.code in (400, 401, 403, 404):
+                raise  # not transient; let the caller try another host / query
+        except Exception as e:  # noqa: BLE001  (timeouts, resets)
+            last = e
+        time.sleep(1.5 * (i + 1))
+    raise last
+
+
+def bluesky_terms(cfg):
+    """Search terms for Bluesky: the config's explicit list if present, otherwise every brand alias
+    that is a plain phrase (no @ / # / $ and not a bare 2-4 letter code like NCL or RCL), plus
+    every multi-word ship name (Bluesky search is exact-term, so ship names add real coverage)."""
+    q = cfg["queries"]
+    if q.get("bluesky_terms"):
+        return list(dict.fromkeys(q["bluesky_terms"]))
+    terms = []
+    for b in cfg["brands"]:
+        for a in b.get("aliases", []):
+            if a[:1] in "@#$" or re.fullmatch(r"[A-Z]{2,4}", a):
+                continue
+            terms.append(a)
+    if q.get("bluesky_include_ships", True):
+        terms += [s for b in cfg["brands"] for s in b.get("ships", []) if " " in s.strip()]
+    return list(dict.fromkeys(terms + ["cruise ship", "cruise line"]))
+
+
+def _bluesky_search(term, since, until, lang, pages):
+    """Return (posts, host_used) for one term, trying each Bluesky host in turn."""
+    errors = []
+    for host in BLUESKY_HOSTS:
+        out, cursor = [], None
+        try:
+            for _ in range(pages):
+                params = {"q": term, "limit": 100, "sort": "latest", "since": since, "until": until}
+                if lang:
+                    params["lang"] = lang
+                if cursor:
+                    params["cursor"] = cursor
+                payload = _get_json(f"https://{host}/xrpc/app.bsky.feed.searchPosts?{urllib.parse.urlencode(params)}")
+                out.extend(payload.get("posts", []))
+                cursor = payload.get("cursor")
+                if not cursor or not payload.get("posts"):
+                    break
+            return out, host
+        except Exception as e:  # noqa: BLE001
+            errors.append(f"{host}: {type(e).__name__} {str(e)[:60]}")
+    raise RuntimeError("; ".join(errors))
+
+
 def fetch_bluesky(date, cfg):
+    """Pull Bluesky posts for every search term through the public AppView search API.
+    A failing term is reported and skipped; it never aborts the rest of the fetch."""
     path = posts_path(date)
     if not path.exists():
         write_template(date, cfg)
@@ -771,20 +846,22 @@ def fetch_bluesky(date, cfg):
     since = data["window"]["since"]
     until = data["window"]["until"]
     existing = {p.get("id") for p in data["posts"]}
-    limit = cfg["queries"].get("max_posts_per_platform", 40)
-    added = 0
-    for t in cfg["queries"]["templates"]:
-        q = t.replace("{site}", "").strip()
-        params = urllib.parse.urlencode({"q": q, "limit": 25, "sort": "latest", "since": since, "until": until})
-        url = f"https://public.api.bsky.app/xrpc/app.bsky.feed.searchPosts?{params}"
+    qcfg = cfg["queries"]
+    limit = qcfg.get("bluesky_max_posts", 300)
+    pages = qcfg.get("bluesky_pages_per_term", 2)
+    lang = qcfg.get("bluesky_lang", "en")
+    matcher = Matcher(cfg)
+    added, failed, hosts, skipped = 0, [], set(), 0
+    for term in bluesky_terms(cfg):
+        if added >= limit:
+            break
         try:
-            with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "CruiseNewsYouCanUse/1.0"}), timeout=20) as r:
-                payload = json.loads(r.read().decode())
+            items, host = _bluesky_search(term, since, until, lang, pages)
+            hosts.add(host)
         except Exception as e:  # noqa: BLE001
-            print(f"Bluesky fetch unavailable ({type(e).__name__}: {str(e)[:80]}). "
-                  "Gather Bluesky posts via web search (site:bsky.app) instead.")
-            return
-        for item in payload.get("posts", []):
+            failed.append(f"{term!r} ({e})")
+            continue
+        for item in items:
             rec = item.get("record", {})
             uri = item.get("uri", "")
             rkey = uri.rsplit("/", 1)[-1]
@@ -792,8 +869,7 @@ def fetch_bluesky(date, cfg):
             pid = f"bluesky:{rkey}"
             if pid in existing:
                 continue
-            existing.add(pid)
-            data["posts"].append({
+            post = {
                 "id": pid,
                 "platform": "bluesky",
                 "url": f"https://bsky.app/profile/{handle}/post/{rkey}",
@@ -804,14 +880,28 @@ def fetch_bluesky(date, cfg):
                 "sentiment_reason": None,
                 "engagement": {"likes": item.get("likeCount", 0), "reposts": item.get("repostCount", 0),
                                "replies": item.get("replyCount", 0)},
-            })
+            }
+            # Generic terms ("cruise ship") pull plenty of noise: keep only posts that name a
+            # brand or ship, and drop muted (ads/jobs/giveaways) posts up front.
+            brands, ships, _, _ = matcher.attribute(post)
+            named_brand = any(pat.search(post["text"]) for _, pat in matcher.brand_patterns)
+            on_topic = named_brand or (ships and CRUISE_CONTEXT.search(post["text"]))
+            if not on_topic or matcher.is_muted(post["text"]) or not post["text"].strip():
+                skipped += 1
+                continue
+            existing.add(pid)
+            data["posts"].append(post)
             added += 1
             if added >= limit:
                 break
-        if added >= limit:
-            break
     path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
-    print(f"Added {added} Bluesky posts to {path.relative_to(ROOT)}")
+    print(f"Added {added} Bluesky posts that name a cruise brand or ship to {path.relative_to(ROOT)} "
+          f"(via {', '.join(sorted(hosts)) or 'no host'}; {skipped} off-topic/muted skipped).")
+    if failed:
+        print(f"Bluesky: {len(failed)} search term(s) failed and were skipped: " + "; ".join(failed[:5]))
+    if not hosts:
+        print("Bluesky search unavailable on every host. Gather Bluesky posts via web search (site:bsky.app) instead.")
+    return added
 
 
 # --------------------------------------------------------------------------
@@ -1118,6 +1208,9 @@ def cmd_score(date, cfg):
     LATEST.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n")
     update_history(report, cfg)
     t = report["totals"]
+    brand_posts = sum(1 for p in posts if p.get("brands"))
+    print(f"Brand-mentioning posts in window: {brand_posts}"
+          + ("  (below 5: thin pulse, the routine should skip publishing it)" if brand_posts < 5 else ""))
     print(f"Scored {t['posts']} posts for {date}: net {fmt_score(t['net_score'])} "
           f"({t['positive']} pos / {t['neutral']} neu / {t['negative']} neg); "
           f"{len(report['brands'])} brands, {len(report['standouts']['ships'])} standout ships, "

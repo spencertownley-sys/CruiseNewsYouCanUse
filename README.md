@@ -59,7 +59,7 @@ One page per day is kept under `social/`, with a rolling trend per brand.
 
 ```
 python3 scripts/social_listening.py template --date 2026-10-05       # posts file + the queries to run
-python3 scripts/social_listening.py fetch    --date 2026-10-05       # Bluesky public API; X API if X_BEARER_TOKEN is set
+python3 scripts/social_listening.py fetch    --date 2026-10-05       # Bluesky search API (main source); X API if X_BEARER_TOKEN is set
 python3 scripts/social_listening.py hydrate  --date 2026-10-05 --urls urls.txt   # add post URLs (+ ratings), fill X posts
 python3 scripts/social_listening.py run      --date 2026-10-05       # score + render social.html and social/<date>.html
 ```
@@ -68,8 +68,12 @@ python3 scripts/social_listening.py run      --date 2026-10-05       # score + r
 routine rates each post itself; any post left unrated falls back to a small cruise-aware word
 list. X posts are filled in automatically (text, date, likes) through X's public embed endpoint;
 dates for X, Threads and Instagram posts are decoded from their ids, so anything outside the
-day's window is dropped. Threads, Instagram, Facebook and Bluesky text comes from search results
-or page fetches, since those networks have no public read API. Outputs are kept in
+day's window is dropped. `fetch` is the main source: it searches Bluesky (api.bsky.app, falling
+back to public.api.bsky.app) once per brand alias and multi-word ship name, keeps only posts that
+name a brand (or a ship plus cruise wording), and skips any search term that fails instead of
+stopping. Threads, Instagram and Facebook text comes from search results or page fetches, since
+those networks have no public read API. `run` prints `Brand-mentioning posts in window: N`; the
+daily routine skips publishing the pulse when N is below 5. Outputs are kept in
 `data/social/` (`<date>.posts.json` rated posts, `<date>.json` report, `history.json`,
 `latest.json`, which also feeds the homepage strip).
 

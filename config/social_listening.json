@@ -23,7 +23,7 @@
       "enabled": true,
       "weight": 1.0,
       "site": "bsky.app",
-      "notes": "Public search API (public.api.bsky.app) when the network allows; otherwise web search (site:bsky.app)."
+      "notes": "Public search API via `fetch` (api.bsky.app, falling back to public.api.bsky.app): one search per brand alias, keeping posts that name a brand or ship. Web search (site:bsky.app) only as a supplement."
     },
     "instagram": {
       "label": "Instagram",
@@ -56,7 +56,12 @@
       "{site} cruise ship complaint OR cancelled OR norovirus",
       "{site} cruise \"best cruise\" OR \"amazing cruise\" OR \"never again\""
     ],
-    "max_posts_per_platform": 40
+    "max_posts_per_platform": 40,
+    "bluesky_max_posts": 300,
+    "bluesky_pages_per_term": 2,
+    "bluesky_lang": "en",
+    "_bluesky_notes": "`fetch` searches Bluesky once per term in 'bluesky_terms' (if set) or, by default, every plain-phrase brand alias, every multi-word ship name (bluesky_include_ships) and 'cruise ship' / 'cruise line'. Only posts that name a brand or ship are kept. bluesky_lang limits to one language (\"\" for all).",
+    "bluesky_include_ships": true
   },
   "brands": [
     {
